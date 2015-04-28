@@ -1,0 +1,298 @@
+<div class="container main-container">
+
+    <!-- Main component call to action -->
+    {% set items_per_row = 4 %}
+    {% set collection_ids = [] %}
+    {% set product_count = 1 %}
+    {% set products = api.get('/catalog', {sort:"product.variant.popularity:-1",limit:20}) %}
+   
+    <pre>{{ dump(products) }}</pre>
+    <div class="row featuredPostContainer globalPadding style2">
+        <h3 class="section-title style2 text-center"><span>NEW ARRIVALS</span></h3>
+
+        <div id="productslider" class="owl-carousel owl-theme">
+
+
+         {% for row,product in products if collection_ids[product.id] is empty and product_count < 5 %}
+            {% if product.group == 'product' %}
+                {% for id in product.product.collection_id %}
+                    {% set collection_ids = collection_ids|merge({(id):true}) %}
+                {% endfor %}
+            {% else %}
+                {% set collection_ids = collection_ids|merge({(product.id):true}) %}
+            {% endif %}
+            {% set product_count = product_count + 1 %}
+            {# Begin product #}
+            {% set product =  product|merge({'variant':product.product|values_in('variant')}) %}
+            {% set product =  product|merge({'attributes':product.variant|values_in(['price','compare_price','save_price','save_percent','color'])}) %}
+            
+            <div class="item">
+                <div class="product">
+                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
+                       data-placement="left">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </a>
+
+                    <div class="image">
+                        <div class="quickview">
+                            <a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal"
+                               data-toggle="modal"> Quick View </a>
+                        </div>
+                        <a href="product-details.html"><img src="{{app.url_asset}}/images/product/34.jpg" alt="img"
+                                                            class="img-responsive"></a>
+
+                        <div class="promotion"><span class="new-product"> NEW</span> <span
+                                class="discount">15% OFF</span></div>
+                    </div>
+                    <div class="description">
+                        <h4><a href="product-details.html">{{ product.title }} </a></h4>
+
+                        <p>{{ product.description|striptags|slice(0, 100) }}... </p>
+                        <span class="size">XL / XXL / S </span></div>
+                    <div class="price"><span>
+                        {% if product.attributes.price %}
+                            {{ prod.price(product.attributes.price) }}
+                        {% endif %}
+                    </span></div>
+                    <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i
+                            class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a></div>
+                </div>
+            </div>
+
+            {# End product #}
+        {% endfor %}
+
+
+            <!-- <div class="item">
+                <div class="product">
+                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
+                       data-placement="left">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </a>
+
+                    <div class="image">
+                        <div class="quickview">
+                            <a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal"
+                               data-toggle="modal"> Quick View </a>
+                        </div>
+                        <a href="product-details.html"><img src="{{app.url_asset}}/images/product/34.jpg" alt="img"
+                                                            class="img-responsive"></a>
+
+                        <div class="promotion"><span class="new-product"> NEW</span> <span
+                                class="discount">15% OFF</span></div>
+                    </div>
+                    <div class="description">
+                        <h4><a href="product-details.html">consectetuer adipiscing </a></h4>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <span class="size">XL / XXL / S </span></div>
+                    <div class="price"><span>$25</span></div>
+                    <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i
+                            class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product">
+                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
+                       data-placement="left">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </a>
+
+                    <div class="image">
+                        <div class="quickview">
+                            <a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal"
+                               data-toggle="modal"> Quick View </a>
+                        </div>
+                        <a href="product-details.html"><img src="{{app.url_asset}}/images/product/30.jpg" alt="img"
+                                                            class="img-responsive"></a>
+
+                        <div class="promotion"><span class="discount">15% OFF</span></div>
+                    </div>
+                    <div class="description">
+                        <h4><a href="product-details.html">luptatum zzril delenit</a></h4>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <span class="size">XL / XXL / S </span></div>
+                    <div class="price"><span>$25</span></div>
+                    <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i
+                            class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product">
+                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
+                       data-placement="left">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </a>
+
+                    <div class="image">
+                        <div class="quickview">
+                            <a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal"
+                               data-toggle="modal"> Quick View </a>
+                        </div>
+                        <a href="product-details.html"><img src="{{app.url_asset}}/images/product/36.jpg" alt="img"
+                                                            class="img-responsive"></a>
+
+                        <div class="promotion"><span class="new-product"> NEW</span></div>
+                    </div>
+                    <div class="description">
+                        <h4><a href="product-details.html">eleifend option </a></h4>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <span class="size">XL / XXL / S </span></div>
+                    <div class="price"><span>$25</span></div>
+                    <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i
+                            class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product">
+                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
+                       data-placement="left">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </a>
+
+                    <div class="image">
+                        <div class="quickview">
+                            <a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal"
+                               data-toggle="modal"> Quick View </a>
+                        </div>
+                        <a href="product-details.html"><img src="{{app.url_asset}}/images/product/9.jpg" alt="img" class="img-responsive"></a>
+                    </div>
+                    <div class="description">
+                        <h4><a href="product-details.html">mutationem consuetudium </a></h4>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <span class="size">XL / XXL / S </span></div>
+                    <div class="price"><span>$25</span></div>
+                    <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i
+                            class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product">
+                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
+                       data-placement="left">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </a>
+
+                    <div class="image">
+                        <div class="quickview">
+                            <a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal"
+                               data-toggle="modal"> Quick View </a>
+                        </div>
+                        <a href="product-details.html"><img src="{{app.url_asset}}/images/product/12.jpg" alt="img"
+                                                            class="img-responsive"></a></div>
+                    <div class="description">
+                        <h4><a href="product-details.html">sequitur mutationem </a></h4>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <span class="size">XL / XXL / S </span></div>
+                    <div class="price"><span>$25</span></div>
+                    <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i
+                            class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product">
+                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
+                       data-placement="left">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </a>
+
+                    <div class="image">
+                        <div class="quickview">
+                            <a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal"
+                               data-toggle="modal"> Quick View </a>
+                        </div>
+                        <a href="product-details.html"><img src="{{app.url_asset}}/images/product/13.jpg" alt="img"
+                                                            class="img-responsive"></a></div>
+                    <div class="description">
+                        <h4><a href="product-details.html">consuetudium lectorum.</a></h4>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <span class="size">XL / XXL / S </span></div>
+                    <div class="price"><span>$25</span></div>
+                    <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i
+                            class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product">
+                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
+                       data-placement="left">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </a>
+
+                    <div class="image">
+                        <div class="quickview">
+                            <a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal"
+                               data-toggle="modal"> Quick View </a>
+                        </div>
+                        <a href="product-details.html"><img src="{{app.url_asset}}/images/product/21.jpg" alt="img"
+                                                            class="img-responsive"></a></div>
+                    <div class="description">
+                        <h4><a href="product-details.html">parum claram</a></h4>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <span class="size">XL / XXL / S </span></div>
+                    <div class="price"><span>$25</span></div>
+                    <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i
+                            class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product">
+                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
+                       data-placement="left">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </a>
+
+                    <div class="image">
+                        <div class="quickview">
+                            <a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal"
+                               data-toggle="modal"> Quick View </a>
+                        </div>
+                        <a href="product-details.html"><img src="{{app.url_asset}}/images/product/24.jpg" alt="img"
+                                                            class="img-responsive"></a></div>
+                    <div class="description">
+                        <h4><a href="product-details.html">duis dolore </a></h4>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <span class="size">XL / XXL / S </span></div>
+                    <div class="price"><span>$25</span></div>
+                    <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i
+                            class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product">
+                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
+                       data-placement="left">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </a>
+
+                    <div class="image">
+                        <div class="quickview">
+                            <a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal"
+                               data-toggle="modal"> Quick View </a>
+                        </div>
+                        <a href="product-details.html"><img src="{{app.url_asset}}/images/product/15.jpg" alt="img"
+                                                            class="img-responsive"></a></div>
+                    <div class="description">
+                        <h4><a href="product-details.html">feugait nulla facilisi</a></h4>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                        <span class="size">XL / XXL / S </span></div>
+                    <div class="price"><span>$25</span></div>
+                    <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i
+                            class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a></div>
+                </div>
+            </div> -->
+        </div>
+        <!--/.productslider-->
+
+    </div>
+    <!--/.featuredPostContainer-->
+</div>
+<!-- /main container -->

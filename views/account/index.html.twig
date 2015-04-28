@@ -1,0 +1,107 @@
+{% extends "/_layouts/theme.html.twig" %}
+{% import "/_macros/form-elements-bootstrap.html.twig" as forms %}
+{% import "/_macros/list.html.twig" as list %}
+{% import "/account/_macros/base.html.twig" as account %}
+
+{# Redirect to the login page if user is not logged in. #}
+{% do account.login() %}
+
+{% block title %}Account{% endblock %}
+
+{# Load in the breadcrumbs positioned in /_layouts/main/base.html.twig #}
+{% block breadcrumb %}
+{#
+Passed into the macro is a array of key:value pairs as (title):(relative url)
+- The last link should not have a url, as it will be used as a 'you are here' 
+#}
+{{ base.breadcrumbs({'Account Center':''}) }}
+{% endblock %}
+
+{# Load in the main content positioned in /_layouts/main/base.html.twig #}
+{% block content %}
+{# 
+Load in the tabs for the page, pass in the name of this page, and make sure it's
+set in the array in /account/_macros/base.html.twig
+#}
+<div id="customer-account" class="container">
+    <div class="row">
+        {# Begin account center #}
+        {# Begin page header #}    
+        <div class="col-lg-9 col-md-9 col-sm-7">
+            <h1 class="section-title-inner"><span><i class="fa fa-unlock-alt"></i>Hello {{ app.user.first_name|title }}!</span></h1>
+            {# End page header #}  
+            <div class="row userInfo">
+                <div class="col-xs-12 col-sm-12">
+
+                    <h2 class="block-title-2"><span>Welcome to your account. Here you can manage all of your personal information and orders.</span>
+                    </h2>
+                    <ul class="myAccountList row">
+                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                            <div class="thumbnail ">
+                                <a title="Notifications" href="{{ app.url }}/account/notifications"> <i class="fa fa-exclamation-circle"></i> Notifications
+                                </a>
+                            </div>
+                        </li>
+                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                            <div class="thumbnail ">
+                                <a title="My addresses" href="{{ app.url }}/account/addresses"> <i class="fa fa-map-marker"></i>
+                                    My addresses
+                                </a>
+                            </div>
+                        </li>
+                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                            <div class="thumbnail ">
+                                <a title="Orders" href="{{ app.url }}/account/orders">
+                                    <i class="fa fa-calendar"></i>Orders
+                                </a>
+                            </div>
+                        </li>
+                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                            <div class="thumbnail ">
+                                <a title="My wishlists" href="{{ app.url }}/account/wishlists"><i class="fa fa-heart"></i> 
+                                    My wishlists
+                                </a>
+                            </div>
+                        </li>
+                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                            <div class="thumbnail ">
+                                <a title="Registiries" href="{{ app.url }}/account/registries"><i class="fa fa-gift"></i>
+                                    Registiries
+                                </a>
+                            </div>
+                        </li>
+                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                            <div class="thumbnail ">
+                                <a title="Reviews" href="{{ app.url }}/account/reviews"><i class="fa fa-comments"></i>
+                                    Reviews
+                                </a>
+                            </div>
+                        </li>
+                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                            <div class="thumbnail ">
+                                <a title="Returns" href="{{ app.url }}/account/returns"><i class="fa fa-undo"></i>
+                                    Returns
+                                </a>
+                            </div>
+                        </li>                        
+                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                            <div class="thumbnail">
+                                <a title="Account Settings" href="{{ app.url }}/account/account-settings"><i class="fa fa-cog"></i>
+                                    Account Settings
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clear clearfix"></div>
+                    </div>
+                </div>
+                <!--/row end-->
+            </div>      
+            </div>
+        </div>
+        {# End account center #}
+    </div>
+</div>
+<div class="gap">
+</div>
+{% endblock %}

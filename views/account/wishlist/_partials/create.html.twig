@@ -1,0 +1,59 @@
+{% extends "/_layouts/theme.html.twig" %}
+{% import "/account/_macros/base.html.twig" as account %}
+{% import "/_macros/form-elements-bootstrap.html.twig" as forms %}
+
+{% do account.login() %}
+
+{% block title %}Account - Create Wishlist{% endblock %} 
+
+{% block breadcrumb %}
+    {{ base.breadcrumbs({'Account':'/account','Wishlists':'/account/wishlists','Create Wishlist':''}) }}
+{% endblock %}
+
+
+{% block content %}
+    <!-- HERE -->
+    <div class="container main-container headerOffset">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-7">
+                {% if app.request.post.wishlist is not empty %}
+                    {% set wishlistdata = app.request.post.wishlist + {'customer_id':app.user.id} %}
+                    {# Make wishlist the default if the default checkbox is checked #}
+                    {% set result = api.post('/wishlist', wishlistdata) %}
+                    {% if wishlistdata.make_default %}
+                        {% do api.post('/wishlist/' ~ result ~ '/makeDefault') %}
+                    {% endif %}
+                    {% if result %}
+                        {% do app.user.setFlash('Wishlist created successfully') %}
+                        {% do app.redirect('/account/wishlists') %}
+                    {% else %}
+                        {% set form_errors = api.error() %}
+                        {% set wishlist = app.request.post.wishlist %}
+                    {% endif %}
+                {% endif %}
+                {% set addresses = api.get('/customeraddress', {query:{deleted:{'$ne':1},verified:1,customer_id:app.user.id}}) %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="section-title-inner"><span><i class="fa fa-heart"></i> 
+                            Create a Wishlist</span></h1>
+                            <hr/>
+                    </div>
+                </div>
+                <!-- Begin Create Form -->
+                <div id="wishlist-create">
+                    {% include '/account/wishlist/_partials/form.html.twig' %}
+                </div>
+                <!-- End Create Form -->
+                <!-- Begin Button Group -->
+                <div class="col-lg-12 clearfix">
+                    <ul class="pager">
+                        <li class="previous pull-right"><a href="{{app.url}}/"> <i class="fa fa-home"></i> Go to Shop </a>
+                        </li>
+                        <li class="next pull-left"><a href="{{app.url}}/account/">&larr; Back to My Account</a></li>
+                    </ul>
+                </div>
+                <!-- End Button Group -->
+            </div>
+        </div>
+    </div>
+{% endblock %}

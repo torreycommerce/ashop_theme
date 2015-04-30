@@ -375,8 +375,80 @@
                 </li>
             </ul>
 
+            <!-- Start Acenda Cart  -->
+
+            {# Begin cart section #}
+            <ul class="list-inline list-unstyled">
+                <li class="cart" data-content="" data-html="true" data-placement='bottom' rel='popover'>
+                    {# Begin ajax cart popover #}
+                    <div class="ajaxcart" style="display:none">
+                        <div class="popover-close">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    Quickcart
+                                </div>
+                                <div class="col-md-5">
+                                    <a onclick="$('li.cart').popover('hide')" id="ajaxcart-close" class="btn btn-danger btn-sm pull-right fa fa-times"></a>
+                                </div>
+                            </div>
+                        </div>
+                        {# Begin Popover products #}
+                        <section class="ajaxcart-products">
+                            {# Begin product #}
+                            <div class="ajaxcart-product product">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="thumbnail">
+                                            <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" class="product-image" src="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="name">
+                                            <span class="product-name"></span>
+                                        </div>
+                                        <div class="price"><strong>Price:</strong> $<span class="product-price"></span></div>
+                                        <div class="quantity"><strong>Qty:</strong> <span class="product-quantity"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            {# Begin product #}
+                        </section>
+                        {# End Popover products #}
+                        {# Begin popover cart totals #}
+                        <div class="row">
+                            <div class="col-xs-8 col-xs-offset-4">
+                                <div class="cart-totals">
+                                    <div class="items">Item count: <span class="item-count"></span></div>
+                                    <div class="total">Subtotal: $<span class="subtotal">0.00</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        {# End popover cart totals #}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="{{ app.url }}/cart" class="btn btn-cart btn-block">My Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    {# End ajax cart popover #}
+                    {# Begin cart button #}
+                    <a href="{{app.url}}/cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        <div class="text">My Cart</div>
+                        <div class="item-count">{{ api.get('/sessioncart').item_count }}</div>
+                    </a>
+                    {# End cart button #}
+                </li>
+            </ul>
+            {# End cart section #}
+
+            {# Begin mobile toolbar #}
+            <!-- End Acenda Cart  -->
+
+
             <!--- this part will be hidden for mobile version -->
-            <div class="nav navbar-nav navbar-right hidden-xs">
+
+           {#  <div class="nav navbar-nav navbar-right hidden-xs">
                 <div class="dropdown  cartMenu "><a href="{{ app.url }}/cart" class="dropdown-toggle disabled" data-toggle="dropdown"> <i
                         class="fa fa-shopping-cart"> </i> <span class="cartRespons"> Cart ($0.00) </span> <b
                         class="caret"> </b> </a>
@@ -420,7 +492,7 @@
                 <!--/.cartMenu-->
 
                 <div class="search-box">
-                    {# Begin search bar #}
+                    {# Begin search bar
                         <div class="input-group">
                             <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
                         </div>
@@ -430,7 +502,7 @@
             </div>
             <!--/.navbar-nav hidden-xs-->
         </div>
-        <!--/.nav-collapse -->
+        <!--/.nav-collapse --> #}
 
     </div>
     <!--/.container -->
@@ -449,3 +521,57 @@
 
 </div>
 <!-- /.Fixed navbar  -->
+
+
+<style>
+section#toolbar ul li.cart a {
+  background-color: #ba20ba;
+  color: #ffffff;
+  display: inline-block;
+  margin: 0;
+  padding-bottom: 0;
+  padding-left: 16px;
+  padding-top: 0;
+  padding-right: 0;
+}
+section#toolbar ul li.cart a:hover {
+  background-color: #c515c5;
+  color: #ffffff;
+}
+section#toolbar ul li.cart a:hover .text,
+section#toolbar ul li.cart a:hover .item-count {
+  background-color: #c515c5;
+}
+section#toolbar ul li.cart a i {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 11px;
+}
+section#toolbar ul li.cart a .text {
+  display: inline-block;
+  padding-left: 0px;
+  padding-right: 6px;
+}
+section#toolbar ul li.cart a .item-count {
+  background-color: #8e198e;
+  display: inline-block;
+  font-weight: bold;
+  padding: 8px 12px;
+}
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+.list-inline {
+  padding-left: 0;
+  list-style: none;
+}
+.list-inline > li {
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.list-inline > li:first-child {
+  padding-left: 0;
+}
+</style>

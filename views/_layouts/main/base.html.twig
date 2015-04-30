@@ -1,6 +1,7 @@
 {%- import "/_macros/base.html.twig" as base -%}
 {%- import "/_macros/product.html.twig" as prod -%}
 {%- import "/_macros/form-elements-bootstrap.html.twig" as newsletterform -%}
+{%- import "/_macros/social-sharing.html.twig" as social -%}
 
 {% spaceless %}
 {# Getting Seo from config.mode.json #}
@@ -23,6 +24,7 @@
 {{ app.asset.js(app.url_asset ~ '/js/jquery.maskedinput.js') }}
 {{ app.asset.js(app.url_asset ~ '/js/jquery.mmenu.js') }}
 {{ app.asset.js(app.url_asset ~ '/js/parsley.min.js') }}
+{{ app.asset.js(app.url_asset ~ '/js/parsley.extend.min.js') }}
 {{ app.asset.js(app.url_asset ~ '/js/bootstrap-datepicker.js') }}
 {{ app.asset.js(app.url_asset ~ '/js/normalizer.js') }}
 {{ app.asset.js(app.url_asset ~ '/js/ion-checkRadio/ion.checkRadio.min.js') }}
@@ -33,6 +35,13 @@
 {{ app.asset.js(app.url_asset ~ '/js/home.js') }}
 {{ app.asset.js(app.url_asset ~ '/js/script.js') }}
 {{ app.asset.js(app.url_asset ~ '/js/site.js') }}
+{{ app.asset.js(app.url_asset ~ '/js/jquery-migrate-1.2.1.js') }}
+{{ app.asset.js(app.url_asset ~ '/js/smoothproducts.min.js') }}
+{{ app.asset.js(app.url_asset ~ '/js/ZeroClipboard.min.js') }}
+{{ app.asset.js(app.url_asset ~ '/js/google_map_normalizer.js') }}
+{{ app.asset.js(app.url_asset ~ '/js/quickcart.js') }}
+{{ app.asset.js(app.url_asset ~ '/js/jquery.zoomify.js') }}
+{{ app.asset.js(app.url_asset ~ '/js/rating.js') }}
 {# End Scripts #}
 
 {% endspaceless %}

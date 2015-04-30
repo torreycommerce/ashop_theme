@@ -429,7 +429,7 @@ $(document).ready(function () {
 
     var options = [];
 
-    $(".dropdown-menu div, .dropdown-menu input[type='radio'], .dropdown-menu input[type='checkbox'], .dropdown-menu input[type='button']").on('click', function (event) {
+    $(".dropdown-menu input[type='radio'], .dropdown-menu input[type='checkbox'], .dropdown-menu .btn-checkout").on('click', function (event) {
 
         var $target = $(event.currentTarget),
             val = $target.attr('data-value'),

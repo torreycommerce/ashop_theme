@@ -252,7 +252,7 @@
     margin-right: 20px;
 }
 
-.cart-actions {
+.cart-actions-product {
     margin-top: 0;
     margin-bottom: 20px;
     width: 100%;
@@ -262,7 +262,7 @@
     clear: both;
 }
 
-.cart-actions button, .cart-actions .btn-cart, .cart-actions .wishlist {
+.cart-actions-product button, .cart-actions-product .btn-cart, .cart-actions-product .wishlist {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -o-border-radius: 3px;
@@ -272,7 +272,7 @@
     display: block;
     float: left;
     font-family: Oswald, Helvetica Neue, Arial, sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: lighter;
     line-height: 1em;
     margin: 0 20px 0 0;
@@ -284,20 +284,36 @@
     -o-transition: all 0.25s ease 0s;
     -ms-transition: all 0.25s ease 0s;
 }
+.cart-actions-product .wishlist {
+
+    font-size: 14px;
+    margin: 20px 0 0 0;
+}
+
+// Cart Actions
+.cart-actions-product button{
+  background: none repeat scroll 0 0 #4ec67f;
+  border: 2px solid #27ae60;
+}
+.cart-actions-product button:hover {
+    background: #ffffff;
+    color: #2c3e50;
+    border: solid 2px #4ec67f;
+}
 
 button.first {
     margin-right: 20px;
     margin-bottom: 10px;
 }
 
-.cart-actions .wishlist {
+.cart-actions-product .wishlist {
     background: #CCCCCC;
     line-height: 1em;
     text-decoration: none;
     border: solid 2px #CCCCCC;
 }
 
-.cart-actions .wishlist:hover {
+.cart-actions-product .wishlist:hover {
     background: #fff;
     color: #666;
     border: solid 2px #CCCCCC;

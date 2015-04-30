@@ -3,7 +3,7 @@
     <div class="hidden-sm hidden-xs row ">
         <div class="col-md-12 breadcrumbDiv ">
             <ul class="breadcrumb">
-                <li><a href="{{app.url}}"><span class="glyphicon glyphicon-home"></span><span class="visually-hidden">Home</span></a></li>
+                <li><a href="{{app.url}}"><span class="glyphicon glyphicon-home"></span> <span class="visually-hidden">Home</span></a></li>
                 {% for name,link in crumbs %}
                     {% if link is empty %}
                         <li class="active">{{name}}</li>

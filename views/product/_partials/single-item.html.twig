@@ -11,7 +11,7 @@
                     <div class="thumbnail">
                         <span class="helper hidden-xs"></span>
                         <div id="main-product-video" style="display:none"></div>
-                        <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" id="main-product-image" class="img-responsive" src="{{app.image.getImageUrl("product","large",main_image_id) }}" data-image-zoom="{{app.image.getImageUrl("product","large",main_image_id) }}" alt="" />
+                        <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" id="main-product-image" class="img-responsive" src="{{app.image.getImageUrl("product","standard",main_image_id) }}" data-image-zoom="{{app.image.getImageUrl("product","large",main_image_id) }}" alt="" />
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
     {# Begin Product Heading Group #}
         <div class="row">
             <h1 class="product-title"> <a href="{{app.url}}/brand/{{product.brand|url_encode}}">{{product.brand}}</a></h1>
-            <h2 class="product-code">{{product.title}}</h2>
+            <h2 class="product-name">{{product.title}}</h2>
                 {# End Product Heading Group #}
                 {# Begin review stars #}
                 {% set review_score = product.product|average('review_score') %}
@@ -82,7 +82,7 @@
                     {% set stock_description = product.variant[0].inventory_quantity > 0 ? 'In Stock' :  product.variant[0].inventory_shipping_estimate is not empty ? product.variant[0].inventory_shipping_estimate : '' %}
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="product-price"><span class="price-sales">{{ prod.price(product.variant[0].price) }}</span> 
+                            <div class="price-product"><span class="price-sales">{{ prod.price(product.variant[0].price) }}</span> 
                             {# Begin regular price #}
                                 {% if product.variant[0].price != product.variant[0].compare_price and product.variant[0].compare_price is not empty %}
                                 <span class="price-standard">
@@ -163,36 +163,13 @@
 
                 <div class="row"> {# Begin Row#}
                    <div class="productFilter productFilterLook2">
-                       <div class="filterBox">
+                       <div class="filterBox col-sm-5 col-md-4">
                            <select>
                                 <option value="strawberries" selected>Size</option>
-                                <option name="items[{{product.variant[0].id}}]">X-SM</option>
-                                <option name="items[{{product.variant[0].id}}]">SM</option>
-                                <option name="items[{{product.variant[0].id}}]">M</option>
-                                <option name="items[{{product.variant[0].id}}]">L</option>
-                                <option name="items[{{product.variant[0].id}}]">XL</option>
-                                <option name="items[{{product.variant[0].id}}]">XXL</option>
-
                             </select>
                         </div>
                        {# Begin product Quantity #}
-                       <!--<div class="filterBox">
-                           <select class="quantity-selector">
-                                <option value="strawberries" selected>Quantity</option>
-                                <option name="items[{{product.variant[0].id}}]">1</option>
-                                <option name="items[{{product.variant[0].id}}]">2</option>
-                                <option name="items[{{product.variant[0].id}}]">3</option>
-                                <option name="items[{{product.variant[0].id}}]">4</option>
-                                <option name="items[{{product.variant[0].id}}]">5</option>
-                                <option name="items[{{product.variant[0].id}}]">6</option>
-                                <option name="items[{{product.variant[0].id}}]">7</option>
-                                <option name="items[{{product.variant[0].id}}]">8</option>
-                            </select>
-                        </div>-->
-
-                        <div class="quantity-input-group">
-                            <label for="quantity-selector" class="control-label">Qty</label>
-                                <div class="input-group">
+                                <div class="input-group col-sm-5 col-md-4">
                                 <div class="input-group-btn">
                                 <button class="btn btn-neutral btn-remove" type="button">
                                 <i class="fa fa-minus"></i>
@@ -203,7 +180,6 @@
                                 </button>
                                 </div>
                             </div>
-                        </div>
                    </div>
                    {# End product quantity #}
                 </div> {# End Row#}

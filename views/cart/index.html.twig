@@ -1,8 +1,6 @@
 {% extends "/_layouts/theme.html.twig" %}
 {% import "/_macros/form-elements-bootstrap.html.twig" as forms %}
-{% block title %}
-Cart
-{% endblock %}
+
 {% block breadcrumb %}
 {{ base.breadcrumbs({'Cart':''}) }}
 {% endblock %}
@@ -23,6 +21,7 @@ Cart
 {% if app.request.post.cart.coupon_code is not empty %}
 {% set result = api.post('/sessioncartcoupon', {code:app.request.post.cart.coupon_code}) %}
 {% endif %}
+<div class="container main-container headerOffset">
 {% if api.error is not empty %}
 <div class="alert alert-warning">{{ api.error }}</div>
 {% endif %}
@@ -41,20 +40,34 @@ Cart
 <div class="row">
     <div class="col-md-12">
         <i>The cart is empty.</i><br /><br />
-        <a class="btn btn-primary" href="{{app.url}}">Continue Shopping</a>
+        <a class="btn btn-primary" href="{{app.url}}">Back to Shopping</a>
     </div>
 </div>
 {% else %}
 <section id="shopping-cart">
+
     <div class="row">
-        <div class="col-md-12">
-            <header>
-                <hgroup>
-                    <h2 class="page-header">Shopping Cart</h2>
-                </hgroup>
-            </header>
+        <div class="col-lg-9 col-md-9 col-sm-7">
+            <h1 class="section-title-inner"><span><i
+                    class="glyphicon glyphicon-shopping-cart"></i> Shopping cart </span></h1>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-5 rightSidebar">
+            <h4 class="caps"><a href="{{ app.url }}/"><i class="fa fa-chevron-left"></i> Back to shopping </a></h4>
         </div>
     </div>
+    <!--/.row-->
+    <div class="hidden-xs hidden-sm">
+    <div class="cartFooter w100">
+        <div class="box-footer">
+            <div class="col-xs-4 col-sm-6 col-md-4 col-lg-4 text-center"><i class="fa fa-info-circle"></i> PRODUCT DETAIL</div>
+            <div class="col-xs-4 col-sm-6 col-md-3 col-lg-3 text-center"><i class="fa fa-money"></i> PRICE DETAIL</div>
+            <div class="col-xs-4 col-sm-6 col-md-3 col-lg-3 text-center"><i class="fa fa-heart"></i>
+ WISHLIST/REGISTRY</div> 
+            <div class="col-xs-4 col-sm-6 col-md-2 col-lg-2 text-right"><i class="fa fa-plus"></i> QUANTITY</div>
+        </div>
+    </div>
+    <!--/ cartTop -->
+    </div>    
     {{ forms.begin('cart','','post', {class:'form-horizontal'}) }}
     {% set product_ids = cart.items|values_in('product_id') %}
     {% set products = api.get('/variant',{query:{id:{'$in':product_ids}}})|group_by('id') %}
@@ -82,10 +95,9 @@ Cart
 
     {% for id, item in cart.items %}
     {% set product = products[item.product_id].0 %}
-    <div class="item">
-        <div class="row">
+        <div class="row userInfo">
             {# Begin item image #}
-            <div class="image col-xs-4 col-sm-6 col-md-2 col-lg-2">
+            <div class="col-xs-4 col-sm-6 col-md-2 col-lg-2">
                 <div class="thumbnail">
                     <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{ product.thumbnail }}" />
                 </div>
@@ -95,7 +107,7 @@ Cart
             <div class="details col-xs-8 col-sm-6 col-md-10 col-lg-10">
                 <div class="row">
                     <div class="col-md-4 col-lg-4">
-                        <div class="name"><a href="{{ app.url ~ product.url }}">{{ product.title }}</a></div>
+                        <div class="name"><h4><a href="{{ app.url ~ product.url }}">{{ product.title }}</a></h4></div>
                         <div class="availability">
                             {% if product.inventory_quantity > product.inventory_minimum_quantity %}
                                 In Stock
@@ -105,10 +117,13 @@ Cart
                             </span>
                             {% endif %}
                         </div>
-                        <div class="remove"><button class="btn btn-default btn-xs" type="submit" name="cart[action]" value="remove/{{ id }}">Remove</button></div>
+
+
+                        
+                        <div class="remove"><button class="glyphicon glyphicon-trash fa-2x" type="submit" name="cart[action]" value="remove/{{ id }}"></button></div>
                     </div>
                     {# Begin item prices #}
-                    <div class="col-md-3 col-lg-2">
+                    <div class="col-md-3 col-lg-3">
                         <div class="pricing">
                             <div class="regular">
                                 {% if product.compare_price is not empty %}
@@ -127,7 +142,7 @@ Cart
                                 <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.price|number_format(2)|split('.')|last }}</span></span>
                             </div>
                             {% endif %}
-                            <div class="total">
+                            <div class="price">
                                 {% set price = product.price * item.quantity %}
                                 <div class="item-label">Total:</div>
                                 <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ price|number_format(2)|split('.')|last }}</span></span>
@@ -138,7 +153,7 @@ Cart
                     </div>
                     {# End item prices #}
                     {# Begin wishlist / registry #}
-                    <div class="col-md-2 col-lg-3">
+                    <div class="col-md-3 col-lg-3">
                         {# Begin wishlist #}
                         {% if (item.wishlist_id is not empty) %}
                         {% set wishlist = api.get('/wishlist/' ~ item.wishlist_id) %}
@@ -158,10 +173,10 @@ Cart
                     </div>
                     {# End wishlist / registry #}
                     {# Begin quantity #}
-                    <div class="col-sm-12 col-md-3 col-lg-3">
+                    <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
                         <div class="quantity">
                             <div class="quantity-input-group">
-                                <label for="quantity-selector" class="control-label">Qty</label>
+                                {#<label for="quantity-selector" class="control-label">Qty</label>#}
                                 <div class="input-group">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-neutral btn-remove"><i class="fa fa-minus"></i></button>
@@ -178,8 +193,7 @@ Cart
                 </div>
             </div>
             {# End item details #}
-        </div>
-    </div>
+        </div><hr/>
     {% endfor %}
     {{ forms.end() }}
     {{ forms.begin('cart','','post', {class:'form-horizontal'}) }}
@@ -190,7 +204,7 @@ Cart
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-11 col-lg-10">
                         {# Begin coupon code #}
-                            <div class="title">Coupon Code</div>
+                            {#<div class="title">Coupon Code</div>#}
                             <div class="form-group">
                                 <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3" for="input2">Enter coupon code:</label>
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -249,13 +263,13 @@ Cart
             <div class="well">
                 <div class="row">
                     <div class="col-md-12">
-                        <div id="subtotal">
+                        <div class="price">
                             Subtotal:&nbsp;<span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ cart.subtotal|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ cart.subtotal|number_format(2)|split('.')|last }}</span></span>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div id="proceed-to-checkout">
-                            <a class="btn btn-block btn-primary" href="{{ app.url }}/checkout">Proceed To Checkout</a>
+                            <a class="btn btn-primary btn-lg btn-block" style="margin:20px 0" href="{{ app.url }}/checkout">Proceed To Checkout</a>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -266,14 +280,30 @@ Cart
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
-            <div id="continue-shopping">
-                <a class="btn btn-default" href="{{ app.url }}/">Continue Shopping</a>
-            </div>
+        <div class="col-md-12">
+                    <div class="cartFooter w100">
+                        <div class="box-footer">
+                            <div class="pull-left"><a href="index.html" class="btn btn-default"> <i
+                                    class="fa fa-arrow-left"></i> &nbsp; Continue shopping </a></div>
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-undo"></i> &nbsp; Update
+                                    cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ cartFooter -->
         </div>
+    </div>
+    </section>
+    </div>
     </div>
     {# Begin third party payments #}
     {{ forms.end() }}
+
+    <div class="gap"></div>
+        
+    </div>
     {# End third party payments #}
     {% endif %}
     {% endif %}

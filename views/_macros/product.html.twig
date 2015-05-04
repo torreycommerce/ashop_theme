@@ -166,17 +166,25 @@
 {% endspaceless %}
 {% endmacro %}
 
-{% macro savepercent(percents) %}
+{% macro savepercent(percents, showParenthesis='true') %}
 {% spaceless %}
     {% if percents is not iterable %}
-        ({{ percents }}%)
+        {% if showParenthesis == 'true'%}
+            ({{ percents }}%)
+        {% else %}
+            {{ percents }}%
+        {% endif %}
     {% else %}
         {% set max = percents[0] %}
         {% for percent in percents %}
             {% set max = max < percent ? percent : max %}
         {% endfor %}
         {% if max > 0 %}
-            ({{ max }}%)
+            {% if showParenthesis == 'true'%}
+                ({{ max }}%)
+            {% else %}
+                {{ max }}%
+            {% endif %}
         {% endif %}
     {% endif %}
 {% endspaceless %}

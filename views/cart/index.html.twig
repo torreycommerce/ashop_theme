@@ -179,11 +179,11 @@
                                 {#<label for="quantity-selector" class="control-label">Qty</label>#}
                                 <div class="input-group">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-neutral btn-remove"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="btn btn-remove btn btn-link bootstrap-touchspin-down"><i class="fa fa-minus"></i></button>
                                     </div>
-                                    <input type="text" class="form-control quantity-selector" data-id="{{id}}" data-model="sessioncartitem" name="cart[quantity][{{ id }}]" value="{{ item.quantity }}">
+                                    <input type="text" class="form-control quantity-selector quanitySniper" data-id="{{id}}" data-model="sessioncartitem" name="cart[quantity][{{ id }}]" value="{{ item.quantity }}">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-neutral btn-add"><i class="fa fa-plus"></i></button>
+                                        <button type="button" class="btn btn-add btn btn-link bootstrap-touchspin-up"><i class="fa fa-plus"></i></button>
                                     </div>
                                 </div>
                             </div>

@@ -40,7 +40,7 @@
                             <li><a href="{{app.url}}/return"><span class="hidden-xs hidden-sm">Easy Returns</span> 
                             <i class="glyphicon glyphicon-user hide hidden-xs "></i></a></li>
                             {% endif %}     
-                            <li><a href="{{app.url}}/registry/search"><span class="hidden-xs hidden-sm">Gift Registry</span> 
+                            <li><a href="{{ app.url }}/account/registries"><span class="hidden-xs hidden-sm">Gift Registry</span> 
                             <i class="glyphicon glyphicon-user hide hidden-xs "></i></a></li>
                             {% if app.user.id is null %}
                             {#Begin login button#}
@@ -182,47 +182,13 @@
                     </li>
                     {% endif %}
                 {% endfor %}
+            </ul>
                 {#
                 {% for main_category,items in categories %}
                     <li class=""><a href="#">{{main_category|replace('-',' ')|title}}</a></li>
                 {% endfor %}
                 #}
-                <li class="dropdown megamenu-fullwidth"><a data-toggle="dropdown" class="dropdown-toggle" href="#"> New
-                    Products <b class="caret"> </b> </a>
-                    <ul class="dropdown-menu">
-                        <li class="megamenu-content ">
-                            <ul class="col-lg-3  col-sm-3 col-md-3 unstyled noMarginLeft newCollectionUl">
-                                <li class="no-border">
-                                    <p class="promo-1"><strong> NEW COLLECTION </strong></p>
-                                </li>
-                                <li><a href="category.html"> ALL NEW PRODUCTS </a></li>
-                                <li><a href="category.html"> NEW TOPS </a></li>
-                                <li><a href="category.html"> NEW SHOES </a></li>
-                                <li><a href="category.html"> NEW TSHIRT </a></li>
-                                <li><a href="category.html"> NEW TSHOP </a></li>
-                            </ul>
-                            <ul class="col-lg-3  col-sm-3 col-md-3  col-xs-4">
-                                <li><a class="newProductMenuBlock" href="product-details.html"> <img
-                                        class="img-responsive" src="{{app.url_asset}}/images/site/promo1.jpg" alt="product"> <span
-                                        class="ProductMenuCaption"> <i class="fa fa-caret-right"> </i> JEANS </span>
-                                </a></li>
-                            </ul>
-                            <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
-                                <li><a class="newProductMenuBlock" href="product-details.html"> <img
-                                        class="img-responsive" src="{{app.url_asset}}/images/site/promo2.jpg" alt="product"> <span
-                                        class="ProductMenuCaption"> <i
-                                        class="fa fa-caret-right"> </i> PARTY DRESS </span> </a></li>
-                            </ul>
-                            <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-4">
-                                <li><a class="newProductMenuBlock" href="product-details.html"> <img
-                                        class="img-responsive" src="{{app.url_asset}}/images/site/promo3.jpg" alt="product"> <span
-                                        class="ProductMenuCaption"> <i class="fa fa-caret-right"> </i> SHOES </span>
-                                </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            
 
  <!--- this part will be hidden for mobile version -->
             <div class="nav navbar-nav navbar-right hidden-xs">
@@ -237,42 +203,44 @@
                     {# Begin ajax cart popover #}
                             {# Begin product #}
                             <div class="dropdown-menu col-lg-4 col-xs-12 col-md-4 ">
-                                <section class="ajaxcart-products">
-                                    {# Begin product #}
-                                    <div class="ajaxcart-product product">
-                                        <table>
-                                            <tbody>
-                                                <tr class="miniCartProduct">
-                                                    <td style="width:20%" class="miniCartProductThumb">
-                                                        <div><img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" class="product-image" src="" alt="img"></a>
-                                                        </div>
-                                                    </td>
-                                                    <td style="width:40%">
-                                                        <div class="miniCartDescription">
-                                                        <span class="product-name"><h4></h4></span>
-                                                    </td>
-                                                    <td style="width:10%" class="miniCartQuantity quantity">Qty: <span class="product-quantity"></span>
-                                                    </td>
-                                                    <td style="width:15%" class="miniCartSubtotal price">$<span class="product-price"></span>
-                                                    </td>
-                                                    <td style="width:5%" class="delete"><a> x </a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </section>
-                                <div class="miniCartFooter text-right">
-                                    <div class="row">
-                                        <div class="cart-totals">
-                                            <div class="items">Item count: <span class="item-count"></span></div>
-                                            <div class="total">Subtotal: $<span class="subtotal">0.00</span></div>
+                                <div class="w100 miniCartTable scroll-pane">
+                                    <section class="ajaxcart-products">
+                                        {# Begin product #}
+                                        <div class="ajaxcart-product product">
+                                            <table>
+                                                <tbody>
+                                                    <tr class="miniCartProduct">
+                                                        <td style="width:20%" class="miniCartProductThumb">
+                                                            <div><img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" class="product-image" src="" alt="img"></a>
+                                                            </div>
+                                                        </td>
+                                                        <td style="width:40%">
+                                                            <div class="miniCartDescription">
+                                                            <span class="product-name"><h4></h4></span>
+                                                        </td>
+                                                        <td style="width:10%" class="miniCartQuantity quantity">Qty: <span class="product-quantity"></span>
+                                                        </td>
+                                                        <td style="width:15%" class="miniCartSubtotal price">$<span class="product-price"></span>
+                                                        </td>
+                                                        <td style="width:5%" class="delete"><a> x </a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
+                                    </section>
+                                    <div class="miniCartFooter text-right">
+                                        <div class="row">
+                                            <div class="cart-totals">
+                                                <div class="items">Item count: <span class="item-count"></span></div>
+                                                <div class="total">Subtotal: $<span class="subtotal">0.00</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                                <a href="{{ app.url }}/cart" class=""><i class="fa fa-shopping-cart"> </i>VIEW CART</a>
+                                                <a href="{{ app.url }}/checkout" class="btn btn-sm btn-primary"><i class="fa fa-shopping-cart"> </i> CHECKOUT </a>
+                                        </div>
+                                        <!--/.miniCartFooter-->
                                     </div>
-                                    <div class="row">
-                                            <a href="{{ app.url }}/cart" class="btn btn-xs btn-danger"><i class="fa fa-shopping-cart"> </i>VIEW CART</a>
-                                            <a href="{{ app.url }}/checkout" class="btn btn-xs btn-primary"><i class="fa fa-shopping-cart"> </i> CHECKOUT </a>
-                                    </div>
-                                    <!--/.miniCartFooter-->
                                 </div>
                             </div>
                         </li>

@@ -171,12 +171,12 @@
                        {# Begin product Quantity #}
                                 <div class="input-group col-sm-5 col-md-4">
                                 <div class="input-group-btn">
-                                <button class="btn btn-neutral btn-remove" type="button">
+                                <button class="btn btn-remove btn-link bootstrap-touchspin-down" type="button">
                                 <i class="fa fa-minus"></i>
                                 </button>
                                 </div>
-                                <input class="form-control quantity-selector" value="1" maxlength="2" placeholder="1" name="items[{{product.variant[0].id}}]" type="text"><div class="input-group-btn">
-                                <button class="btn btn-neutral btn-add" type="button"><i class="fa fa-plus"></i>
+                                <input class="form-control quantity-selector quanitySniper" value="1" maxlength="2" placeholder="1" name="items[{{product.variant[0].id}}]" type="text"><div class="input-group-btn">
+                                <button class="btn btn-add btn-link bootstrap-touchspin-up" type="button"><i class="fa fa-plus"></i>
                                 </button>
                                 </div>
                             </div>
@@ -219,20 +219,18 @@
             <div id="product-tabs">
                     {# Begin tabs nav #}
                     <div class="row">
-                        <div class="col-md-12">
                             <div class="panel-tabs">
                                 <ul class="nav nav-tabs">
                                     {% if product.description is not empty %}
                                     <li class="active">
-                                        <a href="#description-desktop" data-toggle="tab">Description</a>
+                                        <a href="#description-desktop" data-toggle="tab"><i class="fa fa-info"></i>  Description</a>
                                     </li>
                                     {% endif %}
                                     <li {% if product.description is empty %}class="active"{% endif %}>
-                                        <a href="#reviews-desktop" data-toggle="tab">Reviews</a>
+                                        <a href="#reviews-desktop" data-toggle="tab"><i class="fa fa-comments"></i>Reviews</a>
                                     </li>
                                 </ul>
                             </div>
-                        </div>
                     </div>
                     {# End tabs nav #}
                     {# Begin tab pane #}

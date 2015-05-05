@@ -57,8 +57,7 @@
                                data-toggle="modal"> Quick View </a>
                         </div>#}
                         <a href="{{ app.url }}/product/{{ product.slug }}"><img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" 
-                        src="{{ img_url }}" alt="img"
-                                                            class="img-responsive"></a>
+                        src="{{ img_url }}" alt="img" class="img-responsive"></a>
 
                         <div class="promotion">
                             <span class="new-product"> NEW</span> 
@@ -72,7 +71,10 @@
                         {# <span class="size">XL / XXL / S </span>#}</div>
                     <div class="price"><span>
                         {% if product.attributes.price %}
-                            {{ prod.price(product.attributes.price) }}
+                                {{ prod.price(product.attributes.price) }}
+                            <span class="price-standard">
+                                {{ prod.price(product.attributes.compare_price) }}
+                            </span>
                         {% endif %}
                     </span></div>
                     <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i

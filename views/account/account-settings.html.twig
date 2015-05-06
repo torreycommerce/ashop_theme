@@ -22,13 +22,12 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
 
 {% block content %}
 <div class="container main-container headerOffset">
-    <div class="row">
         {# Begin account settings #}
                 <div class="row">
                     <div class="col-lg-9 col-md-9 col-sm-7">
                         <h1 class="section-title-inner"><span><i class="fa fa-cog"></i> 
                             My account settings </span></h1>
-                            <p>To apply changes on this page you must provide your current password.</p>
+                            <h2 class="block-title-2">Do you have a {{ app.params.site.title }} account?<p>To apply changes on this page you must provide your current password.</p></h2>
                     </div>
                 </div>
                 <div class="row userInfo">
@@ -56,7 +55,7 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
 
                         {{ forms.begin('account_settings','','post', {class:'form-horizontal'}) }}
                         <fieldset>
-                            <h2>Contact Information</h2><hr />
+                            <legend>Contact Information</legend>
                             <div class="form-group">
                                 <label class="control-label col-sm-4 col-md-4 col-lg-3" for="account_settings[first_name]">
                                     First Name<span class="text-danger">*</span>
@@ -123,7 +122,7 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
 
                         {{ forms.begin('change_password','','post', {class:'form-horizontal'}) }}
                         <fieldset>
-                            <h2>Authentication</h2><hr/>
+                            <legend>Authentication</legend>
                             {# Begin current password address #}
                             <div class="form-group">
                                 <label class="control-label col-sm-4 col-md-4 col-lg-3" for="change_password[current_password]">Current Password<span class="text-danger">*</span>
@@ -181,7 +180,6 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
             </div>
         </div>
         {# End account settings #}
-    </div>
      <div style="clear:both"></div>
 </div>
 <div class="gap"></div>

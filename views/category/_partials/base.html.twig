@@ -180,6 +180,33 @@
                     </div>
                 </div>
 {# Begin category sorting #}
+                {# Sub Category grid #}
+                {% if categories is not empty %}
+                {% set items_per_row = 3 %}
+                <section class="products-category">
+                    <div class="row  categoryProduct xsResponse clearfix">
+                            {% for category in categories %}
+                            {# Begin category #}
+                            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                                <div class="item">
+                                    <div class="product">
+                                        <div class="image">
+                                            <a href="{{app.url}}/category/{{category.slug}}">
+                                                <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{category.thumbnail|default(app.url_asset ~ "/images/product/image-250x250.jpg")}}" class="img-responsive" data-image-source="{{category.thumbnail|default(app.url_asset ~ "/images/product/image-250x250.jpg")}}">
+                                            </a>
+                                        </div>
+                                            <h4 class="subCategoryTitle"><a href="{{app.url}}/category/{{category.slug}}">{{ category.name }}</a></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            {# End category #}
+                            {% endfor %}
+                            <div class="clearfix"></div>
+                    </div>
+                </section>
+                {% endif %}
+                {# End Sub Category grid #}
+                {# End category description #}
                 <div class="w100 productFilter clearfix">
                 <div class="row">  
                     <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs"> 
@@ -213,7 +240,7 @@
                             </div>
                             <div id="items-per-page" class="btn-group">
                                 <form class="form-inline">
-                                    <span class="small">View:&nbsp;</span>
+                                    <span class="small">&nbsp;&nbsp;View:&nbsp;</span>
                                     <button class="btn btn-default-border dropdown-toggle" data-toggle="dropdown" href="#">{{ limit }}&nbsp;
                                         <i class="fa fa-caret-down"></i>
                                     </button>
@@ -232,54 +259,7 @@
                 {# End category sorting #}
                 </div>
 
-                {# Sub Category grid #}
-                {% if categories is not empty %}
-                {% set items_per_row = 3 %}
-                <section class="products-category">
-                    <div class="row  categoryProduct xsResponse clearfix">
-                        <div class="row">
-                            {% for category in categories %}
-                            {# Begin category #}
-                            <div class="col-md-{{12 / items_per_row}} col-sm-{{18 / items_per_row}} col-xs-{{ 36 / items_per_row }}">
-                                <div class="product">
-                                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
-                                       data-placement="left"><i class="glyphicon glyphicon-heart"></i>
-                                    </a>
 
-                                    <div class="image">
-                                        <a class="thumbnail" href="{{app.url}}/category/{{category.slug}}">
-                                            <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{category.thumbnail}}" class="img-responsive" data-image-source="{{category.thumbnail}}">
-                                        </a>
-                                    </div>
-
-                        
-                        <div class="description">
-                        <h4><a href="{{app.url}}/category/{{category.slug}}">{{ category.name }}</a></h4>
-
-                        <p>{{ product.description|striptags|slice(0, 100) }}... </p>
-                    <div class="price"><span>
-                        {% if product.attributes.price %}
-                                {{ prod.price(product.attributes.price) }}
-                            <span class="price-standard">
-                                {{ prod.price(product.attributes.compare_price) }}
-                            </span>
-                        {% endif %}
-                    </span></div>
-                    <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i
-                            class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a></div>
-
-
-                                </div>
-                            </div>
-                            {# End category #}
-                            {% endfor %}
-                            <div class="clearfix"></div>
-                        </div>
-                    </div></div>
-                </section>
-                {% endif %}
-                {# End Sub Category grid #}
-                {# End category description #}
 
             
             {# Category product grid #}

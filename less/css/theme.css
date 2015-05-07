@@ -6108,12 +6108,11 @@ fieldset[disabled] .btn-default.active {
   background-color: #BDC3C7;
 }
 .btn-default-border {
-  background-color: none;
   border: solid #dddddd;
   border-radius: 3px 0 0 3px;
   border-width: 2px 1px 1px 2px;
-  font-size: 14px;
   height: 36px;
+  background-color: #fff;
   margin-bottom: 10px;
 }
 .btn-default-border:hover,

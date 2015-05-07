@@ -220,7 +220,7 @@
                                     {% if app.user.id is not empty %}
                                     {% set children_ids = [] %}
                                     {% for child in children %}
-                                    {% set children_ids = children_ids|merge([child.id]) %}
+                                        {% set children_ids = children_ids|merge([child.id]) %}
                                     {% endfor %}
                                     {% set registries = api.get('/registry', {query:{customer_id:app.user.id}}) %}
                                     {% if registries is not empty %}

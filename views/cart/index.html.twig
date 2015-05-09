@@ -145,7 +145,7 @@
                             <div class="price">
                                 {% set price = product.price * item.quantity %}
                                 <div class="item-label">Total:</div>
-                                <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ price|number_format(2)|split('.')|last }}</span></span>
+                                <span class="dollar-sign float-left">$</span><span class="amount"><span class="dollars">{{ price|number_format(2)|split('.')|first }}.{{ price|number_format(2)|split('.')|last }}</span></span>
                             </div>
                             <div class="error alert alert-danger" style="display:none">
                             </div>
@@ -264,12 +264,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="price">
-                            Subtotal:&nbsp;<span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ cart.subtotal|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ cart.subtotal|number_format(2)|split('.')|last }}</span></span>
+                            Subtotal:&nbsp;<span class="amount" id="total-price"><span class="dollars"><span class="dollar-sign float-left">$</span>{{ cart.subtotal|number_format(2)|split('.')|first }}.{{ cart.subtotal|number_format(2)|split('.')|last }}</span></span>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div id="proceed-to-checkout">
-                            <a class="btn btn-primary btn-lg btn-block" style="margin:20px 0" href="{{ app.url }}/checkout">Proceed To Checkout</a>
+                            <a class="btn btn-primary btn-lg btn-block" style="margin:20px 0" href="{{ app.url }}/checkout">Proceed To Checkout
+                            <i class="fa fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-md-12">

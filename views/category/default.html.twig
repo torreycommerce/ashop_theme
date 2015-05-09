@@ -28,7 +28,7 @@
 {% endblock %}
 
 {% block content %}
-{%include "/category/_partials/base.html.twig"%}
+{% include "/category/_partials/base.html.twig" %}
 {% endblock %}
 
 {% block title %}{{ (category.name|default(title))|default(seo_title) }}{% endblock %}

@@ -188,17 +188,15 @@
                             {% for category in categories %}
                             {# Begin category #}
                             <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
-                                <div class="item">
-                                    <div class="product">
+                                    <div class="product thumbnail">
                                         <div class="image">
                                             <a href="{{app.url}}/category/{{category.slug}}">
-                                                <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{category.thumbnail|default(app.url_asset ~ "/images/product/image-250x250.jpg")}}" class="img-responsive" data-image-source="{{category.thumbnail|default(app.url_asset ~ "/images/product/image-250x250.jpg")}}">
+                                                <img clas="img-rounded"  onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{category.thumbnail|default(app.url_asset ~ "/images/product/image-250x250.jpg")}}" class="img-responsive" data-image-source="{{category.thumbnail|default(app.url_asset ~ "/images/product/image-250x250.jpg")}}">
                                             </a>
                                         </div>
                                             <h4 class="subCategoryTitle"><a href="{{app.url}}/category/{{category.slug}}">{{ category.name }}</a></h4>
                                     </div>
                                 </div>
-                            </div>
                             {# End category #}
                             {% endfor %}
                             <div class="clearfix"></div>
@@ -278,7 +276,7 @@
                                 {% set collection_ids = collection_ids|merge({(id):true}) %}
                             {% endfor %}
                         {% else %}
-                            {% set collection_ids = collection_ids|merge({(product.id):true}) %}
+                            {% set collection_ids = (collection_ids|default({}))|merge({(product.id):true}) %}
                         {% endif %}
                         {% set product_count = product_count + 1 %}
                         {# Begin product #}

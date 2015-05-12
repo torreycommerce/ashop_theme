@@ -21,33 +21,28 @@
 {% extends "/_layouts/theme.html.twig" %}
 {% set title = 'Create An Account' %}
 {% block title %}{{title}}{% endblock %}
-{% block breadcrumb %}
-<ul class="breadcrumbs breadcrumb">
-    <li><a href="{{app.url}}">Home</a></li>
-    <li><a href="{{app.url}}/account">Account</a></li>
-    <li class="active">{{title}}</li>
-</ul>
-{% endblock %}
-{% block content %}
 
+{% block breadcrumb %}
+    {{ base.breadcrumbs({'Account Create':'/account/create'}) }}
+{% endblock %}
+
+{% block content %}
+<div id="account" class="container main-container">
 <div class="row">
-    <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-12">
+    <div class="col-lg-9 col-md-9 col-sm-7">
                 <header>
-                    <h1 class="page-header">{{title|title}}</h1>
-                    <p>New to {{ app.params.site.title }}? Create an account by filling out the form below.</p>
+                    <h1 class="section-title-inner"><span><i class="fa fa-users"></i> {{ title|title }}</span></h1>
+                    <h2 class="block-title-2"><span>New to {{ app.params.site.title }}? Create an account by filling out the form below.</span></h2>
                 </header>
-            </div>
-        </div>
         {{ forms.begin('create','','post', {class:'form-horizontal'}) }}
+        <div class="well">
         <fieldset>
-            <legend>Login Information</legend>
+            <legend class="block-title-2">Login Information</legend>
             <div class="form-group">
                 <label class="control-label col-sm-3 col-md-2 col-lg-2" for="input1">Email
                     <span class="text-danger">*</span>
                 </label>
-                <div class="col-sm-9 col-md-5 col-lg-5">
+                <div class="col-sm-9 col-md-6">
                     {{ forms.email('create[email]',create.email, {class:'form-control parsley-validated', placeholder:"Email", required:true}) }}
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-0 col-lg-5">
@@ -59,7 +54,7 @@
                 <label class="control-label col-sm-3 col-md-2 col-lg-2" for="input1">Retype Email
                     <span class="text-danger">*</span>
                 </label>
-                <div class="col-sm-9 col-md-5 col-lg-5">
+                <div class="col-sm-9 col-md-6">
                     {{ forms.email('create[confirm_email]',create.confirm_email, {class:'form-control parsley-validated', placeholder:"Retype Email", required:true}) }}
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-0 col-lg-5">
@@ -71,10 +66,10 @@
                 <label class="control-label col-sm-3 col-md-2 col-lg-2" for="input1">Password
                     <span class="text-danger">*</span>
                 </label>
-                <div class="col-sm-9 col-md-5 col-lg-5">
+                <div class="col-sm-9 col-md-6">
                     {{ forms.password('create[password]',create.password, {class:'form-control parsley-validated', placeholder:"Password", required:true}) }}
                 </div>
-                <div class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-0 col-lg-5">
+                <div class="col-sm-9 col-sm-offset-3 col-md-6 col-md-offset-0 col-lg-6">
                     <div class="validation">{{ forms.errorlist(form_errors, 'password') }}</div>
                 </div>
             </div>
@@ -83,24 +78,24 @@
                 <label class="control-label col-sm-3 col-md-2 col-lg-2" for="input1">Retype Password
                     <span class="text-danger">*</span>
                 </label>
-                <div class="col-sm-9 col-md-5 col-lg-5">
+                <div class="col-sm-9 col-md-6">
                     {{ forms.password('create[confirm_password]',create.confirm_password, {class:'form-control parsley-validated', placeholder:"Retype Password", required:true}) }}
                 </div>
-                <div class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-0 col-lg-5">
+                <div class="col-sm-9 col-sm-offset-3 col-md-6 col-md-offset-0 col-lg-6">
                     <div class="validation">{{ forms.errorlist(form_errors, 'confirm_password') }}</div>
                 </div>
             </div>
         </fieldset>
         <fieldset>
-            <legend>Contact Information</legend>
+            <legend class="block-title-2">Contact Information</legend>
             <div class="form-group">
                 <label class="control-label col-sm-3 col-md-2 col-lg-2" for="input1">First Name
                     <span class="text-danger">*</span>
                 </label>
-                <div class="col-sm-9 col-md-5 col-lg-5">
+                <div class="col-sm-9 col-md-6">
                     {{ forms.text('create[first_name]',create.first_name, {class:'form-control parsley-validated', placeholder:"First Name", required:true}) }}
                 </div>
-                <div class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-0 col-lg-5">
+                <div class="col-sm-9 col-sm-offset-3 col-md-6 col-md-offset-0 col-lg-6">
                     <div class="validation">{{ forms.errorlist(form_errors, 'first_name') }}</div>
                 </div>
             </div>
@@ -109,10 +104,10 @@
                 <label class="control-label col-sm-3 col-md-2 col-lg-2" for="input1">Last Name
                     <span class="text-danger">*</span>
                 </label>
-                <div class="col-sm-9 col-md-5 col-lg-5">
+                <div class="col-sm-9 col-md-6">
                     {{ forms.text('create[last_name]',create.last_name, {class:'form-control parsley-validated', placeholder:"Last Name", required:true}) }}
                 </div>
-                <div class="col-sm-9 col-sm-offset-3 col-md-5 col-md-offset-0 col-lg-5">
+                <div class="col-sm-9 col-sm-offset-3 col-md-6 col-md-offset-0 col-lg-6">
                     <div class="validation">{{ forms.errorlist(form_errors, 'last_name') }}</div>
                 </div>
             </div>
@@ -132,7 +127,7 @@
             <div class="form-group">
               <label class="control-label col-sm-3 col-md-2 col-lg-2" for="input1">Subscribe to our Newsletter
               </label>
-              <div class="col-sm-9 col-md-5 col-lg-5">
+              <div class="col-sm-9 col-md-6">
                   {{ forms.checkbox('create[newsletter]', true, {}, true) }}
               </div>
             </div>
@@ -143,12 +138,15 @@
         <div class="actions">
             <div class="row">
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
-                    {{ forms.submit('create[action]', 'create', 'Submit', {class:'btn btn-primary'})}}
+                    {{ forms.submit('create[action]', 'create', '<i class="fa fa-user"></i>  Submit', {class:'btn btn-primary'})}}
                 </div>
             </div>
         </div>
         {# End actions #}
         {{ forms.end() }}
+        </div>
     </div>
 </div>
+</div>
+<div class="gap"></div>
 {% endblock %}

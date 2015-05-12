@@ -30,12 +30,14 @@
 
 
 {% block content %}
-<div id="account" class="container">
+<div class="container main-container">
 	{# Begin page header #}
 	<div class="row">
-		<header>
-			<h1 class="page-header">{{ title|title }}</h1>
-		</header>
+		<div class="col-lg-9 col-md-9 col-sm-7">
+			<header>
+				<h1 class="section-title-inner"><span><i class="fa fa-lock"></i> {{ title|title }}</span></h1>
+			</header>
+		</div>
 	</div>
 	{# End page header #}
 	<div class="row">		
@@ -43,8 +45,7 @@
 			<div class="well">
 				{# Begin Login #}
 				<div class="account-login">
-					<h2>Do you have a {{ app.params.site.title }} account?</h2>
-					<hr>
+					<h2 class="block-title-2">Do you have a {{ app.params.site.title }} account?</h2>
 					{% include "/account/login/_partials/form.html.twig" %}
 				</div>
 				{# End Login #}
@@ -54,14 +55,14 @@
 			<div class="well">
 				{# Begin create account #}
 				<div class="account-create">
-					<h2>Create a new account</h2>
-					<hr>
+					<h2 class="block-title-2">Create a new account</h2>
 					<p>Create an account and you'll be able to place orders, create registries, create wishlists, check the status of your orders, write reviews, and more. </p>
-					<a class="btn btn-primary" href="{{app.url}}/account/create/{{ app.request.path }}">Create Account</a>
+					<a class="btn btn-primary" href="{{app.url}}/account/create/{{ app.request.path }}"><i class="fa fa-user"></i> Create Account</a>
 				</div>
 				{# End create account #}
 			</div>
 		</div>
 	</div>
 </div>
+<div class="gap"></div>
 {% endblock %}

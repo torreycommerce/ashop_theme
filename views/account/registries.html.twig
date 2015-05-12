@@ -33,7 +33,7 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
 {% endif %}
 
 {% endif %}
-<div class="container main-container headerOffset">
+<div class="container main-container">
     <div class="row">
         {# Begin registries #}
         <div id="customer-account-registries">
@@ -43,8 +43,7 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
                     <div class="col-md-12">
                         <h1 class="section-title-inner"><span><i class="fa fa-gift"></i> 
                             New Registries</span></h1>
-                            <p>Create a new registries.</p>
-                            <hr/>
+                            <h2 class="block-title-2">Create a new registries.</h2>
                     </div>
                 </div>
                 {# End header #}
@@ -57,7 +56,6 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
                     There are no registries.
                     {% else %}
                     {% for registry in registries %}
-                    </div>
                     {# Begin registry #}
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="panel panel-default panel-info ">
@@ -79,19 +77,18 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
                         </div>
                     </div>
                     {# End registry #}
+                    </div>
                     {% endfor %}
                     {% endif %}
                     {{ form.end() }}                
-                </div>
                 {# End registries #}
                 {# Begin bottom actions #}
-                <div class="row">
-                    <div class="col-md-12">
+
                         <div class="actions-footer">
-                            <a class="btn btn-primary" href="{{app.url}}/account/registry/create"><i class="fa fa-plus"></i>&nbsp;Create a new registry</a>
+                            <a class="btn btn-primary" href="{{app.url}}/account/registry/create"><i class="fa fa-plus"></i>Create a new registry</a>
                         </div>
-                    </div>                
                 </div>
+                <div class="gap"></div>
                 {# End bottom actions #}
                 <div class="col-lg-12 clearfix">
                     <ul class="pager">

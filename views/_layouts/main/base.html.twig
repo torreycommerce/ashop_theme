@@ -60,10 +60,14 @@
       <link rel="shortcut icon" href="{{app.theme['logo_images_and_colors']['logo_background']['favicon-upload']}}" type="image/x-icon" />
     {% endif %}
     <link rel="stylesheet" href="{{app.url_asset}}/css/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="{{app.url_asset}}/fonts/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="{{app.url_asset}}/less/css/theme.css" />
+    <link rel="stylesheet" href="{{app.url_asset}}/css/css_libraries.css">
     <link rel="stylesheet" type="text/css" href="{{app.url_asset}}/css/style.css" />
+    
+    <!-- <link rel="stylesheet" type="text/css" href="{{app.url_asset}}/assets/style.css" /> -->
+    <link rel="stylesheet" type="text/css" href="{{app.url_asset}}/fonts/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="{{app.url_asset}}/css/datepicker.css" />
+    
+    
     <link rel="sitemap" href="{{app.url}}/api/sitemap" />
 
     {% block css %}{% endblock %}
@@ -116,15 +120,14 @@
             {% endblock %}
     </section>
     {# End Content #}
-    {# Begin Footer #}
-    <footer id="main">
-    	<section id="footer">
-	            {% block footer %}
-	            	{% include "/_layouts/main/footer.html.twig"%}
-	            {% endblock %}
-        <section id="footer">
+    {% endblock %}
+    {% block js %}{% endblock %}
+        {# Begin Footer #}
+    <footer id="footer">
+            {% block footer %}
+                {% include "/_layouts/main/footer.html.twig"%}
+            {% endblock %}
     </footer>
     {# End Footer #}
-    {% endblock %}
  </body>
 </html>

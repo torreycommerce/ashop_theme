@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="account" class="container main-container headerOffset">
+<div id="account" class="container main-container">
 <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-7">
                 <header>
@@ -35,7 +35,6 @@
                     <h2 class="block-title-2"><span>New to {{ app.params.site.title }}? Create an account by filling out the form below.</span></h2>
                 </header>
         {{ forms.begin('create','','post', {class:'form-horizontal'}) }}
-        <div class="row">
         <div class="well">
         <fieldset>
             <legend class="block-title-2">Login Information</legend>
@@ -145,7 +144,6 @@
         </div>
         {# End actions #}
         {{ forms.end() }}
-        </div>
         </div>
     </div>
 </div>

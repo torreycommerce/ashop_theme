@@ -21,7 +21,7 @@
 {% if app.request.post.cart.coupon_code is not empty %}
 {% set result = api.post('/sessioncartcoupon', {code:app.request.post.cart.coupon_code}) %}
 {% endif %}
-<div class="container main-container headerOffset">
+<div class="container main-container">
 {% if api.error is not empty %}
 <div class="alert alert-warning">{{ api.error }}</div>
 {% endif %}

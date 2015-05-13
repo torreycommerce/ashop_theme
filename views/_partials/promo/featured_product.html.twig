@@ -69,17 +69,16 @@
                         <div class="description">
                             <h4><a href="{{ app.url }}/product/{{ product.slug }}">{{ product.title }} </a></h4>
 
-                            <p>{{ product.description|striptags|slice(0, 100) }}... </p>
+                            <p>{{ product.description|striptags|slice(0, 60) }}... </p>
                         </div>
-                        <div class="price"><span>
-                            {% if product.attributes.price %}
-                                    {{ prod.price(product.attributes.price) }}
-                                <span class="price-standard">
-                                    {{ prod.price(product.attributes.compare_price) }}
-                                </span>
-                            {% endif %}
-                                </span>
-                        </div>
+                    <div class="price"><span>
+                        {% if product.attributes.price %}
+                            {{ prod.price(product.attributes.price) }}
+                            <span class="price-standard">
+                            {{ prod.price(product.variant[0].compare_price) }}
+                            </span>
+                        {% endif %}
+                    </span></div>
                         <div class="action-control"><a class="btn btn-primary"> <span class="add2cart">
                             <i class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a>
                         </div>

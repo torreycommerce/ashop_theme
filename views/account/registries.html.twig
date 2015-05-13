@@ -33,7 +33,7 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
 {% endif %}
 
 {% endif %}
-<div class="container main-container headerOffset">
+<div class="container main-container">
     <div class="row">
         {# Begin registries #}
         <div id="customer-account-registries">
@@ -43,6 +43,17 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
                     <div class="col-md-12">
                         <h1 class="section-title-inner"><span><i class="fa fa-gift"></i> 
                             New Registries</span></h1>
+                            <hr/>
+                            <div class="row userInfo hidden-xs">
+                                <div class="col-xs-12 col-sm-12">
+                                    {# Begin navigation #}
+                                    <div class="navigation">
+                                            {{account.navigation('registries')}}
+                                    </div>
+                                    {# End navigation #}
+                                    <div class="clear clearfix"></div><hr/>
+                                </div>
+                            </div>
                             <h2 class="block-title-2">Create a new registries.</h2>
                     </div>
                 </div>

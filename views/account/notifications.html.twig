@@ -27,14 +27,24 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
 Load in the tabs for the page, pass in the name of this page, and make sure it's
 set in the array in /account/_macros/base.html.twig
 #}
-<div class="container main-container headerOffset">
+<div class="container main-container">
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-7">
             {# Begin header #}
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="section-title-inner"><span><i class="fa fa-exclamation-circle"></i> 
-                            Your Notification </span></h1>
+                            Your Notification </span></h1><hr/>
+                        <div class="row userInfo hidden-xs">
+                            <div class="col-xs-12 col-sm-12">
+                                {# Begin navigation #}
+                                <div class="navigation">
+                                        {{account.navigation('notifications')}}
+                                </div>
+                                {# End navigation #}
+                                <div class="clear clearfix"></div><hr/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             {# End header #}
@@ -67,6 +77,14 @@ set in the array in /account/_macros/base.html.twig
                     </div>
                 </div>
             </div>
+            {# End pagination #}
+            <div class="col-lg-12 clearfix">
+                <ul class="pager">
+                    <li class="previous pull-right"><a href="{{app.url}}/"> <i class="fa fa-home"></i> Go to Shop </a>
+                    </li>
+                    <li class="next pull-left"><a href="{{app.url}}/account/">&larr; Back to My Account</a></li>
+                </ul>
+            </div>        
         </div>
     </div>
 </div>

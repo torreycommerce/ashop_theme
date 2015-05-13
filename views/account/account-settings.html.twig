@@ -21,12 +21,23 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
 {% endblock %}
 
 {% block content %}
-<div class="container main-container headerOffset">
+<div class="container main-container">
         {# Begin account settings #}
                 <div class="row">
                     <div class="col-lg-9 col-md-9 col-sm-7">
                         <h1 class="section-title-inner"><span><i class="fa fa-cog"></i> 
                             My account settings </span></h1>
+                            <hr/>
+                            <div class="row userInfo hidden-xs">
+                                <div class="col-xs-12 col-sm-12">
+                                    {# Begin navigation #}
+                                    <div class="navigation">
+                                            {{account.navigation('account-settings')}}
+                                    </div>
+                                    {# End navigation #}
+                                    <div class="clear clearfix"></div><hr/>
+                                </div>
+                            </div>
                             <h2 class="block-title-2">Do you have a {{ app.params.site.title }} account?<p>To apply changes on this page you must provide your current password.</p></h2>
                     </div>
                 </div>

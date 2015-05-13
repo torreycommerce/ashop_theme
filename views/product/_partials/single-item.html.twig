@@ -1,4 +1,4 @@
-<div class="container main-container headerOffset">
+<div class="container main-container">
 <div class="row transitionfx">
     {# Begin product images #}
     <div id="product-images" class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -55,7 +55,7 @@
     {# Begin Product Details #}
     <div class="col-lg-6 col-md-6 col-sm-5"> 
     {# Begin Product Heading Group #}
-        <div class="row">
+        <div class="row no-margin">
             <h1 class="product-title"> <a href="{{app.url}}/brand/{{product.brand|url_encode}}">{{product.brand}}</a></h1>
             <h2 class="product-name">{{product.title}}</h2>
                 {# End Product Heading Group #}
@@ -78,9 +78,9 @@
         </div>
            {# Begin Product Prices #}
             {% if product.variant[0].price > 0 %}
-                <div class="row">
+                <div class="row no-margin">
                     {% set stock_description = product.variant[0].inventory_quantity > 0 ? 'In Stock' :  product.variant[0].inventory_shipping_estimate is not empty ? product.variant[0].inventory_shipping_estimate : '' %}
-                    <div class="row">
+                    <div class="row no-padding">
                         <div class="col-md-12">
                             <div class="price-product"><span class="price-sales">{{ prod.price(product.variant[0].price) }}</span> 
                             {# Begin regular price #}
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row no-margin">
                 {# Begin pricing #}
                     <ul class="pricing">
                         {# Begin percent off #}
@@ -142,7 +142,7 @@
             {% if product.variant[0].price > 0 %}
 
 
-            <div class="row">
+            <div class="row no-margin">
                 <div class="color-details"><span class="selected-color"><strong>COLOR</strong></span>
                     <ul class="swatches Color">
                         <li class="selected"><a style="background-color:#f1f40e"> </a></li>
@@ -161,15 +161,15 @@
                    {# Begin product Size-Quantity #}
 
 
-                <div class="row"> {# Begin Row#}
+                <div class="row no-margin"> {# Begin Row#}
                    <div class="productFilter productFilterLook2">
-                       <div class="filterBox col-sm-5 col-md-4">
+                       <div class="filterBox col-md-5 col-sm-5 col-xs-5 no-padding-left">
                            <select>
                                 <option value="strawberries" selected>Size</option>
                             </select>
                         </div>
                        {# Begin product Quantity #}
-                                <div class="input-group col-sm-5 col-md-4">
+                                <div class="input-group  col-md-6 col-sm-6 col-xs-6 no-padding-left">
                                 <div class="input-group-btn">
                                 <button class="btn btn-remove btn-link bootstrap-touchspin-down" type="button">
                                 <i class="fa fa-minus"></i>
@@ -184,13 +184,13 @@
                    {# End product quantity #}
                 </div> {# End Row#}
 
-                <div class="row"> {# Begin Row#}
+                <div class="row no-margin"> {# Begin Row#}
 
                    {# Begin add to cart button #}
-                    <div class="cart-actions-product">
+                    <div class="cart-actions">
                         <div class="addto">
-                        <div class="col-xs-12">
-                            <button type="submit" class="btn btn-block btn-cart cart first" name="action" value="cart">
+                        <div class="col-sm-12 col-md-6 no-padding-side globalPaddingBottom20">
+                            <button type="submit" class="button btn-cart btn-block cart first" name="action" value="cart">
                                 <i class="fa fa-shopping-cart"></i>
                                     <span>Add to Cart</span>
                             </button> 
@@ -218,7 +218,7 @@
             {# Begin product tabs - desktop #}
             <div id="product-tabs">
                     {# Begin tabs nav #}
-                    <div class="row">
+                    <div class="row no-margin">
                             <div class="panel-tabs">
                                 <ul class="nav nav-tabs">
                                     {% if product.description is not empty %}
@@ -234,7 +234,7 @@
                     </div>
                     {# End tabs nav #}
                     {# Begin tab pane #}
-                    <div class="row">
+                    <div class="row no-margin">
                         <div class="tab-content">
                             {# Begin product description #}
                             {% if product.description is not empty %}
@@ -278,7 +278,7 @@
                 ) %}
                     <div style="clear:both"></div>
 
-                    <div class="row">{# Begin Row#}
+                    <div class="row no-margin">{# Begin Row#}
                         <div class="product-share clearfix">
                             <p> SHARE </p>
                             <div class="socialIcon">

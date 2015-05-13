@@ -27,7 +27,7 @@ Load in the tabs for the page, pass in the name of this page, and make sure it's
 set in the array in /account/_macros/base.html.twig
 #}
 {% set reviews = api.get('/productreview',{'query': {'customer_id':app.user.id } }) %}
-<div class="container main-container headerOffset">
+<div class="container main-container">
     <div class="row">
         {# Begin reviews #}
         <div id="customer-account-reviews">
@@ -37,6 +37,16 @@ set in the array in /account/_macros/base.html.twig
                         <h1 class="section-title-inner"><span><i class="fa fa-comments"></i> 
                             Your Reviews</span></h1>
                             <hr/>
+                            <div class="row userInfo hidden-xs">
+                                <div class="col-xs-12 col-sm-12">
+                                    {# Begin navigation #}
+                                    <div class="navigation">
+                                            {{account.navigation('reviews')}}
+                                    </div>
+                                    {# End navigation #}
+                                    <div class="clear clearfix"></div><hr/>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <div class="panel">

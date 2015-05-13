@@ -11017,6 +11017,9 @@ tr.CartProduct th {
 .categoryFilter .minict_wrapper ul li {
   font-size: 12px !important;
 }
+.minict_wrapper{
+  max-width: 120px !important;
+}
 .nav-tabs > li.active,
 .nav-tabs > li {
   background: none;

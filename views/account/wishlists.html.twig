@@ -49,8 +49,18 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
                         <h1 class="section-title-inner"><span><i class="fa fa-heart"></i> 
                              Your Wishlists</span></h1>
                             <hr/>
+                            <div class="row userInfo hidden-xs">
+                                <div class="col-xs-12 col-sm-12">
+                                    {# Begin navigation #}
+                                    <div class="navigation">
+                                            {{account.navigation('wishlists')}}
+                                    </div>
+                                    {# End navigation #}
+                                    <div class="clear clearfix"></div><hr/>
+                                </div>
+                            </div>
                     </div>
-                    </div>
+                </div>
                 {# End header #}
                 {# Begin wishlist #}
                 {{ forms.begin('wishlist','','post',{ class:'form-horizontal' }) }}

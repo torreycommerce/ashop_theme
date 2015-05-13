@@ -51,7 +51,17 @@ set in the array in /account/_macros/base.html.twig
 
         <div class="col-lg-9 col-md-9 col-sm-7">
             <h1 class="section-title-inner"><span><i class="fa fa-map-marker"></i> My addresses </span></h1>
-
+            <hr/>
+            <div class="row userInfo hidden-xs">
+                <div class="col-xs-12 col-sm-12">
+                    {# Begin navigation #}
+                    <div class="navigation">
+                            {{account.navigation('addresses')}}
+                    </div>
+                    {# End navigation #}
+                    <div class="clear clearfix"></div><hr/>
+                </div>
+            </div>
             <p>Please configure your default billing and delivery addresses when placing an order. You may also add
                 additional addresses, which can be useful for sending gifts or receiving an order at your office.</p>
 

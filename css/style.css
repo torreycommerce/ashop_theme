@@ -32,7 +32,6 @@
 /* =============================================================== */
 /* FOUNDATION
 /* =============================================================== */
-
 a {
     color: #34495E;
     text-decoration: none;
@@ -200,6 +199,17 @@ h3 code {
     padding: 0 !important;
 }
 
+.no-padding-left {
+    padding-left: 0 !important;
+}
+.no-padding-right {
+    padding-right: 0 !important;
+}
+
+.no-padding-side {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
 .no-margin-right {
     margin-right: 0;
 }
@@ -315,6 +325,9 @@ h3 code {
     padding-bottom: 50px;
 }
 
+.globalPaddingBottom20{
+     margin-bottom: 20px;
+}
 .hr2 {
     border-width: 2px;
     border-color: #DDDDDD;
@@ -3615,11 +3628,11 @@ h5.parallaxSubtitle {
     display: block;
     float: left;
     font-family: Oswald, Helvetica Neue, Arial, sans-serif;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: lighter;
     line-height: 1em;
     margin: 0 20px 0 0;
-    padding: 14px 20px;
+    padding: 14px 10px;
     text-transform: uppercase;
     transition: all 0.25s ease 0s;
     -moz-transition: all 0.25s ease 0s;
@@ -3981,8 +3994,9 @@ span.success, p.success div.success {
     display: block;
 }
 
-.myAccountList .thumbnail {
-    padding: 10px 0 0;
+.myAccountList .thumbnail li{
+    padding: 10px 0 0 0;
+    min-height: 105px;
 }
 
 .myAccountList .thumbnail:hover {
@@ -3995,6 +4009,12 @@ span.success, p.success div.success {
     font-size: 44px;
     margin-bottom: 10px;
 }
+
+.navigation .myAccountList .thumbnail > li.active > a {
+    color: #4ec67f;
+    min-height: 100%;
+}
+
 
 h2.block-title-2, .formBox h3, .block-title-2 {
     border-bottom: 1px solid #CECECE;
@@ -5081,7 +5101,7 @@ div.quickview {
     }
 
     .cart-actions button, .cart-actions .wishlist {
-        font-size: 14px !important;
+        font-size: 12px !important;
         padding: 10px !important;
     }
 
@@ -5506,7 +5526,9 @@ div.quickview {
 }
 
 a:hover,
-a:focus, a.link {
+a:focus,
+a.link,
+.link {
     color: #4ec67f;
 }
 
@@ -5590,11 +5612,12 @@ a:focus, a.link {
     color: #4ec67f;
 }
 
-//.mCS-dark-2 > .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
-  //  background-color: #4ec67f !important;
-    //background-color: rgba(78, 198, 127, 0.5) !important;
-    //filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#804ec67f, endColorstr=#804ec67f) !important;
-    //-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#804ec67f, endColorstr=#804ec67f) !important;}
+.mCS-dark-2 > .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    background-color: #4ec67f !important;
+    background-color: rgba(78, 198, 127, 0.5) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#804ec67f, endColorstr=#804ec67f) !important;
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#804ec67f, endColorstr=#804ec67f) !important;
+}
 
 .action-control a:hover,
 .action-control a.active {
@@ -5614,8 +5637,8 @@ a:focus, a.link {
 #pager a.cycle-pager-active {
     background-color: #4bb777 !important;
     background-color: rgba(75, 183, 119, 0.7) !important;
-   // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b34bb777, endColorstr=#b34bb777) !important;
-    //-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b34bb777, endColorstr=#b34bb777) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b34bb777, endColorstr=#b34bb777) !important;
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b34bb777, endColorstr=#b34bb777) !important;
 }
 
 .pager2 a {
@@ -5656,8 +5679,8 @@ a:focus, a.link {
 .new-product {
     background-color: #4ec67f !important;
     background-color: rgba(78, 198, 127, 0.95) !important;
-   // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
-    //-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
 }
 
 .nav.tree > li.active,
@@ -5693,6 +5716,17 @@ a:focus, a.link {
 
 .socialIcon a:hover {
     background: #4ec67f;
+}
+
+.cart-actions button{
+    background: none repeat scroll 0 0 #4ec67f;
+    border: 2px solid #27ae60;
+}
+
+.cart-actions button:hover {
+    background: #ffffff;
+    color: #2c3e50;
+    border: solid 2px #4ec67f;
 }
 
 .sp-thumbs a:hover,

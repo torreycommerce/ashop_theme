@@ -37,6 +37,16 @@ set in the array in /account/_macros/base.html.twig
                         <h1 class="section-title-inner"><span><i class="fa fa-comments"></i> 
                             Your Reviews</span></h1>
                             <hr/>
+                            <div class="row userInfo hidden-xs">
+                                <div class="col-xs-12 col-sm-12">
+                                    {# Begin navigation #}
+                                    <div class="navigation">
+                                            {{account.navigation('reviews')}}
+                                    </div>
+                                    {# End navigation #}
+                                    <div class="clear clearfix"></div><hr/>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <div class="panel">

@@ -61,7 +61,7 @@
     </div>
     {# End product images #}
     {# Begin Product Details #}
-    <div class="col-lg-6 col-md-6 col-sm-5"> 
+    <div class="col-lg-6 col-md-6 col-sm-5">
         {# Begin product header #}
         <div class="row">
             <div class="col-xs-12">
@@ -292,6 +292,11 @@
                                                 </div>
                                             </div>
                                             {% endif %}
+
+                                            <script type="text/javascript">
+                                                var variants = {{children[0].variant|json_encode}};
+                                            </script>
+
                                             {# End collection group header #}
                                             {# Begin collection product $(this).parentsUntil('.product').hide(); #}
                                             {% for product in children %}
@@ -299,7 +304,9 @@
                                             {% if product.variant|length > 1 %}
                                             {% set variation_dropdown %}
                                             {% spaceless %}
-                                            <div class="variation-selection">
+
+
+                                      {#       <div class="variation-selection">
                                                 <div class="input-group">
                                                     <select id="variation-selector-{{product.id}}" class="form-control" onchange="showProductVariation($(this));">
                                                         {% for variation in product.variant %}
@@ -307,7 +314,16 @@
                                                         {% endfor %}
                                                     </select>
                                                 </div>
+                                            </div> #}
+
+
+
+                                            <div class="variation-selection">
+                                                <div id="variation-selector" class="input-group">
+                                                    
+                                                </div>
                                             </div>
+
                                             {% endspaceless %}
                                             {% endset %}
                                             {% endif %}

@@ -215,12 +215,39 @@ h3 code {
     padding: 0 !important;
 }
 
+/* Action BTN custom css */
+
+
+@media (max-width: 969px) {
+
+.no-padding-btn-left{
+    padding: 10px 5px 0 0 !important;
+}
+.no-padding-btn-right{
+    padding: 10px 0 0 5px !important;
+}
+
+}
+
+.no-padding-btn-left{
+    padding: 0 5px 0 10px;
+}
+.no-padding-btn-right{
+    padding: 0 0 0 5px;
+}
+
+
+
+
+/* End action BTN custom css */
 .no-padding-left {
     padding-left: 0 !important;
 }
 .no-padding-right {
     padding-right: 0 !important;
 }
+
+
 
 .no-padding-side {
     padding-left: 0 !important;
@@ -551,6 +578,19 @@ input[type="text"], input[type="password"], input[type="email"] {
 
 .btn-default.disabled, .btn-default[disabled], fieldset[disabled] .btn-default, .btn-default.disabled:hover, .btn-default[disabled]:hover, fieldset[disabled] .btn-default:hover, .btn-default.disabled:focus, .btn-default[disabled]:focus, fieldset[disabled] .btn-default:focus, .btn-default.disabled:active, .btn-default[disabled]:active, fieldset[disabled] .btn-default:active, .btn-default.disabled.active, .btn-default.active[disabled], fieldset[disabled] .btn-default.active {
     background-color: #BDC3C7;
+}
+
+
+.btn-default-border{
+    background-color: #ffffff !important;
+    border-color: #DDDDDD;
+    border-radius: 3px 0 0 3px;
+    border-style: solid;
+    border-width: 2px 1px 1px 2px;
+    color: #888888;
+    font-size: 14px;
+    height: 36px !important;
+
 }
 
 .btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary, .btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active, .btn-primary.disabled.active, .btn-primary.active[disabled], fieldset[disabled] .btn-primary.active {
@@ -1848,7 +1888,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 }
 
 .banner {
-    margin-top: 80px;
+    margin-top: 40px;
     -webkit-transition: all 0.1s ease-out 0s;
     -moz-transition: all 0.1s ease-out 0s;
     -ms-transition: all 0.1s ease-out 0s;
@@ -3621,7 +3661,7 @@ h5.parallaxSubtitle {
 
 .filterBox {
     display: inline-block;
-    margin-right: 20px;
+/*    margin-right: 20px;*/
 }
 
 .cart-actions {
@@ -4541,11 +4581,11 @@ div.quickview {
     }
 }
 
-@media only screen and (max-width: 1224px) {
+/*@media only screen and (max-width: 1224px) {
     input.quanitySniper {
-        width: 35px !important;
+        max-width: 100px !important;
     }
-}
+}*/
 
 @media (max-width: 1024px) {
     .navbar.stuck .navbar-top {

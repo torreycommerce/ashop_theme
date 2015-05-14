@@ -3090,7 +3090,7 @@ h5.parallaxSubtitle {
 }
 
 .footer-bottom {
-    background: #E3E3E3;
+    background-color: #{{ settings["colors"]["background"]["footer-bottom"]["value"] }};
     border-top: 1px solid #DDDDDD;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -5608,8 +5608,9 @@ a.link,
 .btn-primary,
 .product:hover .add-fav:hover,
 .product:hover .add-fav.active {
-    background-color: #4ec67f;
-    color: #ffffff;
+    background-color: #{{ settings["colors"]["background"]["primary-background"]["value"] }};
+    border-color: #{{ settings["colors"]["background"]["primary-border"]["value"] }};
+    color: #{{ settings["colors"]["background"]["primary-text"]["value"] }};
 }
 
 .btn-primary:hover,

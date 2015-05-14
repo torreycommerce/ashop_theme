@@ -14,6 +14,10 @@
                     "type": "color",
                     "value": "4ec67f"
                 },
+                "footer-bottom": {
+                    "type": "color",
+                    "value": "e3e3e3"
+                },
                 "footer": {
                     "type": "color",
                     "value": "EDEFF1"
@@ -50,75 +54,15 @@
                 }
             },
             "buttons": {
-                "cart-button-background": {
+                "primary-background": {
                     "type": "color",
-                    "value": "6A4362"
+                    "value": "4ec67f"
                 },
-                "cart-button-border": {
+                "primary-border": {
                     "type": "color",
-                    "value": "6A4362"
+                    "value": "4ec67f"
                 },
-                "cart-button-text": {
-                    "type": "color",
-                    "value": "ffffff"
-                },
-                "cart-count-background": {
-                    "type": "color",
-                    "value": "6A4362"
-                },
-                "cart-count-border": {
-                    "type": "color",
-                    "value": "6A4362"
-                },
-                "cart-count-text": {
-                    "type": "color",
-                    "value": "ffffff"
-                },
-                "login-button-background": {
-                    "type": "color",
-                    "value": "B3B3B3"
-                },
-                "login-button-border": {
-                    "type": "color",
-                    "value": "b3b3b3"
-                },
-                "login-button-text": {
-                    "type": "color",
-                    "value": "ffffff"
-                },
-                "btn-secondary-background": {
-                    "type": "color",
-                    "value": "B3B3B3"
-                },
-                "btn-secondary-border": {
-                    "type": "color",
-                    "value": "B3B3B3"
-                },
-                "btn-secondary-text": {
-                    "type": "color",
-                    "value": "ffffff"
-                },
-                "add-to-cart-background": {
-                    "type": "color",
-                    "value": "6A4362"
-                },
-                "add-to-cart-border": {
-                    "type": "color",
-                    "value": "6A4362"
-                },
-                "add-to-cart-text": {
-                    "type": "color",
-                    "value": "ffffff"
-                },
-                "registry-wishlist-background": {
-                    "type": "color",
-                    "value": "777777"
-                },
-                "registry-wishlist-border": {
-                    "type": "color",
-                    "value": "777777"
-                },
-                "registry-wishlist-text": {
+                "primary-text": {
                     "type": "color",
                     "value": "ffffff"
                 }

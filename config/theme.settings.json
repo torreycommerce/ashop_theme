@@ -2,7 +2,7 @@
     "current": {
         "colors": {
             "background": {
-                "body-bg": {
+                "body": {
                     "type": "color",
                     "value": "ffffff"
                 },

@@ -272,7 +272,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #34495e;
-  background-color: #ffffff;
+  background-color: #{{ settings["colors"]["background"]["body"]["value"] }};
 }
 input,
 button,
@@ -7355,7 +7355,7 @@ p.success div.success {
   display: block;
 }
 .footer {
-  background: #EDEFF1;
+  background-color: #{{ settings["colors"]["background"]["footer"]["value"] }};
   height: auto;
   padding-bottom: 30px;
   position: relative;

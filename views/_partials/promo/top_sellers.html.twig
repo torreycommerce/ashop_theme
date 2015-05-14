@@ -165,9 +165,11 @@
                     <div class="price"><span>
                         {% if product.attributes.price %}
                             {{ prod.price(product.attributes.price) }}
-                            <span class="price-standard">
-                            {{ prod.price(product.variant[0].compare_price) }}
-                            </span>
+                            {% if product.attributes.compare_price[0] is not empty %}
+                                <span class="price-standard">
+                                    {{ prod.price(product.variant[0].compare_price) }}
+                                </span>
+                            {% endif %}
                         {% endif %}
                     </span></div>
                     <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i

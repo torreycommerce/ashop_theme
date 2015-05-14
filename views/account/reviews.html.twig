@@ -30,25 +30,25 @@ set in the array in /account/_macros/base.html.twig
 <div class="container main-container">
     <div class="row">
         {# Begin reviews #}
-        <div id="customer-account-reviews">
-            <div class="col-sm-12 col-md-9 col-lg-10">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="section-title-inner"><span><i class="fa fa-comments"></i> 
-                            Your Reviews</span></h1>
-                            <hr/>
-                            <div class="row userInfo hidden-xs">
-                                <div class="col-xs-12 col-sm-12">
-                                    {# Begin navigation #}
-                                    <div class="navigation">
-                                            {{account.navigation('reviews')}}
-                                    </div>
-                                    {# End navigation #}
-                                    <div class="clear clearfix"></div><hr/>
-                                </div>
-                            </div>
+        <div class="col-sm-12 col-md-9 col-lg-10">
+            <h1 class="section-title-inner"><span><i class="fa fa-comments"></i> 
+                Your Reviews</span>
+            </h1><hr/>
+            <div class="row userInfo hidden-xs">
+                <div class="col-xs-12 col-sm-12">
+                    {# Begin navigation #}
+                    <div class="navigation">
+                            {{account.navigation('reviews')}}
                     </div>
+                    {# End navigation #}
+                    <div class="clear clearfix"></div><hr/>
                 </div>
+            </div>
+        </div>
+    </div> <!-- /Row -->
+    <div class="row userInfo">
+        <div class="w100 clearfix">
+            <div class="col-sm-12 col-md-9 col-lg-10 ">
                 <div class="panel">
                     <div class="table-responsive">
                         <table class="table table-hover table-striped tablesorter">
@@ -74,17 +74,19 @@ set in the array in /account/_macros/base.html.twig
                         </table>
                     </div>
                 </div>
-                {#Button Group#}
-                <div class="col-lg-12 clearfix">
-                    <ul class="pager">
-                        <li class="previous pull-right"><a href="{{app.url}}/"> <i class="fa fa-home"></i> Go to Shop </a>
-                        </li>
-                        <li class="next pull-left"><a href="{{app.url}}/account/">&larr; Back to My Account</a></li>
-                    </ul>
-                </div>
-            </div>
+            </div> 
+        </div>   
+        {# End reviews #} 
+        {#Button Group#}
+    </div> <!-- /Row -->
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-lg-10 clearfix">
+            <ul class="pager">
+                <li class="previous pull-right"><a href="{{app.url}}/"> <i class="fa fa-home"></i> Go to Shop </a>
+                </li>
+                <li class="next pull-left"><a href="{{app.url}}/account/">&larr; Back to My Account</a></li>
+            </ul>
         </div>
-        {# End reviews #}
-    </div>
+    </div> 
 </div>
 {% endblock %}

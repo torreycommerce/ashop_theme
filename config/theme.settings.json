@@ -24,9 +24,9 @@
                 }                                  
             },
             "content": {
-                "logo-color": {
+                "logo": {
                     "type": "color",
-                    "value": "6a4362"
+                    "value": "ffffff"
                 },
                 "title-color": {
                     "type": "color",

@@ -867,7 +867,7 @@ legend {
 
 #logo-txt 
     a {
-        color: #FFFFFF;
+        color: #{{ settings["colors"]["content"]["logo"]["value"] }};
         font-size: 34px;
         font-weight: 800;
         padding-bottom: 0;
@@ -1034,7 +1034,7 @@ legend {
 }
 
 .userMenu li a {
-    color: #FFFFFF;
+    color: #{{ settings["colors"]["content"]["header-top-text"]["value"] }};
     display: block;
     float: right;
     font-size: 12px;
@@ -2368,7 +2368,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 }
 
 .section-title-style2 span, .section-title.style2 span {
-    background: #FFFFFF;
+    background-color: #{{ settings["colors"]["background"]["body"]["value"] }};
     display: inline-block;
     padding: 10px;
     position: relative;
@@ -5609,7 +5609,6 @@ a.link,
 .product:hover .add-fav:hover,
 .product:hover .add-fav.active {
     background-color: #{{ settings["colors"]["buttons"]["primary-background"]["value"] }};
-    border-color: #{{ settings["colors"]["buttons"]["primary-border"]["value"] }};
     color: #{{ settings["colors"]["buttons"]["primary-text"]["value"] }};
 }
 

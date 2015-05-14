@@ -6,8 +6,10 @@ $(function() {
 function VariantsManager (variants) {
     var self = this;
     this.variants = variants;
+    this.realChange = false;
 
     this.selectsData = {};
+    this.selectsUser = {};
     this.selectsInputs = {};
     this.selectValues = {};
     this.lastChangedValue = "";
@@ -44,15 +46,18 @@ function VariantsManager (variants) {
                             "images" ];
 
     this.updateVariants = function(value, text, self){
-        var self = this;
-
-        selectName+"="+self.selectValues[selectName]
-
+        //var self = this;
+        console.log("CHANGE");
         var selectName = value.split("=")[0];
+        var selectValue = value.split("=")[1];
 
-        if(value != this.lastChangedValue && value != selectName+"="+self.selectValues[selectName]){
+        if(value != this.lastChangedValue && self.realChange){
+            console.log("self.realChange:"+self.realChange);
             this.lastChangedValue = value;
+            self.selectsUser[selectName] = selectValue;
+
             console.log("CHANGE:"+value);
+
             var filteredVariants = this.getFilteredVariants();
             console.log("filteredVariants");
             console.log(filteredVariants);
@@ -93,21 +98,21 @@ function VariantsManager (variants) {
     this.getFilteredVariants = function(){
         var filteredVariants = [];
         var self = this;
-        //var selectValues = {};
-        //retrieve selects values 
-        $.each( self.selectsData, function(selectName, optionsArray){
-            console.log("read select value: "+selectName);
-            var selectValue = $("#variation-selector-"+selectName).val().split("=")[1];
-            self.selectValues[selectName] = selectValue;
-        });
 
-        console.log("selectValues");
-        console.log(self.selectValues);
+        //retrieve selects values 
+        // $.each( self.selectsData, function(selectName, optionsArray){
+        //     console.log("read select value: "+selectName);
+        //     var selectValue = $("#variation-selector-"+selectName).val().split("=")[1];
+        //     self.selectValues[selectName] = selectValue;
+        // });
+
+        // console.log("selectValues");
+        // console.log(self.selectValues);
 
         $.each( this.variants, function(index, variant){
             var passfilter = true;
 
-            $.each( self.selectValues, function(selectName, selectValue){
+            $.each( self.selectsUser, function(selectName, selectValue){
                 
                 if(selectValue != ""){
                     if(variant[selectName]){
@@ -115,6 +120,7 @@ function VariantsManager (variants) {
                             passfilter = false;
                         }
                     }else{
+                        console.log("ERROR: variant: "+variant.name +" doesn't have attribute: "+selectName);
                         passfilter = false;
                     }
                 }
@@ -141,6 +147,7 @@ function VariantsManager (variants) {
 
     this.buildSelectInputs = function(selectData){
         var self = this;
+        self.realChange = false;
 
         //empty field #variation-selector before
         
@@ -152,7 +159,7 @@ function VariantsManager (variants) {
         $.each(selectData, function(selectName, optionArray){
             
             var sel = $('<select>', {id: "variation-selector-"+selectName, name: selectName, class: "form-control"});            
-            sel.append( self.buildOption(selectName, "", "") );
+            //sel.append( self.buildOption(selectName, "", "") );
 
             $.each(optionArray, function(index, optionValue){
                 sel.append( self.buildOption(selectName, optionValue, optionValue) );
@@ -170,26 +177,36 @@ function VariantsManager (variants) {
                 'live': true,
                 'remove_empty_option': false,
                 'debug': true,
-                'placeholder': ""
+                'placeholder': null
             });
-            
-            console.log("set select value of "+selectName);
-            console.log(selectName+"="+self.selectValues[selectName]);
-            sel.val(selectName+"="+self.selectValues[selectName]);
+
+            // if(self.selectsUser[selectName]){
+            //     if(selectData[selectName].indexOf(self.selectsUser[selectName]) > -1){
+            //         sel.val(selectName+"="+self.selectsUser[selectName]);
+            //     }else{
+            //         sel.val(selectName+"="+selectData[selectName][0]);
+            //     }
+            // }else{
+            //     sel.val(selectName+"="+selectData[selectName][0]);
+            // }
+            // $("#variation-selector-size").val("size=M");
+
+
+            // sel.val(selectName+"="+self.selectValues[selectName]);
 
             // if(self.lastChangedValue != ""){
             //     sel.val(self.lastChangedValue);
             // }
             
         });
+
+        self.realChange = true;
     }
 
     this.init = function(){
         var self = this;
-        var selects = {};
 
         // Build selects object containing data of the variants select tags
-
         $.each( this.variants, function(index, value){
             $.each(value, function(index, value){
                 if(self.defaultVariants.indexOf(index)<0){
@@ -202,14 +219,16 @@ function VariantsManager (variants) {
                     }
                 }
             });
-          });
+        }); 
+        console.log("self.selectsData");
+        console.log(self.selectsData);
 
         //Init selectValues
-        $.each( self.selectsData, function(index, value){
-            self.selectValues[index] = "";
-        });
-        console.log("selectValues init");
-        console.log(self.selectValues);
+        // $.each( self.selectsData, function(index, value){
+        //     self.selectsUser[index] = self.selectsData[index][0];
+        // });
+        // console.log("self.selectsUser init");
+        // console.log(self.selectsUser);
 
         //Bluilding HTML Select elements
         self.buildSelectInputs(self.selectsData);

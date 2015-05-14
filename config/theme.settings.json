@@ -4,7 +4,7 @@
             "background": {
                 "body": {
                     "type": "color",
-                    "value": "ffffff"
+                    "value": "000"
                 },
                 "header-top": {
                     "type": "color",
@@ -25,6 +25,10 @@
             },
             "content": {
                 "logo": {
+                    "type": "color",
+                    "value": "ffffff"
+                },
+                "header-top-text": {
                     "type": "color",
                     "value": "ffffff"
                 },

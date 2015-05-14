@@ -6,13 +6,17 @@
                     "type": "color",
                     "value": "ffffff"
                 },
-                "header-bg": {
+                "header-top": {
                     "type": "color",
-                    "value": "ffffff"
+                    "value": "4bb777"
                 },
-                "footer-bg": {
+                "header": {
                     "type": "color",
-                    "value": "222222"
+                    "value": "4ec67f"
+                },
+                "footer": {
+                    "type": "color",
+                    "value": "EDEFF1"
                 }                                  
             },
             "content": {

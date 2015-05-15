@@ -49,7 +49,7 @@
 /* FOUNDATION
 /* =============================================================== */
 a {
-    color: #34495E;
+    color: #{{ settings["colors"]["content"]["title-color"]["value"] }};
     text-decoration: none;
     outline: none !important;
     -moz-transition: all .2s ease-in;
@@ -2332,7 +2332,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 }
 
 .section-title span {
-   color: #{{ settings["colors"]["content"]["title-color"]["value"] }};
+    color: #{{ settings["colors"]["content"]["title-color"]["value"] }};
     display: inline-block;
     padding: 5px 15px 5px 0;
     text-transform: uppercase;

@@ -75,10 +75,26 @@
                     "type": "color",
                     "value": "4ec67f"
                 },
+                "primary-border": {
+                    "type": "color",
+                    "value": "27ae60"
+                },
                 "primary-text": {
                     "type": "color",
                     "value": "ffffff"
-                }
+                },
+                "secondary-background": {
+                    "type": "color",
+                    "value": "cccccc"
+                },
+                "secondary-border": {
+                    "type": "color",
+                    "value": "cccccc"
+                },
+                "secondary-text": {
+                    "type": "color",
+                    "value": "ffffff"
+                },
             },
             "forms": {
                 "input-bg": {

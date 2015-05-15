@@ -3680,7 +3680,7 @@ h5.parallaxSubtitle {
     -o-border-radius: 3px;
     -ms-border-radius: 3px;
     border-radius: 3px;
-    color: #FFFFFF;
+    color: #{{ settings["colors"]["buttons"]["primary-text"]["value"] }};
     display: block;
     float: left;
     font-family: Oswald, Helvetica Neue, Arial, sans-serif;
@@ -3703,17 +3703,19 @@ button.first {
 }
 
 .cart-actions .wishlist {
-    background: #CCCCCC;
+    background-color: #{{ settings["colors"]["buttons"]["secondary-background"]["value"] }};
     line-height: 1em;
     text-decoration: none;
-    border: solid 2px #CCCCCC;
+    border: solid 2px;
+    border-color: #{{ settings["colors"]["buttons"]["secondary-border"]["value"] }};
 }
 
 
 .cart-actions .wishlist:hover {
     background: #fff;
     color: #666;
-    border: solid 2px #CCCCCC;
+    border: solid 2px;
+    border-color: #{{ settings["colors"]["buttons"]["secondary-border"]["value"] }};
 }
 
 .incaps {
@@ -5777,7 +5779,8 @@ a.link,
 .cart-actions button{
     background: none repeat scroll 0 0;
     background-color: #{{ settings["colors"]["buttons"]["primary-background"]["value"] }};
-    border: 2px solid #27ae60;
+    border: 2px solid;
+    border-color: #{{ settings["colors"]["buttons"]["primary-border"]["value"] }};
 }
 
 .cart-actions button:hover {

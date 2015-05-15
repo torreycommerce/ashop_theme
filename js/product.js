@@ -53,35 +53,63 @@ function VariantsManager2 (variants) {
                             "inventory_minimum_quantity",
                             "images" ];
 
+    this.getVariationSelector = function(selectName, optionValue){
+        return "[id=variation-selector-"+selectName+"-"+optionValue+"]";
+    }
+
+
     this.updateVariants = function(selectName, optionValue){
         var self = this;
-        console.log(selectName+":"+ optionValue);
         self.selectedValues[selectName] = optionValue;
-        //set option class to selected
-        //unselect the other options
+        $.each(self.selectsData, function(name, optionArray){
+            var selectedValues2 = {};
 
-        var filteredVariants = self.getFilteredVariants();
+            $.each(self.selectsData, function(name2, optionArray2){
+                if(name2 != name){
+                    if(self.selectedValues[name2]){
+                        selectedValues2[name2] = self.selectedValues[name2];
+                    }
+                }
+            });
 
-        var generatedSelectsData = self.generateSelectsData(filteredVariants);
+            var filteredVariants = self.getFilteredVariants(selectedValues2);
 
-        // $.each(self.selectsData, function(name, optionArray){
-        //     $.each(optionArray, function(index, optionValue){
+            var generatedSelectsData = self.generateSelectsData(filteredVariants);
 
-        //         if(generatedSelectsData[name].indexOf(optionValue) < 0){
-        //             //set option class to unavailable
-        //         }else{
-        //             //set option class to available
-        //         }
+            $.each(optionArray, function(index, value){
 
-        //         if(optionValue == optionValue && name == selectName){
-                    
-        //         }else{
-                    
-        //         }
-        //     });
-        // });
+                if(generatedSelectsData[name].indexOf(value) < 0){
+                    if(self.selectedValues[name] == value){
+                        $(self.getVariationSelector(name, value)).attr("style", "color:#4EC67F; border: solid #FF0000;");
+                    }else{
+                        $(self.getVariationSelector(name, value)).attr("style", "color:#34495E; border: solid #FF0000;");
+                    }
+                }else{
+                    if(self.selectedValues[name] == value){
+                        $(self.getVariationSelector(name, value)).attr("style", "color:#4EC67F; border: solid #0000FF;");
+                    }else{
+                        $(self.getVariationSelector(name, value)).attr("style", "color:#34495E; border: solid #0000FF;");
+                    }
+                }
+            });
 
-        
+        });
+
+        //hide and show variant div to display proper variant picture
+        var filteredVariants = self.getFilteredVariants(self.selectedValues);
+
+        if(filteredVariants.length == 1){
+            $.each(self.variants, function(index, variant){
+                var id = "product-" + variant.id;
+                if(variant.id == filteredVariants[0].id){
+                    $("#"+id).show();
+                }else{
+                    $("#"+id).hide();
+                }
+            });
+        }else if(filteredVariants.length == 1) {
+            console.log("UNAVAILABLE");
+        }
     }
 
     this.updateSelectInputs = function(selectData){
@@ -110,15 +138,14 @@ function VariantsManager2 (variants) {
         return selects;
     }
 
-
-    this.getFilteredVariants = function(){
+    this.getFilteredVariants = function(selectedValues){
         var filteredVariants = [];
         var self = this;
 
         $.each( this.variants, function(index, variant){
             var passfilter = true;
 
-            $.each( self.selectedValues, function(selectName, selectValue){
+            $.each( selectedValues, function(selectName, selectValue){
                 
                 if(selectValue != ""){
                     if(variant[selectName]){
@@ -160,10 +187,9 @@ function VariantsManager2 (variants) {
 
     this.getATag = function(selectName, optionValue){
         var self = this;
-        return tag =  $('<a>', {class: ""}).text(optionValue).click(function(){
+        return tag =  $('<a>', {id: "variation-selector-"+selectName+"-"+optionValue, class: ""}).text(optionValue).click(function(){
             self.updateVariants(selectName, optionValue);
         });
-
     }
 
     this.buildChips = function(selectData){
@@ -180,7 +206,7 @@ function VariantsManager2 (variants) {
 
             $.each(optionArray, function(index, optionValue){
                 ul.append( 
-                    $('<li>', {id: "variation-selector-"+selectName+"-"+optionValue, value: selectName+"="+optionValue, class: ""}).append(
+                    $('<li>', {class: ""}).append(
                             self.getATag(selectName, optionValue)
                     )  
                 );

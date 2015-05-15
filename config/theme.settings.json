@@ -28,6 +28,10 @@
                     "type": "color",
                     "value": "ffffff"
                 },
+                "text-color": {
+                    "type": "color",
+                    "value": "333333"
+                },
                 "header-top-text": {
                     "type": "color",
                     "value": "ffffff"
@@ -40,10 +44,7 @@
                     "type": "color",
                     "value": "6a4362"
                 },
-                "text-color": {
-                    "type": "color",
-                    "value": "333333"
-                },
+
                 "price-color": {
                     "type": "color",
                     "value": "6a4362"
@@ -59,7 +60,15 @@
                 "breadcrumb-active-color": {
                     "type": "color",
                     "value": "000"
-                }
+                },
+                "footer-title": {
+                    "type": "color",
+                    "value": "54697E"
+                },
+                "footer-link": {
+                    "type": "color",
+                    "value": "78828D"
+                },
             },
             "buttons": {
                 "primary-background": {

@@ -72,7 +72,7 @@ ul, ol {
 body {
     margin: 0;
     padding: 0;
-    color: #34495E;
+    color: #{{ settings["colors"]["content"]["text-color"]["value"] }};
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
     line-height: 21px;
@@ -5451,7 +5451,7 @@ div.quickview {
     left: 0;
     opacity: 0;
     z-index: 1;
-}
+}            
 
 .carousel-fade .carousel-inner .next.left,
 .carousel-fade .carousel-inner .prev.right {

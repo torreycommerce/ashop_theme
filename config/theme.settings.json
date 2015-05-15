@@ -32,6 +32,10 @@
                     "type": "color",
                     "value": "ffffff"
                 },
+                "header-menu-text": {
+                    "type": "color",
+                    "value": "ffffff"
+                },
                 "title-color": {
                     "type": "color",
                     "value": "6a4362"

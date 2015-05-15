@@ -5583,14 +5583,14 @@ div.quickview {
 }
 
 .site-color {
-    color: #4ec67f !important;
+    color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }} !important;
 }
 
 a:hover,
 a:focus,
 a.link,
 .link {
-    color: #4ec67f;
+    color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .search-full,
@@ -5666,11 +5666,11 @@ a.link,
 }
 
 .search-box:hover .form-control {
-    background: #4ec67f;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .search-box:hover .btn-nobg {
-    color: #4ec67f;
+    color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .mCS-dark-2 > .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
@@ -5688,11 +5688,13 @@ a.link,
 
 .product:hover,
 .featuredImgLook2 .inner:hover {
-    border: 1px solid #4ec67f;
+    border: 1px solid;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .subCategoryList .thumbnail:hover {
-    border: 1px solid #4ec67f;
+    border: 1px solid;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 #pager a.cycle-pager-active {
@@ -5703,11 +5705,12 @@ a.link,
 }
 
 .pager2 a {
-    border: 1px solid #4ec67f;
+    border: 1px solid;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .pager2 a.selected {
-    background: #4ec67f;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .btn-site,
@@ -5726,15 +5729,15 @@ a.link,
 }
 
 .footer a:hover {
-    color: #4ec67f;
+    color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .modal-header {
-    background: #4ec67f;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .form-control:focus {
-    border-color: #4ec67f;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};;
 }
 
 .new-product {
@@ -5761,7 +5764,9 @@ a.link,
 }
 
 .panel-default > .panel-heading {
-    border-top: 4px solid #4ec67f;
+    border-top: 4px solid;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
+
 }
 
 .nav-tabs {
@@ -5776,12 +5781,12 @@ a.link,
 }
 
 .socialIcon a:hover {
-    background: #4ec67f;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .cart-actions button{
     background: none repeat scroll 0 0;
-    background-color: #{{ settings["colors"]["buttons"]["primary-background"]["value"] }};
+    background-color: #{{ settings["colors"]["buttons"]["brand-color"]["value"] }};
     border: 2px solid;
     border-color: #{{ settings["colors"]["buttons"]["primary-border"]["value"] }};
 }
@@ -5797,7 +5802,8 @@ a.link,
 .sp-thumbs a:active,
 .sp-current,
 sp-current:visited {
-    border: 2px solid #4ec67f !important;
+    border: 2px solid !important;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .promo-1 {
@@ -5805,15 +5811,16 @@ sp-current:visited {
 }
 
 #pager2 span.cycle-pager-active {
-    background: #4ec67f !important;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }}; !important;
 }
 
 #pager2 span {
-    border: 2px solid #4ec67f;
+    border: 2px solid;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .orderStep li.active a {
-    background: #4ec67f;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .orderStep li.active a:after {

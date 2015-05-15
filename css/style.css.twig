@@ -2693,7 +2693,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 }
 
 .item h4 a {
-    color: #2c3e50;
+    color: #{{ settings["colors"]["content"]["title-color"]["value"] }};
     font-family: Oswald, Arial, Helvetica, sans-serif;
     font-weight: 600;
     text-decoration: none;
@@ -2701,7 +2701,10 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 }
 
 .description p {
-    color: #7F8C8D;
+    color: #{{ settings["colors"]["content"]["text-color"]["value"] }};
+    opacity: 0.85;
+    -webkit-opacity: 0.85;
+    -ms-opacity: 0.85;
     font-size: 14px;
     min-height: 55px;
     max-height: 90px;

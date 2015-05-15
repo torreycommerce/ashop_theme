@@ -94,7 +94,7 @@
                 "secondary-text": {
                     "type": "color",
                     "value": "ffffff"
-                },
+                }
             },
             "forms": {
                 "input-bg": {

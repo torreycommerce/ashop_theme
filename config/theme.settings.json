@@ -4,7 +4,7 @@
             "background": {
                 "body": {
                     "type": "color",
-                    "value": "000"
+                    "value": "ffffff"
                 },
                 "header-top": {
                     "type": "color",

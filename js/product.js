@@ -1,17 +1,25 @@
 $(function() {
-    var variantManager = new VariantsManager(variants).init();
+    //var variantManager = new VariantsManager(variants).init();
+    this.variantManager2 = new VariantsManager2(variants).init();
 });
 
+function updateVariants (selectName, optionValue){
+    console.log("UPDATE");
+}
 
-function VariantsManager (variants) {
+
+
+function VariantsManager2 (variants) {
     var self = this;
     this.variants = variants;
     this.realChange = false;
+    this.product_id = this.variants[0].product_id;
+    this.selector = "[id=variation-selector-"+this.product_id+"]";
+
+    this.filteringValue = "size";
 
     this.selectsData = {};
-    this.selectsUser = {};
-    this.selectsInputs = {};
-    this.selectValues = {};
+    this.selectedValues = {};
     this.lastChangedValue = "";
 
     this.defaultVariants = [ "position",
@@ -45,27 +53,35 @@ function VariantsManager (variants) {
                             "inventory_minimum_quantity",
                             "images" ];
 
-    this.updateVariants = function(value, text, self){
-        //var self = this;
-        console.log("CHANGE");
-        var selectName = value.split("=")[0];
-        var selectValue = value.split("=")[1];
+    this.updateVariants = function(selectName, optionValue){
+        var self = this;
+        console.log(selectName+":"+ optionValue);
+        self.selectedValues[selectName] = optionValue;
+        //set option class to selected
+        //unselect the other options
 
-        if(value != this.lastChangedValue && self.realChange){
-            console.log("self.realChange:"+self.realChange);
-            this.lastChangedValue = value;
-            self.selectsUser[selectName] = selectValue;
+        var filteredVariants = self.getFilteredVariants();
 
-            console.log("CHANGE:"+value);
+        var generatedSelectsData = self.generateSelectsData(filteredVariants);
 
-            var filteredVariants = this.getFilteredVariants();
-            console.log("filteredVariants");
-            console.log(filteredVariants);
-            var generatedSelects = this.generateSelectsData(filteredVariants);
-            console.log("generatedSelects"); 
-            console.log(generatedSelects); 
-            this.buildSelectInputs(generatedSelects);
-        }
+        // $.each(self.selectsData, function(name, optionArray){
+        //     $.each(optionArray, function(index, optionValue){
+
+        //         if(generatedSelectsData[name].indexOf(optionValue) < 0){
+        //             //set option class to unavailable
+        //         }else{
+        //             //set option class to available
+        //         }
+
+        //         if(optionValue == optionValue && name == selectName){
+                    
+        //         }else{
+                    
+        //         }
+        //     });
+        // });
+
+        
     }
 
     this.updateSelectInputs = function(selectData){
@@ -99,20 +115,10 @@ function VariantsManager (variants) {
         var filteredVariants = [];
         var self = this;
 
-        //retrieve selects values 
-        // $.each( self.selectsData, function(selectName, optionsArray){
-        //     console.log("read select value: "+selectName);
-        //     var selectValue = $("#variation-selector-"+selectName).val().split("=")[1];
-        //     self.selectValues[selectName] = selectValue;
-        // });
-
-        // console.log("selectValues");
-        // console.log(self.selectValues);
-
         $.each( this.variants, function(index, variant){
             var passfilter = true;
 
-            $.each( self.selectsUser, function(selectName, selectValue){
+            $.each( self.selectedValues, function(selectName, selectValue){
                 
                 if(selectValue != ""){
                     if(variant[selectName]){
@@ -145,62 +151,47 @@ function VariantsManager (variants) {
         self.selectsData[selectName].children( "[value='"+value+"']" ).remove();
     }
 
-    this.buildSelectInputs = function(selectData){
-        var self = this;
-        self.realChange = false;
-
-        //empty field #variation-selector before
-        
+    this.destroySelectInputs = function(selectData){
         $.each(selectData, function(selectName, optionArray){
-            $('#variation-selector-'+selectName).minimalect("destroy");
+            $('[id=variation-selector-'+selectName+']').minimalect("destroy");
         })
-        $('#variation-selector').empty();
+        $(self.selector).empty();
+    }
 
-        $.each(selectData, function(selectName, optionArray){
-            
-            var sel = $('<select>', {id: "variation-selector-"+selectName, name: selectName, class: "form-control"});            
-            //sel.append( self.buildOption(selectName, "", "") );
-
-            $.each(optionArray, function(index, optionValue){
-                sel.append( self.buildOption(selectName, optionValue, optionValue) );
-            });
-
-            $('#variation-selector').append( $('<label>', {}).text(selectName) );
-            $('#variation-selector').append(sel);
-
-
-
-            sel.minimalect({
-                'onchange': function(value,text){
-                    self.updateVariants(value,text,self);
-                },
-                'live': true,
-                'remove_empty_option': false,
-                'debug': true,
-                'placeholder': null
-            });
-
-            // if(self.selectsUser[selectName]){
-            //     if(selectData[selectName].indexOf(self.selectsUser[selectName]) > -1){
-            //         sel.val(selectName+"="+self.selectsUser[selectName]);
-            //     }else{
-            //         sel.val(selectName+"="+selectData[selectName][0]);
-            //     }
-            // }else{
-            //     sel.val(selectName+"="+selectData[selectName][0]);
-            // }
-            // $("#variation-selector-size").val("size=M");
-
-
-            // sel.val(selectName+"="+self.selectValues[selectName]);
-
-            // if(self.lastChangedValue != ""){
-            //     sel.val(self.lastChangedValue);
-            // }
-            
+    this.getATag = function(selectName, optionValue){
+        var self = this;
+        return tag =  $('<a>', {class: ""}).text(optionValue).click(function(){
+            self.updateVariants(selectName, optionValue);
         });
 
-        self.realChange = true;
+    }
+
+    this.buildChips = function(selectData){
+        var self = this;
+        console.log("selectData");
+        console.log(selectData);
+
+        $.each(selectData, function(selectName, optionArray){
+            //var selectSelector = "[id=variation-selector-"+selectName+"]";
+            
+            var div = $('<div>', {id: "variation-selector-"+selectName, name: selectName, class: "color-details"});           
+            var ul = $('<ul>', {class: "swatches Color"});  
+            var span = $('<ul>', {class: "selected-color"}).text(selectName);
+
+            $.each(optionArray, function(index, optionValue){
+                ul.append( 
+                    $('<li>', {id: "variation-selector-"+selectName+"-"+optionValue, value: selectName+"="+optionValue, class: ""}).append(
+                            self.getATag(selectName, optionValue)
+                    )  
+                );
+            });
+
+            div.append(span);
+            div.append(ul);
+
+            $(self.selector).append(div);
+            
+        });
     }
 
     this.init = function(){
@@ -223,20 +214,220 @@ function VariantsManager (variants) {
         console.log("self.selectsData");
         console.log(self.selectsData);
 
-        //Init selectValues
-        // $.each( self.selectsData, function(index, value){
-        //     self.selectsUser[index] = self.selectsData[index][0];
-        // });
-        // console.log("self.selectsUser init");
-        // console.log(self.selectsUser);
-
         //Bluilding HTML Select elements
-        self.buildSelectInputs(self.selectsData);
+        self.buildChips(self.selectsData);
     }
 }
 
 
+// function VariantsManager (variants) {
+//     var self = this;
+//     this.variants = variants;
+//     this.realChange = false;
+//     this.product_id = this.variants[0].product_id;
+//     this.selector = "[id=variation-selector-"+this.product_id+"]";
 
+//     this.filteringValue = "size";
+
+//     this.selectsData = {};
+//     this.selectsUser = {};
+//     this.lastChangedValue = "";
+
+//     this.defaultVariants = [ "position",
+//                             "inventory_shipping_estimate",
+//                             "has_stock",
+//                             "weight",
+//                             "asin",
+//                             "product_id",
+//                             "inventory_policy",
+//                             "date_created",
+//                             "inventory_tracking",
+//                             "require_shipping",
+//                             "id",
+//                             "title",
+//                             "isbn",
+//                             "name",
+//                             "popularity",
+//                             "inventory_quantity",
+//                             "inventory_returnable",
+//                             "status",
+//                             "date_modified",
+//                             "taxable",
+//                             "sku",
+//                             "cost",
+//                             "compare_price",
+//                             "url",
+//                             "ean",
+//                             "discountable",
+//                             "thumbnail",
+//                             "price",
+//                             "inventory_minimum_quantity",
+//                             "images" ];
+
+//     this.updateVariants = function(value, text, self){
+//         //var self = this;
+//         console.log("CHANGE");
+//         var selectName = value.split("=")[0];
+//         var selectValue = value.split("=")[1];
+
+//         if(value != this.lastChangedValue && self.realChange){
+
+//             this.lastChangedValue = value;
+//             if(selectName = self.filteringValue){
+//                 self.selectsUser[selectName] = selectValue;
+//             }
+            
+//             var filteredVariants = this.getFilteredVariants();
+//             var generatedSelects = this.generateSelectsData(filteredVariants);
+//             self.destroySelectInputs(generatedSelects);
+//             if(filteredVariants.length == 1){
+
+//                 $.each(self.variants, function(index, variant){
+//                     var id = "product-" + variant.id;
+//                     if(variant.id == filteredVariants[0].id){
+//                         $("#"+id).show();
+//                     }else{
+//                         $("#"+id).hide();
+//                     }
+//                 });
+
+//                 self.buildSelectInputs(generatedSelects);
+//             }
+
+//         }
+//     }
+
+//     this.updateSelectInputs = function(selectData){
+//         var self = this;
+//         //remove from select whats not in data
+
+//         //add in select whats in data
+//     }
+
+//     this.generateSelectsData = function(filteredVariants){
+//         var self = this;
+//         var selects = {};
+//         $.each( this.selectsData, function(index, value){
+//             selects[index] = [];
+//         });
+//         $.each( filteredVariants, function(index, value){
+//             $.each(value, function(index, value){
+//                 if(self.defaultVariants.indexOf(index)<0){
+//                     if(selects[index].indexOf(value)<0){
+//                             selects[index].push(value);
+//                     }
+//                 }
+//             });
+//           });
+
+//         return selects;
+//     }
+
+
+//     this.getFilteredVariants = function(){
+//         var filteredVariants = [];
+//         var self = this;
+
+//         $.each( this.variants, function(index, variant){
+//             var passfilter = true;
+
+//             $.each( self.selectsUser, function(selectName, selectValue){
+                
+//                 if(selectValue != ""){
+//                     if(variant[selectName]){
+//                         if(variant[selectName] != selectValue){
+//                             passfilter = false;
+//                         }
+//                     }else{
+//                         console.log("ERROR: variant: "+variant.name +" doesn't have attribute: "+selectName);
+//                         passfilter = false;
+//                     }
+//                 }
+//             });
+
+//             if(passfilter) filteredVariants.push(variant);
+//         });
+//         return filteredVariants;
+//     }
+
+//     this.buildOption = function( selectName, optionValue, text ){
+//         return $('<option>', {id: "variation-selector-"+selectName+"-"+optionValue, value: selectName+"="+optionValue, class: ""}).text(text);
+//     }
+
+//     this.newOption = function( selectName, optionValue ){
+//         var value = selectName + "=" + optionValue;
+//         self.selectsData[selectName].append( self.buildOption( selectName, optionValue ) );
+//     }
+
+//     this.removeOption = function(selectName, optionValue){
+//         var value = selectName + "=" + optionValue;
+//         self.selectsData[selectName].children( "[value='"+value+"']" ).remove();
+//     }
+
+//     this.destroySelectInputs = function(selectData){
+//         $.each(selectData, function(selectName, optionArray){
+//             $('[id=variation-selector-'+selectName+']').minimalect("destroy");
+//         })
+//         $(self.selector).empty();
+//     }
+
+//     this.buildSelectInputs = function(selectData){
+//         var self = this;
+//         self.realChange = false;
+
+//         $.each(selectData, function(selectName, optionArray){
+
+//             var selectSelector = "[id=variation-selector-"+selectName+"]";
+            
+//             var sel = $('<select>', {id: "variation-selector-"+selectName, name: selectName, class: "form-control"});            
+//             //sel.append( self.buildOption(selectName, "", "") );
+
+//             $.each(optionArray, function(index, optionValue){
+//                 sel.append( self.buildOption(selectName, optionValue, optionValue) );
+//             });
+
+//             $(self.selector).append( $('<label>', {}).text(selectName) );
+//             $(self.selector).append(sel);
+
+//             $(selectSelector).minimalect({
+//                 'onchange': function(value,text){
+//                     self.updateVariants(value,text,self);
+//                 },
+//                 'live': true,
+//                 'remove_empty_option': false,
+//                 'debug': true,
+//                 'placeholder': null
+//             });
+            
+//         });
+
+//         self.realChange = true;
+//     }
+
+//     this.init = function(){
+//         var self = this;
+
+//         // Build selects object containing data of the variants select tags
+//         $.each( this.variants, function(index, value){
+//             $.each(value, function(index, value){
+//                 if(self.defaultVariants.indexOf(index)<0){
+//                     if(! self.selectsData[index] ){
+//                         self.selectsData[index] = [value];
+//                     }else{
+//                         if(self.selectsData[index].indexOf(value)<0){
+//                             self.selectsData[index].push(value);
+//                         }
+//                     }
+//                 }
+//             });
+//         }); 
+//         console.log("self.selectsData");
+//         console.log(self.selectsData);
+
+//         //Bluilding HTML Select elements
+//         self.buildSelectInputs(self.selectsData);
+//     }
+// }
 
 // showProductVariation = function(selector) {
 
@@ -258,5 +449,4 @@ function VariantsManager (variants) {
 //     $("#"+id).show();
 //     $("#"+id).find('input').val(quantity);
 // }
-
 

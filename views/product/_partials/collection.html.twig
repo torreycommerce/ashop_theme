@@ -306,7 +306,7 @@
                                             {% spaceless %}
 
 
-                                      {#       <div class="variation-selection">
+                                           {#  <div class="variation-selection">
                                                 <div class="input-group">
                                                     <select id="variation-selector-{{product.id}}" class="form-control" onchange="showProductVariation($(this));">
                                                         {% for variation in product.variant %}
@@ -316,12 +316,15 @@
                                                 </div>
                                             </div> #}
 
-
-
                                             <div class="variation-selection">
-                                                <div id="variation-selector" class="input-group">
+                                                <div id="variation-selector-{{product.id}}" class="input-group">
                                                     
                                                 </div>
+                                            </div>
+                                            
+                                            {# <pre>{{dump(product.variant)}}</pre> #}
+                                             
+
                                             </div>
 
                                             {% endspaceless %}

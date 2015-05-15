@@ -68,7 +68,7 @@
                 "footer-link": {
                     "type": "color",
                     "value": "78828D"
-                },
+                }
             },
             "buttons": {
                 "primary-background": {

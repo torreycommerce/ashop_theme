@@ -5,7 +5,11 @@
                 "brand-color": {
                     "type": "color",
                     "value": "4ec67f"
-                }                                  
+                },                                  
+                "brand-secondary-color": {
+                    "type": "color",
+                    "value": "4bb777"
+                } 
             },
             "background": {
                 "body": {

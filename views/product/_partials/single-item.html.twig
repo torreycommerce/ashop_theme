@@ -146,14 +146,40 @@
                 <div class="color-details"><span class="selected-color"><strong>COLOR</strong></span>
                     <ul class="swatches Color">
                         <li class="selected"><a style="background-color:#f1f40e"> </a></li>
-                        <li><a style="background-color:#adadad"> </a></li>
-                        <li><a style="background-color:#4EC67F"> </a></li>
+                        <li class="notavailable"><a class="" style="background-color:#adadad"> </a></li>
+                        <li><a style="background-color:#4EC67F"></a></li>
+                        <li><a style="background-color:#000"></a></li>
+                        <li class="notavailable"><a style="background-color:#ff0000"> </a></li>
+                        <li><a style="background-color:#e7e7e7"> </a></li>
                     </ul>
                 </div>
             </div>
-
-
             <!--/.color-details-->
+            <div class="row no-margin">
+                <div class="size-details"><span class="selected-size"><strong>SIZE</strong></span>
+                    <ul class="swatches-size Size">
+                        <li class="selected"><a><p>9</p></a></li>
+                        <li class="notavailable"><a><p>10</p></a></li>
+                        <li><a><p>11</p></a></li>
+                        <li class="notavailable"><a><p>12</p></a></li>
+                        <li class="notavailable"><a><p>13</p></a></li>
+                        <li><a><p>14</p></a></li>
+                        <li class="selected"><a><p>15</p></a></li>
+                        <li class="notavailable"><a><p>16</p></a></li>
+                        <li><a><p>17</p></a></li>
+                        <li class="notavailable"><a><p>18</p></a></li>
+                        <li class="notavailable"><a><p>19</p></a></li>
+                        <li><a><p>20</p></a></li>
+                        <li class="selected"><a><p>21</p></a></li>
+                        <li class="notavailable"><a><p>22</p></a></li>
+                        <li><a><p>23</p></a></li>
+                        <li class="notavailable"><a><p>24</p></a></li>
+                        <li class="notavailable"><a><p>25</p></a></li>
+                        <li><a><p>26</p></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.size-details-->
             <form method="post" id="productForm" action="{{ app.url }}/product/route">                        
                {% if product.variant[0]['inventory_quantity'] is defined and product.variant[0]['inventory_minimum_quantity'] is defined and
                product.variant[0]['inventory_policy'] is defined and (product.variant[0]['inventory_policy'] == 'continue' or
@@ -163,23 +189,18 @@
 
                 <div class="row no-margin"> {# Begin Row#}
                    <div class="productFilter productFilterLook2">
-                       <div class="filterBox col-md-3 col-sm-6 col-xs-6 no-padding-left">
-                           <select>
-                                <option value="strawberries" selected>Size</option>
-                            </select>
-                        </div>
                        {# Begin product Quantity #}
-                                <div class="input-group  col-md-3 col-sm-6 col-xs-6 no-padding-left">
-                                <div class="input-group-btn">
+                        <div class="input-group  col-md-3 col-sm-6 col-xs-6 no-padding-left">
+                            <div class="input-group-btn">
                                 <button class="btn btn-remove btn-link bootstrap-touchspin-down" type="button">
-                                <i class="fa fa-minus"></i>
+                                    <i class="fa fa-minus"></i>
                                 </button>
-                                </div>
-                                <input class="form-control quantity-selector quanitySniper" value="1" maxlength="2" placeholder="1" name="items[{{product.variant[0].id}}]" type="text"><div class="input-group-btn">
-                                <button class="btn btn-add btn-link bootstrap-touchspin-up" type="button"><i class="fa fa-plus"></i>
-                                </button>
-                                </div>
                             </div>
+                            <input class="form-control quantity-selector quanitySniper" value="1" maxlength="2" placeholder="1" name="items[{{product.variant[0].id}}]" type="text">
+                            <div class="input-group-btn">
+                            <button class="btn btn-add btn-link bootstrap-touchspin-up" type="button"><i class="fa fa-plus"></i></button>
+                            </div>
+                        </div>
                    </div>
                    {# End product quantity #}
                 </div> {# End Row#}

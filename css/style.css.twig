@@ -3632,16 +3632,32 @@ h5.parallaxSubtitle {
 }
 
 .swatches li {
-    border: 2px solid #FFFFFF;
+    border: 2px solid;
     display: inline-block;
     margin: 2px 1px;
     vertical-align: top;
     list-style: none;
 }
 
-.swatches .selected, .swatches li:hover {
+.unavaliable li {                                          /* Swatches Unselected UnAvailable */
+    border: 4px dashed red;
+    display: inline-block;
+    margin: 2px 1px;
+    vertical-align: top;
+    list-style: none;
+    opacity: 0.5;
+    -webkit-opacity: 0.5;
+    -ms-opacity: 0.5;
+}
+
+.swatches .selected, .swatches li:hover {               /* Swatched Selected Available */
     border: 2px solid #B2B2B2;
 }
+
+.swatches .unselected, .swatches li:hover {               /* Swatched Selected Available */
+    border: 4px dashed red;
+}
+
 
 .swatches a {
     background-position: center center;
@@ -5574,12 +5590,12 @@ div.quickview {
 /* SKIN THEMING */
 ::selection {
     color: #{{ settings["colors"]["content"]["header-menu-text"]["value"] }};
-    background: #4bb777;
+    background-color: #{{ settings["colors"]["brand"]["brand-secondary-color"]["value"] }} !important;
 }
 
 ::-moz-selection {
-    color: #ffffff;
-    background: #4bb777;
+    color: #{{ settings["colors"]["content"]["header-menu-text"]["value"] }};
+    background-color: #{{ settings["colors"]["brand"]["brand-secondary-color"]["value"] }} !important;
 }
 
 .site-color {
@@ -5595,11 +5611,11 @@ a.link,
 
 .search-full,
 .search-input {
-    background: #4bb777;
+    background-color: #{{ settings["colors"]["brand"]["brand-secondary-color"]["value"] }};
 }
 
 .search-close {
-    color: #4bb777;
+    color: #{{ settings["colors"]["brand"]["brand-secondary-color"]["value"] }};
 }
 
 .searchInputBox .search-btn {
@@ -5613,7 +5629,7 @@ a.link,
 .btn-primary,
 .product:hover .add-fav:hover,
 .product:hover .add-fav.active {
-    background-color: #{{ settings["colors"]["buttons"]["primary-background"]["value"] }};
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
     color: #{{ settings["colors"]["buttons"]["primary-text"]["value"] }};
 }
 
@@ -5715,7 +5731,7 @@ a.link,
 
 .btn-site,
 .newsLatterBox .btn {
-    background-color: #{{ settings["colors"]["buttons"]["primary-background"]["value"] }};
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .btn-discover:hover,
@@ -5788,7 +5804,7 @@ a.link,
 
 .cart-actions button{
     background: none repeat scroll 0 0;
-    background-color: #{{ settings["colors"]["buttons"]["brand-color"]["value"] }};
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
     border: 2px solid;
     border-color: #{{ settings["colors"]["buttons"]["primary-border"]["value"] }};
 }

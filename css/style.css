@@ -3622,24 +3622,23 @@ h5.parallaxSubtitle {
 .color-details {
     margin-top: 14px;
 }
-
 .swatches {
     margin: 0.5em 0;
     padding-left: 0;
 }
-
 .swatches li {
-    border: 2px solid #FFFFFF;
+    border: 2px solid #b2b2b2;
     display: inline-block;
     margin: 2px 1px;
     vertical-align: top;
     list-style: none;
 }
-
-.swatches .selected, .swatches li:hover {
-    border: 2px solid #B2B2B2;
+.swatches .selected, .swatches li:hover {                       /* Swatches Selected Available Hover Border */
+    border: 2px solid #4ec67f;                                      
 }
-
+.notavailable li:hover {                       /* Swatches Selected Available Hover Border */
+    border: 2px dotted red;                                      
+}
 .swatches a {
     background-position: center center;
     background-repeat: no-repeat;
@@ -3651,10 +3650,96 @@ h5.parallaxSubtitle {
     transition: all 0.25s ease 0s;
     width: 33px;
 }
+.swatches .notavailable {                                       /* Swatches Selected NotAvailable Border  */
+    border: 2px dotted red;
+    opacity: 0.5;
+    -webkit-opacity: 0.5;
+    -ms-opacity: 0.5; 
+    position: relative;
 
+}
+.swatches .notavailable:before {                                /* Swatches Unselected NotAvailable - icon */
+    content:  "\f068";
+    font-family: 'FontAwesome' !important;
+    color: #fff;                                                
+    font-weight: 300;
+    text-decoration: inherit;
+/*--adjust as necessary--*/
+    padding-right: 0.5em;
+    position: absolute;
+    top: 7px;
+    left: 10px;
+}
 .swatches a img {
     height: 29px;
     width: 29px;
+}
+
+/*--Size Details--*/
+.size-details {
+    margin-top: 14px;
+}
+.swatches-size {
+    margin: 0.5em 0;
+    padding-left: 0;
+}
+.swatches-size li {
+    border: 1px solid #b2b2b2;
+    background: #fff;
+    display: inline-block;
+    margin: 2px 1px;
+    vertical-align: top;
+    list-style: none;
+}
+.swatches-size .selected, .swatches-size li:hover {                       /* Swatches Selected Available Hover Border */
+    border: 1px solid #4ec67f;                                      
+}
+
+.swatches-size a {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #ecebe9;
+    border: 2px solid #FFFFFF;
+    box-shadow: 1px 1px 2px #C5C5C5;
+    display: block;
+    height: 33px;
+    text-align: center;
+    transition: all 0.25s ease 0s;
+    width: 33px;
+}
+.swatches-size .notavailable a {
+    background: none;
+    opacity: 0.3;
+    -webkit-opacity: 0.3;
+    -ms-opacity: 0.3; 
+}
+
+.swatches-size .notavailable:hover {
+    border: 1px dashed #34495e;
+}
+
+.swatches-size .notavailable{                                       /* Swatches Selected NotAvailable Border  */
+    border: 1px dashed #b2b2b2;
+    background-color: none;
+
+}
+.swatches-size a img {
+    height: 29px;
+    width: 29px;
+}
+
+.swatches-size p{
+    height: 29px;
+    width: 29px;
+    margin: 0;
+    padding-top: 5px;
+}
+.notavailable p{
+    height: 29px;
+    width: 29px;
+    background: none;
+    margin: 0;
+    padding-top: 5px;
 }
 
 /***  ------- filterBox ------- ***/

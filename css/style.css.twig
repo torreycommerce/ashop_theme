@@ -797,6 +797,7 @@ p.required, .required sup {
 }
 
 legend {
+    color: #{{ settings["colors"]["content"]["text-color"]["value"] }};
     padding-bottom: 10px;
 }
 
@@ -5751,10 +5752,9 @@ a.link,
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-    background-color: #66de97;
-    border-color: #66de97;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
     color: #ffffff;
-    background: #4ec67f;
 }
 
 .navbar-top {

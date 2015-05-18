@@ -80,15 +80,22 @@ function VariantsManager2 (variants) {
 
                 if(generatedSelectsData[name].indexOf(value) < 0){
                     if(self.selectedValues[name] == value){
-                        $(self.getVariationSelector(name, value)).attr("style", "color:#4EC67F; border: solid #FF0000;");
+                        //Selected, not available
+                        //$(self.getVariationSelector(name, value)).attr("style", "color:#4EC67F; border: solid #FF0000;");
+                        $(self.getVariationSelector(name, value)).attr("class", "notavailable-selected");
                     }else{
-                        $(self.getVariationSelector(name, value)).attr("style", "color:#34495E; border: solid #FF0000;");
+                        //not selected not available
+                        //$(self.getVariationSelector(name, value)).attr("style", "color:#34495E; border: solid #FF0000;");
+                        $(self.getVariationSelector(name, value)).attr("class", "notavailable");
                     }
                 }else{
                     if(self.selectedValues[name] == value){
-                        $(self.getVariationSelector(name, value)).attr("style", "color:#4EC67F; border: solid #0000FF;");
+                        //Selected, available
+                        //$(self.getVariationSelector(name, value)).attr("style", "color:#4EC67F; border: solid #0000FF;");
+                        $(self.getVariationSelector(name, value)).attr("class", "selected");
                     }else{
-                        $(self.getVariationSelector(name, value)).attr("style", "color:#34495E; border: solid #0000FF;");
+                        //not Selected available
+                        $(self.getVariationSelector(name, value)).attr("class", "");
                     }
                 }
             });
@@ -200,9 +207,11 @@ function VariantsManager2 (variants) {
         $.each(selectData, function(selectName, optionArray){
             //var selectSelector = "[id=variation-selector-"+selectName+"]";
             
-            var div = $('<div>', {id: "variation-selector-"+selectName, name: selectName, class: "color-details"});           
-            var ul = $('<ul>', {class: "swatches Color"});  
-            var span = $('<ul>', {class: "selected-color"}).text(selectName);
+            var div = $('<div>', {id: "variation-selector-"+selectName, name: selectName, class: "size-details"});           
+            var ul = $('<ul>', {class: "swatches-size Size"});  
+            var span = $('<span>', {class: "selected-size"}).append(
+                            $('<strong>', {}).text(selectName) 
+                        );
 
             $.each(optionArray, function(index, optionValue){
                 ul.append( 

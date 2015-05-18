@@ -3625,37 +3625,23 @@ h5.parallaxSubtitle {
 .color-details {
     margin-top: 14px;
 }
-
 .swatches {
     margin: 0.5em 0;
     padding-left: 0;
 }
-
 .swatches li {
-    border: 2px solid;
+    border: 2px solid #b2b2b2;
     display: inline-block;
     margin: 2px 1px;
     vertical-align: top;
     list-style: none;
 }
-
-.unavaliable li {                                          /* Swatches Unselected UnAvailable */
-    border: 4px dashed red;
-    display: inline-block;
-    margin: 2px 1px;
-    vertical-align: top;
-    list-style: none;
-    opacity: 0.5;
-    -webkit-opacity: 0.5;
-    -ms-opacity: 0.5;
+.swatches .selected, .swatches li:hover {                       /* Swatches Selected Available Hover Border */
+    border: 2px solid #4ec67f;                                      
 }
 
-.swatches .selected, .swatches li:hover {               /* Swatched Selected Available */
-    border: 2px solid #B2B2B2;
-}
-
-.swatches .unselected, .swatches li:hover {               /* Swatched Selected Available */
-    border: 4px dashed red;
+.notavailable li:hover {                                        /* Swatches Selected Available Hover Border */
+    border: 2px dotted red;                                      
 }
 
 
@@ -3670,13 +3656,123 @@ h5.parallaxSubtitle {
     transition: all 0.25s ease 0s;
     width: 33px;
 }
+.swatches .notavailable {                                       /* Swatches Selected NotAvailable Border  */
+    border: 2px dotted #b2b2b2;
+    opacity: 0.5;
+    -webkit-opacity: 0.5;
+    -ms-opacity: 0.5; 
+    position: relative;
 
+}
+
+.swatches .notavailable-selected {                                       /* Swatches Selected NotAvailable Border  */
+    border: 2px dotted red;
+    opacity: 0.5;
+    -webkit-opacity: 0.5;
+    -ms-opacity: 0.5; 
+    position: relative;
+
+}
+
+.swatches .notavailable:before {                                     /* Swatches Unselected NotAvailable - icon */
+    content:  "\f068";
+    font-family: 'FontAwesome' !important;
+    color: #fff;                                                
+    font-weight: 300;
+    text-decoration: inherit;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 7px;
+    left: 10px;
+}
 .swatches a img {
     height: 29px;
     width: 29px;
 }
 
+
+/******--Size Details--******/
+
+.size-details {
+    margin-top: 14px;
+}
+.swatches-size {
+    margin: 0.5em 0;
+    padding-left: 0;
+}
+.swatches-size li {
+    border: 1px solid #b2b2b2;
+    background: #fff;
+    display: inline-block;
+    margin: 2px 1px;
+    vertical-align: top;
+    list-style: none;
+}
+.swatches-size .selected, .swatches-size li:hover {                       /* Swatches Selected Available Hover Border */
+    border: 1px solid #4ec67f;                                      
+}
+
+.swatches-size .notavailable-selected{                                       /* Swatches Selected NotAvailable Border  */
+    border: 1px dashed red;
+    background: none !important;
+
+}
+
+.swatches-size a {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #ecebe9;
+    border: 2px solid #FFFFFF;
+    box-shadow: 1px 1px 2px #C5C5C5;
+    display: block;
+    height: 33px;
+    text-align: center;
+    transition: all 0.25s ease 0s;
+    width: 33px;
+}
+.swatches-size .notavailable a {
+    background: none;
+    opacity: 0.3;
+    -webkit-opacity: 0.3;
+    -ms-opacity: 0.3; 
+}
+.swatches-size .notavailable-selected a {                           /* Swatches Selected NotAvailable  */
+    background: none;
+    opacity: 0.3;
+    -webkit-opacity: 0.3;
+    -ms-opacity: 0.3; 
+}
+
+.swatches-size .notavailable:hover {
+    border: 1px dashed #34495e;
+}
+
+.swatches-size .notavailable{                                       /* Swatches Selected NotAvailable Border  */
+    border: 1px dashed #b2b2b2;
+    background-color: none;
+
+}
+.swatches-size a img {
+    height: 29px;
+    width: 29px;
+}
+
+.swatches-size p{
+    height: 29px;
+    width: 29px;
+    margin: 0;
+    padding-top: 5px;
+}
+.notavailable p{
+    height: 29px;
+    width: 29px;
+    background: none;
+    margin: 0;
+    padding-top: 5px;
+}
+
 /***  ------- filterBox ------- ***/
+
 
 .filterBox {
     display: inline-block;

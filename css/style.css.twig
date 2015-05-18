@@ -3637,7 +3637,8 @@ h5.parallaxSubtitle {
     list-style: none;
 }
 .swatches .selected, .swatches li:hover {                       /* Swatches Selected Available Hover Border */
-    border: 2px solid #4ec67f;                                      
+    border: 2px solid;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};                                      
 }
 
 .notavailable li:hover {                                        /* Swatches Selected Available Hover Border */
@@ -3709,7 +3710,8 @@ h5.parallaxSubtitle {
     list-style: none;
 }
 .swatches-size .selected, .swatches-size li:hover {                       /* Swatches Selected Available Hover Border */
-    border: 1px solid #4ec67f;                                      
+    border: 1px solid;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};;                                      
 }
 
 .swatches-size .notavailable-selected{                                       /* Swatches Selected NotAvailable Border  */

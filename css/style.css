@@ -868,7 +868,7 @@ legend {
 #logo-txt 
     a {
         color: #FFFFFF;
-        font-family: {{ settings["typography"]["logo-styles"]["logo-typeface"]["value"] }};
+        font-family: {{ settings["typography"]["logo-styles"]["logo-typeface"]["value"] }} !important;
         font-size: 34px;
         font-weight: 800;
         padding-bottom: 0;

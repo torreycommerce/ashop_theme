@@ -868,6 +868,7 @@ legend {
 #logo-txt 
     a {
         color: #FFFFFF;
+        font-family: {{ settings["typography"]["logo-styles"]["logo-typeface"]["value"] }};
         font-size: 34px;
         font-weight: 800;
         padding-bottom: 0;
@@ -3671,7 +3672,7 @@ h5.parallaxSubtitle {
 
 }
 
-.swatches .notavailable:before {                                /* Swatches Unselected NotAvailable - icon */
+.swatches .notavailable:before {                                     /* Swatches Unselected NotAvailable - icon */
     content:  "\f068";
     font-family: 'FontAwesome' !important;
     color: #fff;                                                

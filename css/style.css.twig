@@ -5854,12 +5854,11 @@ a.link,
 }
 
 .form-control:focus {
-    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .new-product {
-    background-color: #4ec67f !important;
-    background-color: rgba(78, 198, 127, 0.95) !important;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }} !important;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
     -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
 }

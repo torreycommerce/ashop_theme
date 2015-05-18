@@ -3636,9 +3636,12 @@ h5.parallaxSubtitle {
 .swatches .selected, .swatches li:hover {                       /* Swatches Selected Available Hover Border */
     border: 2px solid #4ec67f;                                      
 }
-.notavailable li:hover {                       /* Swatches Selected Available Hover Border */
+
+.notavailable li:hover {                                        /* Swatches Selected Available Hover Border */
     border: 2px dotted red;                                      
 }
+
+
 .swatches a {
     background-position: center center;
     background-repeat: no-repeat;
@@ -3651,6 +3654,15 @@ h5.parallaxSubtitle {
     width: 33px;
 }
 .swatches .notavailable {                                       /* Swatches Selected NotAvailable Border  */
+    border: 2px dotted #b2b2b2;
+    opacity: 0.5;
+    -webkit-opacity: 0.5;
+    -ms-opacity: 0.5; 
+    position: relative;
+
+}
+
+.swatches .notavailable-selected {                                       /* Swatches Selected NotAvailable Border  */
     border: 2px dotted red;
     opacity: 0.5;
     -webkit-opacity: 0.5;
@@ -3658,13 +3670,13 @@ h5.parallaxSubtitle {
     position: relative;
 
 }
+
 .swatches .notavailable:before {                                /* Swatches Unselected NotAvailable - icon */
     content:  "\f068";
     font-family: 'FontAwesome' !important;
     color: #fff;                                                
     font-weight: 300;
     text-decoration: inherit;
-/*--adjust as necessary--*/
     padding-right: 0.5em;
     position: absolute;
     top: 7px;
@@ -3675,7 +3687,9 @@ h5.parallaxSubtitle {
     width: 29px;
 }
 
-/*--Size Details--*/
+
+/******--Size Details--******/
+
 .size-details {
     margin-top: 14px;
 }
@@ -3695,6 +3709,12 @@ h5.parallaxSubtitle {
     border: 1px solid #4ec67f;                                      
 }
 
+.swatches-size .notavailable-selected{                                       /* Swatches Selected NotAvailable Border  */
+    border: 1px dashed red;
+    background: none !important;
+
+}
+
 .swatches-size a {
     background-position: center center;
     background-repeat: no-repeat;
@@ -3708,6 +3728,12 @@ h5.parallaxSubtitle {
     width: 33px;
 }
 .swatches-size .notavailable a {
+    background: none;
+    opacity: 0.3;
+    -webkit-opacity: 0.3;
+    -ms-opacity: 0.3; 
+}
+.swatches-size .notavailable-selected a {                           /* Swatches Selected NotAvailable  */
     background: none;
     opacity: 0.3;
     -webkit-opacity: 0.3;

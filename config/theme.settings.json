@@ -221,10 +221,10 @@
                     "transform_id": ""
                 }
             },
-            "h1_heading_styles": {
+            "heading_styles": {
                 "heading-typeface": {
                     "type": "dropdown_group",
-                    "value": "Lato, Open Sans, Lucida Sans, Lucida Grande, Helvetica, sans-serif",
+                    "value": "Source Sans Pro, sans-serif, Open Sans, Lucida Grande, Helvetica, Arial",
                     "options": {
                         "Sans-Serif": {
                             "Helvetica, Arial, sans-serif": "Helvetica\/Arial",
@@ -232,7 +232,7 @@
                             "Lucida Grande, Lucida Sans Unicode, Lucida Sans, Lucida, Helvetica, Arial, sans-serif": "Lucida Grande",
                             "Trebuchet MS, sans-serif": "Trebuchet MS",
                             "Verdana, Helvetica, Arial, sans-serif": "Verdana",
-                            "Open Sans, Lucida Grande, Helvetica, Arial, sans-serif": "Open Sans",
+                            "Source Sans Pro, sans-serif, Open Sans, Lucida Grande, Helvetica, Arial": "Source Sans Pro",
                             "Lato, Open Sans, Lucida Sans, Lucida Grande, Helvetica, sans-serif": "Lato"
                         },
                         "Serif": {
@@ -258,73 +258,9 @@
                         "300": "300"
                     }
                 },
-                "font-size-h1": {
-                    "type": "dropdown",
-                    "value": "38px",
-                    "options": {
-                        "42px": "42px",
-                        "40px": "40px",
-                        "38px": "38px",
-                        "36px": "36px",
-                        "34px": "34px",
-                        "32px": "32px",
-                        "30px": "30px",
-                        "28px": "28px"
-                    }
-                },
                 "render-text-h1": {
                     "type": "render_text",
                     "font_id": "heading-typeface",
-                    "size_id": "font-size-h1",
-                    "weight_id": "heading-font-weight",
-                    "style_id": "",
-                    "transform_id": ""
-                }
-            },
-            "h2_heading_styles": {
-                "font-size-h2": {
-                    "type": "dropdown",
-                    "value": "28px",
-                    "options": {
-                        "34px": "34px",
-                        "32px": "32px",
-                        "30px": "30px",
-                        "28px": "28px",
-                        "26px": "26px",
-                        "24px": "24px",
-                        "22px": "22px",
-                        "20px": "20px",
-                        "18px": "18px"
-                    }
-                },
-                "render-text-h2": {
-                    "type": "render_text",
-                    "font_id": "heading-typeface",
-                    "size_id": "font-size-h2",
-                    "weight_id": "heading-font-weight",
-                    "style_id": "",
-                    "transform_id": ""
-                }
-            },
-            "h3_heading_styles": {
-                "font-size-h3": {
-                    "type": "dropdown",
-                    "value": "18px",
-                    "options": {
-                        "26px": "26px",
-                        "24px": "24px",
-                        "22px": "22px",
-                        "20px": "20px",
-                        "18px": "18px",
-                        "16px": "16px",
-                        "14px": "14px",
-                        "12px": "12px"
-                    }
-                },
-                "render-text-h3": {
-                    "type": "render_text",
-                    "font_id": "heading-typeface",
-                    "size_id": "font-size-h3",
                     "weight_id": "heading-font-weight",
                     "style_id": "",
                     "transform_id": ""

@@ -153,21 +153,10 @@
                         "11px": "11px"
                     }
                 },
-                "body-font-weight": {
-                    "type": "dropdown",
-                    "value": "400",
-                    "options": {
-                        "700": "700",
-                        "600": "600",
-                        "400": "400",
-                        "300": "300"
-                    }
-                },
                 "render-text": {
                     "type": "render_text",
                     "font_id": "base-typeface",
                     "size_id": "font-size-base",
-                    "weight_id": "body-font-weight",
                     "style_id": "",
                     "transform_id": ""
                 }

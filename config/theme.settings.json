@@ -201,21 +201,22 @@
                 },
                 "logo-font-size": {
                     "type": "dropdown",
-                    "value": "60px",
+                    "value": "34px",
                     "options": {
-                        "78px": "78px",
-                        "72px": "72px",
-                        "66px": "66px",
-                        "60px": "60px",
-                        "56px": "56px",
-                        "50px": "50px",
-                        "40px": "40px"
+                        "40px": "40px",
+                        "38px": "38px",
+                        "36px": "36px",
+                        "34px": "34px",
+                        "30px": "30px",
+                        "28px": "28px",
+                        "24px": "24px"
                     }
                 },
                 "logo-font-weight": {
                     "type": "dropdown",
-                    "value": "600",
+                    "value": "800",
                     "options": {
+                        "800": "800",
                         "700": "700",
                         "600": "600",
                         "400": "400",

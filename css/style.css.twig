@@ -869,8 +869,8 @@ legend {
 #logo-txt 
     a {
         color: #{{ settings["colors"]["content"]["logo"]["value"] }};
-        font-size: 34px;
-        font-weight: 800;
+        font-size: {{ settings["typography"]["logo_styles"]["logo-font-size"]["value"] }};
+        font-weight: {{ settings["typography"]["logo_styles"]["logo-font-weight"]["value"] }};
         padding-bottom: 0;
         padding-top: 0;
         line-height: normal;

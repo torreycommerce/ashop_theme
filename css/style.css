@@ -73,7 +73,7 @@ body {
     margin: 0;
     padding: 0;
     color: #34495E;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: {{ settings["typography"]["base-styles"]["base-typeface"]["value"] }};
     font-size: 14px;
     line-height: 21px;
     position: relative;

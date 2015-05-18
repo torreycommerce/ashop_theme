@@ -54,23 +54,6 @@
                     "type": "color",
                     "value": "34495E"
                 },
-
-                "price-color": {
-                    "type": "color",
-                    "value": "6a4362"
-                },
-                "link-color": {
-                    "type": "color",
-                    "value": "999999"
-                },
-                "link-hover-color": {
-                    "type": "color",
-                    "value": "666666"
-                },
-                "breadcrumb-active-color": {
-                    "type": "color",
-                    "value": "000"
-                },
                 "footer-title": {
                     "type": "color",
                     "value": "54697E"

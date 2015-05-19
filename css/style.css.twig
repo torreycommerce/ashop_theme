@@ -12,8 +12,6 @@
 @import url("ion.checkRadio.cloudy.css");
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic);
-@import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
-
 @charset "utf-8";
 /* =============================================================== */
 /* =============================================================== */
@@ -133,7 +131,7 @@ h3 code {
 
 .block-title-1 {
     display: block;
-    font-family: 'Oswald', sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 2px;
@@ -466,7 +464,7 @@ ul.list-border li:hover {
 
 .modal-title-site {
     color: #FFFFFF;
-    font-family: Oswald;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 38px;
     font-weight: lighter;
     padding: 13px 0;
@@ -709,7 +707,7 @@ input[type="text"], input[type="password"], input[type="email"] {
 
 .btn-stroke-dark, .btn-stroke-light {
     background: rgba(0, 0, 0, 0);
-    font-family: "Oswald", Helvetica Neue, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     letter-spacing: 2px;
     padding: 15px 20px;
     text-align: center;
@@ -1296,7 +1294,7 @@ legend {
 
 .promo-1 {
     color: #FFFFFF;
-    font-family: Oswald, Helvetica Neue;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     margin-bottom: 15px;
     font-weight: lighter;
     padding: 5px 0;
@@ -1612,7 +1610,7 @@ legend {
 
 .box-4in .price, .box-text-table .dealprice {
     display: block;
-    font-family: oswald, Helvetica Neue, Arial, Helvetica, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 26px;
     font-weight: lighter;
     margin-bottom: 15px;
@@ -1653,13 +1651,13 @@ legend {
 .box-text h1, .box-text-cell-inner h1 {
     font-size: 36px;
     letter-spacing: 3px;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-weight: normal;
     text-transform: uppercase;
 }
 
 .box-text p, .box-text-cell-inner p {
-    font-family: Oswald;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-weight: lighter;
 }
 
@@ -1836,7 +1834,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 .box-price-tag .price {
     background: #fff;
     color: #2c3e50;
-    font-family: oswald;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 28px;
     font-weight: normal;
     letter-spacing: 2px;
@@ -2301,7 +2299,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     display: block;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
     float: left;
-    font-family: Oswald, Helvetica Neue;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 15px;
     font-weight: normal;
     list-style: none outside none;
@@ -2666,7 +2664,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     color: #FFFFFF;
     display: inline-block;
     float: left;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 16px;
     font-weight: lighter;
     height: 100%;
@@ -2679,7 +2677,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     color: #fff;
     display: inline-block;
     float: left;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 16px;
     font-weight: lighter;
     height: 100%;
@@ -3567,7 +3565,7 @@ h5.parallaxSubtitle {
 }
 
 .product-code {
-    font-family: oswald, Helvetica Neue, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 14px;
     font-weight: lighter;
     letter-spacing: 1px;
@@ -3621,7 +3619,7 @@ h5.parallaxSubtitle {
 }
 
 .nav-tabs li a {
-    font-family: 'Oswald', sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 14px;
     font-weight: 200;
     letter-spacing: 2px;
@@ -3808,7 +3806,7 @@ h5.parallaxSubtitle {
     color: #{{ settings["colors"]["buttons"]["primary-text"]["value"] }};
     display: block;
     float: left;
-    font-family: Oswald, Helvetica Neue, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 14px;
     font-weight: lighter;
     line-height: 1em;
@@ -3846,7 +3844,7 @@ button.first {
 .incaps {
     display: block;
     float: left;
-    font-family: 'Oswald', sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 2px;
@@ -4350,7 +4348,7 @@ div.quickview {
 
 .btn-quickview {
     border-radius: 2px;
-    font-family: "Oswald", Helvetica Neue, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     letter-spacing: 2px;
     color: #2c3e50 !important;
     text-transform: uppercase;
@@ -4571,7 +4569,7 @@ div.quickview {
 
 #modalAds h3 {
     color: #444;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 26px;
     font-weight: normal;
     letter-spacing: 1px;
@@ -4581,7 +4579,7 @@ div.quickview {
 
 .discountLg {
     color: #000;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 46px;
     font-weight: bold;
     letter-spacing: 3px;
@@ -4663,7 +4661,7 @@ div.quickview {
     color: #000;
     display: inline-block;
     clear: both;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     left: 2px;
     margin-top: 20px;
     text-decoration: underline;

@@ -248,20 +248,9 @@
                         }
                     }
                 },
-                "heading-font-weight": {
-                    "type": "dropdown",
-                    "value": "600",
-                    "options": {
-                        "700": "700",
-                        "600": "600",
-                        "400": "400",
-                        "300": "300"
-                    }
-                },
                 "render-text-h1": {
                     "type": "render_text",
                     "font_id": "heading-typeface",
-                    "weight_id": "heading-font-weight",
                     "style_id": "",
                     "transform_id": ""
                 }
@@ -293,48 +282,7 @@
                         }
                     }
                 },
-                "product-brand-font-size": {
-                    "type": "dropdown",
-                    "value": "13px",
-                    "options": {
-                        "17px": "17px",
-                        "16px": "16px",
-                        "15px": "15px",
-                        "14px": "14px",
-                        "13px": "13px",
-                        "12px": "12px",
-                        "11px": "11px"
-                    }
-                },
-                "product-name-font-size": {
-                    "type": "dropdown",
-                    "value": "14px",
-                    "options": {
-                        "17px": "17px",
-                        "16px": "16px",
-                        "15px": "15px",
-                        "14px": "14px",
-                        "13px": "13px",
-                        "12px": "12px",
-                        "11px": "11px"
-                    }
-                },
-                "product-price-font-size": {
-                    "type": "dropdown",
-                    "value": "13px",
-                    "options": {
-                        "17px": "17px",
-                        "16px": "16px",
-                        "15px": "15px",
-                        "14px": "14px",
-                        "13px": "13px",
-                        "12px": "12px",
-                        "11px": "11px"
-                    }
-                }
-            }
-        }
-    },
+    
     "default": {
         "colors": {
             "background": {

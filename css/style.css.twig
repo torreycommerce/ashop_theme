@@ -2660,7 +2660,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     line-height: 18px;
 }
 
-.new-product {
+.new-product .topsellers {
     color: #FFFFFF;
     display: inline-block;
     float: left;
@@ -2753,7 +2753,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 }
 
 .load-more-block .btn-thin {
-    background: #fff;
+    background-color: #{{ settings["colors"]["background"]["body"]["value"] }};
     z-index: 2;
     position: relative;
     box-shadow: -4px 0 0 #FFFFFF, 4px 0 0 #FFFFFF;
@@ -5771,18 +5771,29 @@ a.link,
 .nav > li > a:hover,
 .nav > li > a:focus,
 .nav > li:hover > a {
-    background: #27ae60;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
+    opacity: 0.75;
+    -webkit-opacity: 0.75;
+    -ms-opacity: 0.75;
 }
 
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus,
 .cartMenu:hover > a.dropdown-toggle {
-    background: #27ae60;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
+    opacity: 0.75;
+    -webkit-opacity: 0.75;
+    -ms-opacity: 0.75;
 }
 
+
 .dropdown-menu {
-    border-top: solid #27ae60;
+    border-top: solid;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
+    opacity: 0.75;
+    -webkit-opacity: 0.75;
+    -ms-opacity: 0.75;
 }
 
 .search-box:hover .form-control {
@@ -5794,10 +5805,7 @@ a.link,
 }
 
 .mCS-dark-2 > .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
-    background-color: #4ec67f !important;
-    background-color: rgba(78, 198, 127, 0.5) !important;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#804ec67f, endColorstr=#804ec67f) !important;
-    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#804ec67f, endColorstr=#804ec67f) !important;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .action-control a:hover,
@@ -5821,11 +5829,9 @@ a.link,
 }
 
 #pager a.cycle-pager-active {
-    background-color: #4bb777 !important;
-    background-color: rgba(75, 183, 119, 0.7) !important;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b34bb777, endColorstr=#b34bb777) !important;
-    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b34bb777, endColorstr=#b34bb777) !important;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
+
 
 .pager2 a {
     border: 1px solid;
@@ -5867,6 +5873,12 @@ a.link,
 
 .new-product {
     background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }} !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
+}
+
+.new-product {
+    background-color: #{{ settings["colors"]["brand"]["brand-secondary-color"]["value"] }} !important;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
     -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
 }

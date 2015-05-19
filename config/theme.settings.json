@@ -281,7 +281,8 @@
                             "Monaco, Lucida Console, DejaVu Sans Mono, monospace": "Monaco"
                         }
                     }
-                },
+                }
+            },
     
     "default": {
         "colors": {

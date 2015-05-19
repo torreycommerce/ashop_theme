@@ -47,7 +47,8 @@
 {% block meta_description %}{{ meta_description|default(seo['description']) }}{% endblock %}
 
 {% block content %}
-    {% if item.product|length == 1 and item.product[0].variant|length == 1 %}
+    {# {% if item.product|length == 1 and item.product[0].variant|length == 1 %} #}
+    {% if item.product|length == 1 %}
         {% set product = item.product|first %}
         {% include "/product/_partials/single-item.html.twig" %}
     {% else %}

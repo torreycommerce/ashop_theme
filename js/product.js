@@ -1,21 +1,18 @@
 $(function() {
-    //var variantManager = new VariantsManager(variants).init();
-    this.variantManager2 = new VariantsManager2(variants).init();
+    //this.variantManager = new VariantsManager(variants).init();
+
+    $.each(products, function(product_id, variants){
+        new VariantsManager(variants).init();
+    });
 });
 
-function updateVariants (selectName, optionValue){
-    console.log("UPDATE");
-}
-
-
-
-function VariantsManager2 (variants) {
+function VariantsManager (variants) {
+    console.log
     var self = this;
     this.variants = variants;
     this.realChange = false;
     this.product_id = this.variants[0].product_id;
     this.selector = "[id=variation-selector-"+this.product_id+"]";
-
     this.filteringValue = "size";
 
     this.selectsData = {};
@@ -54,7 +51,7 @@ function VariantsManager2 (variants) {
                             "images" ];
 
     this.getVariationSelector = function(selectName, optionValue){
-        return "[id=variation-selector-"+selectName+"-"+optionValue+"]";
+        return "[id=variation-selector-"+self.product_id+"-"+selectName+"-"+optionValue+"]";
     }
 
 
@@ -160,7 +157,6 @@ function VariantsManager2 (variants) {
                             passfilter = false;
                         }
                     }else{
-                        console.log("ERROR: variant: "+variant.name +" doesn't have attribute: "+selectName);
                         passfilter = false;
                     }
                 }
@@ -172,7 +168,7 @@ function VariantsManager2 (variants) {
     }
 
     this.buildOption = function( selectName, optionValue, text ){
-        return $('<option>', {id: "variation-selector-"+selectName+"-"+optionValue, value: selectName+"="+optionValue, class: ""}).text(text);
+        return $('<option>', {id: "variation-selector-"+self.product_id+"-"+selectName+"-"+optionValue, value: selectName+"="+optionValue, class: ""}).text(text);
     }
 
     this.newOption = function( selectName, optionValue ){
@@ -187,14 +183,14 @@ function VariantsManager2 (variants) {
 
     this.destroySelectInputs = function(selectData){
         $.each(selectData, function(selectName, optionArray){
-            $('[id=variation-selector-'+selectName+']').minimalect("destroy");
+            $('[id=variation-selector-'+self.product_id+"-"+selectName+']').minimalect("destroy");
         })
         $(self.selector).empty();
     }
 
     this.getATag = function(selectName, optionValue){
         var self = this;
-        return tag =  $('<a>', {id: "variation-selector-"+selectName+"-"+optionValue, class: ""}).text(optionValue).click(function(){
+        return tag =  $('<a>', {id: "variation-selector-"+self.product_id+"-"+selectName+"-"+optionValue, class: ""}).text(optionValue).click(function(){
             self.updateVariants(selectName, optionValue);
         });
     }
@@ -205,9 +201,8 @@ function VariantsManager2 (variants) {
         console.log(selectData);
 
         $.each(selectData, function(selectName, optionArray){
-            //var selectSelector = "[id=variation-selector-"+selectName+"]";
             
-            var div = $('<div>', {id: "variation-selector-"+selectName, name: selectName, class: "size-details"});           
+            var div = $('<div>', {id: "variation-selector-"+self.product_id+"-"+selectName, name: selectName, class: "size-details"});           
             var ul = $('<ul>', {class: "swatches-size Size"});  
             var span = $('<span>', {class: "selected-size"}).append(
                             $('<strong>', {}).text(selectName) 
@@ -245,7 +240,7 @@ function VariantsManager2 (variants) {
                     }
                 }
             });
-        }); 
+        });
         console.log("self.selectsData");
         console.log(self.selectsData);
 
@@ -253,216 +248,6 @@ function VariantsManager2 (variants) {
         self.buildChips(self.selectsData);
     }
 }
-
-
-// function VariantsManager (variants) {
-//     var self = this;
-//     this.variants = variants;
-//     this.realChange = false;
-//     this.product_id = this.variants[0].product_id;
-//     this.selector = "[id=variation-selector-"+this.product_id+"]";
-
-//     this.filteringValue = "size";
-
-//     this.selectsData = {};
-//     this.selectsUser = {};
-//     this.lastChangedValue = "";
-
-//     this.defaultVariants = [ "position",
-//                             "inventory_shipping_estimate",
-//                             "has_stock",
-//                             "weight",
-//                             "asin",
-//                             "product_id",
-//                             "inventory_policy",
-//                             "date_created",
-//                             "inventory_tracking",
-//                             "require_shipping",
-//                             "id",
-//                             "title",
-//                             "isbn",
-//                             "name",
-//                             "popularity",
-//                             "inventory_quantity",
-//                             "inventory_returnable",
-//                             "status",
-//                             "date_modified",
-//                             "taxable",
-//                             "sku",
-//                             "cost",
-//                             "compare_price",
-//                             "url",
-//                             "ean",
-//                             "discountable",
-//                             "thumbnail",
-//                             "price",
-//                             "inventory_minimum_quantity",
-//                             "images" ];
-
-//     this.updateVariants = function(value, text, self){
-//         //var self = this;
-//         console.log("CHANGE");
-//         var selectName = value.split("=")[0];
-//         var selectValue = value.split("=")[1];
-
-//         if(value != this.lastChangedValue && self.realChange){
-
-//             this.lastChangedValue = value;
-//             if(selectName = self.filteringValue){
-//                 self.selectsUser[selectName] = selectValue;
-//             }
-            
-//             var filteredVariants = this.getFilteredVariants();
-//             var generatedSelects = this.generateSelectsData(filteredVariants);
-//             self.destroySelectInputs(generatedSelects);
-//             if(filteredVariants.length == 1){
-
-//                 $.each(self.variants, function(index, variant){
-//                     var id = "product-" + variant.id;
-//                     if(variant.id == filteredVariants[0].id){
-//                         $("#"+id).show();
-//                     }else{
-//                         $("#"+id).hide();
-//                     }
-//                 });
-
-//                 self.buildSelectInputs(generatedSelects);
-//             }
-
-//         }
-//     }
-
-//     this.updateSelectInputs = function(selectData){
-//         var self = this;
-//         //remove from select whats not in data
-
-//         //add in select whats in data
-//     }
-
-//     this.generateSelectsData = function(filteredVariants){
-//         var self = this;
-//         var selects = {};
-//         $.each( this.selectsData, function(index, value){
-//             selects[index] = [];
-//         });
-//         $.each( filteredVariants, function(index, value){
-//             $.each(value, function(index, value){
-//                 if(self.defaultVariants.indexOf(index)<0){
-//                     if(selects[index].indexOf(value)<0){
-//                             selects[index].push(value);
-//                     }
-//                 }
-//             });
-//           });
-
-//         return selects;
-//     }
-
-
-//     this.getFilteredVariants = function(){
-//         var filteredVariants = [];
-//         var self = this;
-
-//         $.each( this.variants, function(index, variant){
-//             var passfilter = true;
-
-//             $.each( self.selectsUser, function(selectName, selectValue){
-                
-//                 if(selectValue != ""){
-//                     if(variant[selectName]){
-//                         if(variant[selectName] != selectValue){
-//                             passfilter = false;
-//                         }
-//                     }else{
-//                         console.log("ERROR: variant: "+variant.name +" doesn't have attribute: "+selectName);
-//                         passfilter = false;
-//                     }
-//                 }
-//             });
-
-//             if(passfilter) filteredVariants.push(variant);
-//         });
-//         return filteredVariants;
-//     }
-
-//     this.buildOption = function( selectName, optionValue, text ){
-//         return $('<option>', {id: "variation-selector-"+selectName+"-"+optionValue, value: selectName+"="+optionValue, class: ""}).text(text);
-//     }
-
-//     this.newOption = function( selectName, optionValue ){
-//         var value = selectName + "=" + optionValue;
-//         self.selectsData[selectName].append( self.buildOption( selectName, optionValue ) );
-//     }
-
-//     this.removeOption = function(selectName, optionValue){
-//         var value = selectName + "=" + optionValue;
-//         self.selectsData[selectName].children( "[value='"+value+"']" ).remove();
-//     }
-
-//     this.destroySelectInputs = function(selectData){
-//         $.each(selectData, function(selectName, optionArray){
-//             $('[id=variation-selector-'+selectName+']').minimalect("destroy");
-//         })
-//         $(self.selector).empty();
-//     }
-
-//     this.buildSelectInputs = function(selectData){
-//         var self = this;
-//         self.realChange = false;
-
-//         $.each(selectData, function(selectName, optionArray){
-
-//             var selectSelector = "[id=variation-selector-"+selectName+"]";
-            
-//             var sel = $('<select>', {id: "variation-selector-"+selectName, name: selectName, class: "form-control"});            
-//             //sel.append( self.buildOption(selectName, "", "") );
-
-//             $.each(optionArray, function(index, optionValue){
-//                 sel.append( self.buildOption(selectName, optionValue, optionValue) );
-//             });
-
-//             $(self.selector).append( $('<label>', {}).text(selectName) );
-//             $(self.selector).append(sel);
-
-//             $(selectSelector).minimalect({
-//                 'onchange': function(value,text){
-//                     self.updateVariants(value,text,self);
-//                 },
-//                 'live': true,
-//                 'remove_empty_option': false,
-//                 'debug': true,
-//                 'placeholder': null
-//             });
-            
-//         });
-
-//         self.realChange = true;
-//     }
-
-//     this.init = function(){
-//         var self = this;
-
-//         // Build selects object containing data of the variants select tags
-//         $.each( this.variants, function(index, value){
-//             $.each(value, function(index, value){
-//                 if(self.defaultVariants.indexOf(index)<0){
-//                     if(! self.selectsData[index] ){
-//                         self.selectsData[index] = [value];
-//                     }else{
-//                         if(self.selectsData[index].indexOf(value)<0){
-//                             self.selectsData[index].push(value);
-//                         }
-//                     }
-//                 }
-//             });
-//         }); 
-//         console.log("self.selectsData");
-//         console.log(self.selectsData);
-
-//         //Bluilding HTML Select elements
-//         self.buildSelectInputs(self.selectsData);
-//     }
-// }
 
 // showProductVariation = function(selector) {
 

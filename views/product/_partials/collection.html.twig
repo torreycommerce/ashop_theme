@@ -293,20 +293,23 @@
                                             </div>
                                             {% endif %}
 
-                                            <script type="text/javascript">
-                                                var variants = {{children[0].variant|json_encode}};
-                                            </script>
-
                                             {# End collection group header #}
                                             {# Begin collection product $(this).parentsUntil('.product').hide(); #}
+                                            {# <pre>{{dump(children)}}</pre> #}
+                                            <script type="text/javascript">
+                                                var products = [];
+                                            </script>
                                             {% for product in children %}
                                             {% set variation_dropdown = '' %}
                                             {% if product.variant|length > 1 %}
+
+                                            <script type="text/javascript">
+                                                products.push({{product.variant|json_encode}});
+                                            </script>
                                             {% set variation_dropdown %}
                                             {% spaceless %}
-
-
-                                           {#  <div class="variation-selection">
+                                                
+                                            {# <div class="variation-selection">
                                                 <div class="input-group">
                                                     <select id="variation-selector-{{product.id}}" class="form-control" onchange="showProductVariation($(this));">
                                                         {% for variation in product.variant %}
@@ -316,14 +319,14 @@
                                                 </div>
                                             </div> #}
 
-                                            <div class="variation-selection">
-                                                <div id="variation-selector-{{product.id}}" class="input-group">
-                                                    
+                                                <div class="variation-selection">
+                                                    <div id="variation-selector-{{product.id}}" class="input-group">
+                                                        
+                                                    </div>
                                                 </div>
-                                            </div>
                                             
-                                            {# <pre>{{dump(product.variant)}}</pre> #}
-
+                                            
+                                                {# <pre>{{dump(product.variant)}}</pre> #}
                                             {% endspaceless %}
                                             {% endset %}
                                             {% endif %}

@@ -12,8 +12,6 @@
 @import url("ion.checkRadio.cloudy.css");
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic);
-@import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
-
 @charset "utf-8";
 /* =============================================================== */
 /* =============================================================== */
@@ -73,8 +71,8 @@ body {
     margin: 0;
     padding: 0;
     color: #{{ settings["colors"]["content"]["text-color"]["value"] }};
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 14px;
+    font-family: {{ settings["typography"]["base_styles"]["base-typeface"]["value"] }};
+    font-size: {{ settings["typography"]["base_styles"]["font-size-base"]["value"] }};
     line-height: 21px;
     position: relative;
     background-color: #{{ settings["colors"]["background"]["body"]["value"] }};
@@ -85,7 +83,7 @@ body {
 /* =============================================================== */
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-weight: normal;
     margin: 0;
     padding-bottom: 15px;
@@ -133,7 +131,7 @@ h3 code {
 
 .block-title-1 {
     display: block;
-    font-family: 'Oswald', sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 2px;
@@ -466,7 +464,7 @@ ul.list-border li:hover {
 
 .modal-title-site {
     color: #FFFFFF;
-    font-family: Oswald;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 38px;
     font-weight: lighter;
     padding: 13px 0;
@@ -709,7 +707,7 @@ input[type="text"], input[type="password"], input[type="email"] {
 
 .btn-stroke-dark, .btn-stroke-light {
     background: rgba(0, 0, 0, 0);
-    font-family: "Oswald", Helvetica Neue, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     letter-spacing: 2px;
     padding: 15px 20px;
     text-align: center;
@@ -797,6 +795,7 @@ p.required, .required sup {
 }
 
 legend {
+    color: #{{ settings["colors"]["content"]["text-color"]["value"] }};
     padding-bottom: 10px;
 }
 
@@ -868,8 +867,9 @@ legend {
 #logo-txt 
     a {
         color: #{{ settings["colors"]["content"]["logo"]["value"] }};
-        font-size: 34px;
-        font-weight: 800;
+        font-family: {{ settings["typography"]["logo_styles"]["logo-typeface"]["value"] }};
+        font-size: {{ settings["typography"]["logo_styles"]["logo-font-size"]["value"] }};
+        font-weight: {{ settings["typography"]["logo_styles"]["logo-font-weight"]["value"] }};
         padding-bottom: 0;
         padding-top: 0;
         line-height: normal;
@@ -893,6 +893,10 @@ legend {
 
 .megamenu .dropdown-menu > li {
     display: block;
+}
+
+.dropdown-menu > li > a {
+    color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .megamenu .nav.pull-right .dropdown-menu {
@@ -1290,7 +1294,7 @@ legend {
 
 .promo-1 {
     color: #FFFFFF;
-    font-family: Oswald, Helvetica Neue;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     margin-bottom: 15px;
     font-weight: lighter;
     padding: 5px 0;
@@ -1606,7 +1610,7 @@ legend {
 
 .box-4in .price, .box-text-table .dealprice {
     display: block;
-    font-family: oswald, Helvetica Neue, Arial, Helvetica, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 26px;
     font-weight: lighter;
     margin-bottom: 15px;
@@ -1647,13 +1651,13 @@ legend {
 .box-text h1, .box-text-cell-inner h1 {
     font-size: 36px;
     letter-spacing: 3px;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-weight: normal;
     text-transform: uppercase;
 }
 
 .box-text p, .box-text-cell-inner p {
-    font-family: Oswald;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-weight: lighter;
 }
 
@@ -1830,7 +1834,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 .box-price-tag .price {
     background: #fff;
     color: #2c3e50;
-    font-family: oswald;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 28px;
     font-weight: normal;
     letter-spacing: 2px;
@@ -2295,7 +2299,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     display: block;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
     float: left;
-    font-family: Oswald, Helvetica Neue;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 15px;
     font-weight: normal;
     list-style: none outside none;
@@ -2656,11 +2660,11 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     line-height: 18px;
 }
 
-.new-product {
+.new-product, .top-sellers {
     color: #FFFFFF;
     display: inline-block;
     float: left;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 16px;
     font-weight: lighter;
     height: 100%;
@@ -2673,7 +2677,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     color: #fff;
     display: inline-block;
     float: left;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 16px;
     font-weight: lighter;
     height: 100%;
@@ -2692,9 +2696,10 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     line-height: 24px;
 }
 
+
 .item h4 a {
     color: #{{ settings["colors"]["content"]["title-color"]["value"] }};
-    font-family: Oswald, Arial, Helvetica, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-weight: 600;
     text-decoration: none;
     text-transform: uppercase;
@@ -2705,7 +2710,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     opacity: 0.75;
     -webkit-opacity: 0.75;
     -ms-opacity: 0.75;
-    font-size: 14px;
+    font-size: {{ settings["typography"]["base_styles"]["font-size-base"]["value"] }};
     min-height: 55px;
     max-height: 90px;
     overflow: hidden;
@@ -2748,7 +2753,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 }
 
 .load-more-block .btn-thin {
-    background: #fff;
+    background-color: #{{ settings["colors"]["background"]["body"]["value"] }};
     z-index: 2;
     position: relative;
     box-shadow: -4px 0 0 #FFFFFF, 4px 0 0 #FFFFFF;
@@ -3560,7 +3565,7 @@ h5.parallaxSubtitle {
 }
 
 .product-code {
-    font-family: oswald, Helvetica Neue, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 14px;
     font-weight: lighter;
     letter-spacing: 1px;
@@ -3614,7 +3619,7 @@ h5.parallaxSubtitle {
 }
 
 .nav-tabs li a {
-    font-family: 'Oswald', sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 14px;
     font-weight: 200;
     letter-spacing: 2px;
@@ -3801,7 +3806,7 @@ h5.parallaxSubtitle {
     color: #{{ settings["colors"]["buttons"]["primary-text"]["value"] }};
     display: block;
     float: left;
-    font-family: Oswald, Helvetica Neue, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 14px;
     font-weight: lighter;
     line-height: 1em;
@@ -3839,7 +3844,7 @@ button.first {
 .incaps {
     display: block;
     float: left;
-    font-family: 'Oswald', sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 2px;
@@ -4030,10 +4035,7 @@ tr.CartProduct td:nth-child(2) {
     margin-top: 0;
 }
 
-.item h4 a {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: normal;
-}
+
 
 .couponForm input[type="text"] {
     -webkit-border-radius: 3px 0 0 3px;
@@ -4166,6 +4168,7 @@ span.success, p.success div.success {
 }
 
 .myAccountList li a {
+    color: #{{ settings["colors"]["content"]["text-color"]["value"] }};
     font-size: 14px;
     display: block;
 }
@@ -4187,7 +4190,7 @@ span.success, p.success div.success {
 }
 
 .navigation .myAccountList .thumbnail > li.active > a {
-    color: #4ec67f;
+    color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
     min-height: 100%;
 }
 
@@ -4345,7 +4348,7 @@ div.quickview {
 
 .btn-quickview {
     border-radius: 2px;
-    font-family: "Oswald", Helvetica Neue, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     letter-spacing: 2px;
     color: #2c3e50 !important;
     text-transform: uppercase;
@@ -4566,7 +4569,7 @@ div.quickview {
 
 #modalAds h3 {
     color: #444;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 26px;
     font-weight: normal;
     letter-spacing: 1px;
@@ -4576,7 +4579,7 @@ div.quickview {
 
 .discountLg {
     color: #000;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     font-size: 46px;
     font-weight: bold;
     letter-spacing: 3px;
@@ -4658,7 +4661,7 @@ div.quickview {
     color: #000;
     display: inline-block;
     clear: both;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: {{ settings["typography"]["heading_styles"]["heading-typeface"]["value"] }};
     left: 2px;
     margin-top: 20px;
     text-decoration: underline;
@@ -5740,18 +5743,20 @@ a.link,
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-    background-color: #66de97;
-    border-color: #66de97;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
     color: #ffffff;
+    opacity: 0.75;
+    -webkit-opacity: 0.75;
+    -ms-opacity: 0.75;
 }
 
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-    background-color: #66de97;
-    border-color: #66de97;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
     color: #ffffff;
-    background: #4ec67f;
 }
 
 .navbar-top {
@@ -5766,18 +5771,29 @@ a.link,
 .nav > li > a:hover,
 .nav > li > a:focus,
 .nav > li:hover > a {
-    background: #27ae60;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
+    opacity: 0.75;
+    -webkit-opacity: 0.75;
+    -ms-opacity: 0.75;
 }
 
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus,
 .cartMenu:hover > a.dropdown-toggle {
-    background: #27ae60;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
+    opacity: 0.75;
+    -webkit-opacity: 0.75;
+    -ms-opacity: 0.75;
 }
 
+
 .dropdown-menu {
-    border-top: solid #27ae60;
+    border-top: solid;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
+    opacity: 0.75;
+    -webkit-opacity: 0.75;
+    -ms-opacity: 0.75;
 }
 
 .search-box:hover .form-control {
@@ -5789,16 +5805,16 @@ a.link,
 }
 
 .mCS-dark-2 > .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
-    background-color: #4ec67f !important;
-    background-color: rgba(78, 198, 127, 0.5) !important;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#804ec67f, endColorstr=#804ec67f) !important;
-    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#804ec67f, endColorstr=#804ec67f) !important;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .action-control a:hover,
 .action-control a.active {
     color: #ffffff;
-    background: #27ae60;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
+    opacity: 0.75;
+    -webkit-opacity: 0.75;
+    -ms-opacity: 0.75;
 }
 
 .product:hover,
@@ -5813,11 +5829,9 @@ a.link,
 }
 
 #pager a.cycle-pager-active {
-    background-color: #4bb777 !important;
-    background-color: rgba(75, 183, 119, 0.7) !important;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b34bb777, endColorstr=#b34bb777) !important;
-    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b34bb777, endColorstr=#b34bb777) !important;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
+
 
 .pager2 a {
     border: 1px solid;
@@ -5854,12 +5868,17 @@ a.link,
 }
 
 .form-control:focus {
-    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};;
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .new-product {
-    background-color: #4ec67f !important;
-    background-color: rgba(78, 198, 127, 0.95) !important;
+    background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }} !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
+}
+
+.top-sellers {
+    background-color: #{{ settings["colors"]["brand"]["brand-secondary-color"]["value"] }} !important;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
     -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
 }
@@ -5887,7 +5906,10 @@ a.link,
 }
 
 .nav-tabs {
-    border-bottom: 3px solid #bfc9ca;
+    border-bottom: 3   
+    opacity: 0.75;
+    -webkit-opacity: 0.75;
+    -ms-opacity: 0.75;
 }
 
 .nav-tabs > li.active > a,
@@ -5905,14 +5927,14 @@ a.link,
     background: none repeat scroll 0 0;
     background-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
     border: 2px solid;
-    border-color: #{{ settings["colors"]["buttons"]["primary-border"]["value"] }};
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .cart-actions button:hover {
     background: #ffffff;
     color: #2c3e50;
     border: solid 2px;
-    border-color: #{{ settings["colors"]["buttons"]["primary-border"]["value"] }};
+    border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 }
 
 .sp-thumbs a:hover,

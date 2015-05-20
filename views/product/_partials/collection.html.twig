@@ -360,7 +360,6 @@
                                                             <div class="details">
                                                                 <h4 class='name'>{{ product.name }}</h4>
                                                                 {# Begin variation dropdown #}
-                                                                {{ variation_dropdown }}
                                                                 {% if variation.price > 0 %}
                                                                 <div class="price">
                                                                     {{ prod.price(variation.price) }}
@@ -424,6 +423,11 @@
                                                                 </div>
                                                             </div>
                                                             {# End collection product details #}
+                                                            {# Begin Color-Size variants #}
+                                                            <div class="col-xs-7 col-sm-6 col-md-4 col-lg-5">
+                                                                {{ variation_dropdown }}
+                                                            </div>
+                                                            {# End Color-Size variants #}
                                                             {# Begin collection product actions #}
                                                             <div class="col-xs-7 col-sm-6 col-md-3 col-lg-2 pull-right">
                                                                 <div class="actions">

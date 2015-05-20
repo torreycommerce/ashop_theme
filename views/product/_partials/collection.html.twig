@@ -318,14 +318,10 @@
                                                     </select>
                                                 </div>
                                             </div> #}
-
                                                 <div class="variation-selection">
-                                                    <div id="variation-selector-{{product.id}}" class="input-group">
-                                                        
+                                                    <div id="variation-selector-{{product.id}}" class="input-group"> 
                                                     </div>
                                                 </div>
-                                            
-                                            
                                                 {# <pre>{{dump(product.variant)}}</pre> #}
                                             {% endspaceless %}
                                             {% endset %}
@@ -360,7 +356,7 @@
                                                         {% endif %}
                                                         {# End collection product image #}
                                                         {# Begin collection product details #}
-                                                        <div class="col-xs-7 col-sm-6 col-md-7 col-lg-8">
+                                                        <div class="col-xs-7 col-sm-6 col-md-3">
                                                             <div class="details">
                                                                 <h4 class='name'>{{ product.name }}</h4>
                                                                 {# Begin variation dropdown #}
@@ -429,7 +425,7 @@
                                                             </div>
                                                             {# End collection product details #}
                                                             {# Begin collection product actions #}
-                                                            <div class="col-xs-7 col-sm-6 col-md-3 col-lg-2">
+                                                            <div class="col-xs-7 col-sm-6 col-md-3 col-lg-2 pull-right">
                                                                 <div class="actions">
                                                                     <div class="btn-toolbar">
                                                                         <div class="quantity-input-group quantity">
@@ -437,23 +433,19 @@
                                                                             product.variant[0]['inventory_policy'] is defined and (product.variant[0]['inventory_policy'] == 'continue' or
                                                                             product.variant[0]['inventory_quantity'] > product.variant[0]['inventory_minimum_quantity'] ) %}
                                                                             <label for="quantity-selector" class="control-label">Qty</label>
+                                                                           {# Begin product Quantity #}
                                                                             <div class="input-group">
-                                                                                <select name="items[{{variation.id}}]" class="qty-dropdown form-control parsley-validated quantity-selector" required="1">
-                                                                                    {% for i in 0..12 %}
-                                                                                    <option value="{{i}}">{{i}}</option>
-                                                                                    {% endfor %}
-                                                                                </select>
-                                                                                {#
-                                                                                    <div class="input-group-btn">
-                                                                                        <button class="btn btn-neutral btn-remove"><i class="fa fa-minus"></i></button>
-                                                                                    </div>
-                                                                                    <input class="form-control quantity-selector" type="text" value="{{ children.total_count == 1 ? 1 : 0 }}" maxlength="2" name="items[{{variation.id}}]">
-                                                                                    <div class="input-group-btn">
-                                                                                        <button class="btn btn-neutral btn-add"><i class="fa fa-plus"></i></button>
-                                                                                    </div>
-                                                                                    #}
+                                                                                <div class="input-group-btn">
+                                                                                    <button class="btn btn-remove btn-link bootstrap-touchspin-down" type="button">
+                                                                                        <i class="fa fa-minus"></i>
+                                                                                    </button>
                                                                                 </div>
-                                                                                {% endif %}
+                                                                                <input class="form-control quantity-selector quanitySniper" value="0" maxlength="2" placeholder="0" name="items[{{product.variant[0].id}}]" type="text">
+                                                                                <div class="input-group-btn">
+                                                                                <button class="btn btn-add btn-link bootstrap-touchspin-up" type="button"><i class="fa fa-plus"></i></button>
+                                                                                </div>
+                                                                            </div>
+                                                                            {% endif %}
                                                                             </div>
                                                                         </div>
                                                                     </div>

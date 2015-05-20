@@ -159,18 +159,17 @@
             app.params.social_settings["google"]["active_plus_one"] == true or
             app.params.social_settings["google"]["active_follow_page_button"] == true
             ) %}
-            <div id="social">
-                <div class="row">
-                    <div class="col-md-12">
-                        <span class="text">Share this item:</span>
+             <div style="clear:both"></div>
+
+            <div class="row no-margin">{# Begin Row#}
+                <div class="product-share clearfix">
+                    <p> SHARE </p>
+                    <div class="socialIcon">
                         {{ social.sharing_buttons(app.params.social_settings, product) }}
                     </div>
                 </div>
             </div>
-            {% endif %}
-            {# End social sharing #}
-
-
+        {% endif %} {# End social sharing #}
         </div>
         {# End Product Details #}
     </div>
@@ -243,11 +242,11 @@
                                     {% endif %}
                                     <div class="panel-heading">
                                         {# Begin desktop buttons #}
-                                        <div class="btn-toolbar hidden-xs">
-                                            <div class="row">
+                                        <div class="cart-actions collection hidden-xs">
+                                            <div class="addto">
                                                 {% include "/product/_partials/list/actions-collection.html.twig" %}
                                                 {# Begin add to cart button #}
-                                                <div class="col-sm-4 col-md-3 col-lg-2">
+                                                <div class="col-sm-4 col-md-3 col-lg-2 no-padding-right">
                                                     <button type="submit" class="btn btn-block btn-primary" name="action" value="cart">
                                                         <i class="fa fa-shopping-cart"></i>
                                                         <span>Add to Cart</span>
@@ -258,11 +257,11 @@
                                         </div>
                                         {# End desktop buttons #}
                                         {# Begin mobile buttons #}
-                                        <div class="visible-xs btn-toolbar">
+                                        <div class="visible-xs cart-actions collection">
                                             <div class="actions row">
                                                 {# Begin buy button #}
                                                 <div class="col-sm-12 col-xs-12 globalPaddingBottom-btn">
-                                                    <button type="submit" name="action" value="cart" class="btn btn-primary btn-block">
+                                                    <button type="submit" name="action" value="cart" class="btn btn-primary btn-block ">
                                                         <i class="fa fa-shopping-cart"></i>
                                                         <span>Add to Cart</span>
                                                     </button>
@@ -333,7 +332,7 @@
                                                         {# Begin collection product image #}
                                                         {% if variation.images is not empty %}
                                                         <div class="col-xs-5 col-sm-6 col-md-2 col-lg-2">
-                                                            <div class="image" style="margin:10px;">
+                                                            <div class="image">
                                                                 <div class="thumbnail">
                                                                     <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{ app.image.getImageUrl("product","thumbnail",variation.images.0.id) }}" width="250" class="img-responsive" data-image-swap="main-product-image" data-image-swap-src="{{app.image.getImageUrl("product","standard",variation.images.0.id) }}"  data-image-swap-zoom="{{app.image.getImageUrl("product","large",variation.id) }}" alt="" />
                                                                 </div>
@@ -341,7 +340,7 @@
                                                         </div>
                                                         {% elseif product.thumbnail is not empty %}
                                                         <div class="col-md-2 col-sm-6 col-xs-5">
-                                                            <div class="image" style="margin: 10px;">
+                                                            <div class="image">
                                                                 <div class="thumbnail">
                                                                     <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{ product.thumbnail }}" width="250" class="img-responsive" data-image-swap="main-product-image" {% if product.images.0.id is defined %}data-image-swap-src="{{app.image.getImageUrl("product","standard", product.images.0.id) }}" data-image-swap-zoom="{{app.image.getImageUrl("product","large",product.images.0.id) }}"{% endif %} alt="" />
                                                                 </div>

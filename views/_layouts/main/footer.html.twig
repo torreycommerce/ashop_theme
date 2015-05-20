@@ -63,13 +63,12 @@
                             {{ newsletterform.end() }}
                         </li>
                     </ul>
-                    <ul class="social">
-                        <li><a href="http://facebook.com"> <i class=" fa fa-facebook"> &nbsp; </i> </a></li>
-                        <li><a href="http://twitter.com"> <i class="fa fa-twitter"> &nbsp; </i> </a></li>
-                        <li><a href="https://plus.google.com"> <i class="fa fa-google-plus"> &nbsp; </i> </a></li>
-                        <li><a href="http://youtube.com"> <i class="fa fa-pinterest"> &nbsp; </i> </a></li>
-                        <li><a href="http://youtube.com"> <i class="fa fa-youtube"> &nbsp; </i> </a></li>
-                    </ul>
+                {# Social Network Icons if found in config file #}
+                {# if social settings is not set in the config file, just do nothing #}
+                {% if app.params.social_settings is defined and app.params.social_settings is not empty %}
+                  {{ social.social_parseConfig(app.params.social_settings) }}
+                {% endif %}
+                {# End Social Network Icons #}
                 </div>
             </div>
             <!--/.row-->

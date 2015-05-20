@@ -227,6 +227,12 @@ h3 code {
     padding: 10px 0 0 5px !important;
 }
 
+.no-padding-btn-collection-left{
+    padding: 10px 5px 0 15px !important;
+}
+.no-padding-btn-collection-right{
+    padding: 10px 15px 0 5px !important;
+}
 }
 
 .no-padding-btn-left{
@@ -2424,6 +2430,8 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     -ms-transition: all 0.3s ease 0s;
     border: 1px solid #DDDDDD;
     border-bottom: 1px solid #DDDDDD;
+    margin-top: 10px;
+    padding: 10px 0 10px 10px;
     text-align: center;
 }
 
@@ -3244,6 +3252,11 @@ h5.parallaxSubtitle {
     padding-top: 10px;
 }
 
+.color-details-collection {
+    border:none;
+    padding:0;
+}
+
 .productFilter {
     border-bottom: 1px solid #DDDDDD;
     border-top: 1px solid #DDDDDD;
@@ -3515,9 +3528,6 @@ h5.parallaxSubtitle {
 #collection .tab-content {
   padding: 0;
 }
-#collection .tab-content .panel {
-  border-top: 0 none;
-}
 #collection .tab-content .panel .panel-heading .btn-toolbar {
   margin-left: 0;
 }
@@ -3546,10 +3556,7 @@ h5.parallaxSubtitle {
     margin-bottom: 10px;
   }
 }
-#collection .tab-content .panel .product {
-  border-bottom: 1px solid #eeeeee;
-  margin-bottom: 10px;
-}
+
 #collection .tab-content .panel .product .image img {
   border: 0;
 }
@@ -3619,6 +3626,16 @@ h5.parallaxSubtitle {
   }
 }
 
+.collection-dropdown{
+  margin: 2px 0 0 15px;
+}
+
+@media (max-width: 768px) {
+    .collection-dropdown{
+      margin: 0;
+    }
+    
+}
 /***  -------  Product details style 2   ------- ***/
 
 .style2 .sp-thumbs {
@@ -3767,7 +3784,7 @@ h5.parallaxSubtitle {
     height: 33px;
     text-align: center;
     transition: all 0.25s ease 0s;
-    width: 33px;
+    min-width: 33px;
 }
 .swatches .notavailable {                                       /* Swatches Selected NotAvailable Border  */
     border: 2px dotted #b2b2b2;
@@ -3790,8 +3807,8 @@ h5.parallaxSubtitle {
 .swatches .notavailable:before {                                /* Swatches Unselected NotAvailable - icon */
     content:  "\f068";
     font-family: 'FontAwesome' !important;
-    color: #fff; 
-    cursor: pointer;                                               
+    color: #fff;                          
+    cursor: pointer;                      
     font-weight: 300;
     text-decoration: inherit;
     padding-right: 0.5em;
@@ -3843,7 +3860,7 @@ h5.parallaxSubtitle {
     height: 33px;
     text-align: center;
     transition: all 0.25s ease 0s;
-    width: 33px;
+    min-width: 33px;
 }
 .swatches-size .notavailable a {
     background: none;
@@ -3901,6 +3918,12 @@ h5.parallaxSubtitle {
     border-bottom: 1px solid #DDDDDD;
     padding-bottom: 12px;
     clear: both;
+}
+
+.cart-actions, .collection {
+    margin-bottom: 0;
+    border: none;
+    padding-bottom: 0;
 }
 
 .cart-actions button, .cart-actions .btn-cart, .cart-actions .wishlist {

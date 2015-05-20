@@ -2,7 +2,6 @@
 {% if array_config|length >= 1 and (array_config['facebook']['facebook_page'] is not empty or array_config['twitter']['twitter_page'] is not empty or array_config['pinterest']['pinterest_page'] is not empty or array_config['google']['google_page'] is not empty) %}
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h4>Connect With Us</h4>
           <ul class="social list-unstyled list-inline">
             {% for key, item in array_config %}
               {% if item.active_follow_page_button is defined and item.active_follow_page_button == true

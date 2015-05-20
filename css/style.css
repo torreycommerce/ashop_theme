@@ -3790,7 +3790,8 @@ h5.parallaxSubtitle {
 .swatches .notavailable:before {                                /* Swatches Unselected NotAvailable - icon */
     content:  "\f068";
     font-family: 'FontAwesome' !important;
-    color: #fff;                                                
+    color: #fff; 
+    cursor: pointer;                                               
     font-weight: 300;
     text-decoration: inherit;
     padding-right: 0.5em;

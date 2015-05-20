@@ -259,12 +259,12 @@
                         <div class="row no-margin">
                                 <div class="panel-tabs">
                                     <ul class="nav nav-tabs">
-                                        {% if variation.description is not empty %}
+                                        {% if product.description is not empty %}
                                         <li class="active">
                                             <a href="#description-desktop" data-toggle="tab"><i class="fa fa-info"></i>  Description</a>
                                         </li>
                                         {% endif %}
-                                        <li {% if variation.description is empty %}class="active"{% endif %}>
+                                        <li {% if product.description is empty %}class="active"{% endif %}>
                                             <a href="#reviews-desktop" data-toggle="tab"><i class="fa fa-comments"></i>Reviews</a>
                                         </li>
                                     </ul>
@@ -275,7 +275,7 @@
                         <div class="row no-margin">
                             <div class="tab-content">
                                 {# Begin product description #}
-                                {% if variation.description is not empty %}
+                                {% if product.description is not empty %}
                                 {% set full_description = product.description != variation.description ? product.description ~ variation.description : variation.description %}
                                 <div id="description-desktop" class="tab-pane fade in active">
                                     <div class="panel panel-default">

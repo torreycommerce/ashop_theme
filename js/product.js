@@ -200,7 +200,7 @@ function VariantsManagerSingle (variants) {
                     ul.append( 
                         $('<li>', {id: "variation-selector-"+self.product_id+"-"+selectName+"-"+optionValue, class: ""}).append(
                                 // self.getATag(selectName, optionValue)
-                                self.getAColorTag(selectName, optionValue, "#f1f40e")
+                                self.getATag(selectName, optionValue)
                         ).click(function(){
                             self.updateVariants(selectName, optionValue);
                         })  
@@ -427,7 +427,7 @@ function VariantsManagerCollection (variants) {
                     ul.append( 
                         $('<li>', {id: "variation-selector-"+self.product_id+"-"+selectName+"-"+optionValue, class: ""}).append(
                                 // self.getATag(selectName, optionValue)
-                                self.getAColorTag(selectName, optionValue, "#f1f40e")
+                                self.getATag(selectName, optionValue)
                         ).click(function(){
                             self.updateVariants(selectName, optionValue);
                         }) 

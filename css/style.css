@@ -3662,7 +3662,7 @@ h5.parallaxSubtitle {
 
 }
 
-.swatches .notavailable {                                       /* Swatches Selected NotAvailable Border  */
+.swatches .notavailable-selected {                                       /* Swatches Selected NotAvailable Border  */
     border: 2px dotted red;
     opacity: 0.5;
     -webkit-opacity: 0.5;

@@ -1,6 +1,10 @@
 <div class="container main-container">
 {# <pre>{{dump(product)}}</pre> #}
 {# <pre>{{dump(product)}}</pre> #}
+<script type="text/javascript">
+    var products = [];
+    products.push({{product.variant|json_encode}});
+</script>
 {% for variation in product.variant %}
     <div class="row transitionfx" id="product-{{variation.id}}" {% if loop.index > 1 %}style="display:none"{% endif %}>
         {# Begin product images #}
@@ -146,7 +150,7 @@
 
                 {% if product.variant[0].price > 0 %}
 
-                    {# <div id="variation-selector-{{product.id}}">
+                  {#   <div id="variation-selector-{{product.id}}">
                         <div class="row no-margin">
                             <div class="color-details"><span class="selected-color"><strong>COLOR</strong></span>
                                 <ul class="swatches Color">
@@ -184,8 +188,8 @@
                                 </ul>
                             </div>
                         </div>
-                    </div> #}
-
+                    </div>
+ #}
                     <div id="variation-selector-{{product.id}}">
 
                     </div>
@@ -230,8 +234,8 @@
                                         </button> 
                                     </div>
                                         <!--/.cart-actions-->
-            {#                            {% include "/product/_partials/list/actions-single.html.twig" %}
-             #}                        </div>
+                                       {% include "/product/_partials/list/actions-single.html.twig" %}
+                                    </div>
                                     <div style="clear:both"></div>
                                     {% if stock_description == 'In Stock'%}
                                         <h3 class="incaps"><i class="fa fa fa-check-circle-o color-in"></i>{{stock_description}}</h3>
@@ -285,8 +289,8 @@
                                 <div id="reviews-desktop" class="tab-pane fade {% if variation.description is empty %}active{% else %}in{% endif %}">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
-    {#                                         {% include "/product/_partials/reviews.html.twig" %}
-     #}                                    </div>
+                                            {% include "/product/_partials/reviews.html.twig" %}
+                                        </div>
                                     </div>
                                 </div>
                                 {# End reviews #}

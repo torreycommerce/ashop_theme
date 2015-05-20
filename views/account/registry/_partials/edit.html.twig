@@ -38,26 +38,28 @@
     {% endif %}
 {% endif %}
 {% set addresses = api.get('/customeraddress', {query:{deleted:{'$ne':1},verified:1,customer_id:app.user.id}}) %}
-<div id="registry-edit">
-    <div class="row">
-        {# Begin content #}    
-        <div class="col-sm-8 col-md-9 col-lg-10">
-            <header>
+<div class="container main-container">
+    <div id="registry-edit">
+        <div class="row">
+            {# Begin content #}    
+            <div class="col-lg-9 col-md-9 col-sm-7">
+                <header>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="section-title-inner"><span><i class="fa fa-edit"></i> 
+                            Edit {{ registry.name }}</span></h1>
+                            <hr/>
+                        </div>
+                    </div>
+                </header>
                 <div class="row">
                     <div class="col-md-12">
-                        <header>
-                            <h1 class="page-header">Edit {{ registry.name }}</h1>
-                        </header>
+                        {% include '/account/registry/_partials/form.html.twig' %}
                     </div>
                 </div>
-            </header>
-            <div class="row">
-                <div class="col-md-12">
-                    {% include '/account/registry/_partials/form.html.twig' %}
-                </div>
-            </div>
-        </div>    
-        {# End content #}
+            </div>    
+            {# End content #}
+        </div>
     </div>
-</div>
+</div>{# End Main #}
 {% endblock %}

@@ -48,7 +48,9 @@ function VariantsManager (variants) {
                             "thumbnail",
                             "price",
                             "inventory_minimum_quantity",
-                            "images" ];
+                            "images",
+                            "save_percent",
+                            "save_price" ];
 
     this.getVariationSelector = function(selectName, optionValue){
         return "[id=variation-selector-"+self.product_id+"-"+selectName+"-"+optionValue+"]";
@@ -112,7 +114,7 @@ function VariantsManager (variants) {
                 }
             });
         }else if(filteredVariants.length == 1) {
-            console.log("UNAVAILABLE");
+            // console.log("UNAVAILABLE");
         }
     }
 

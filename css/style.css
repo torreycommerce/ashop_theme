@@ -3252,6 +3252,11 @@ h5.parallaxSubtitle {
     padding-top: 10px;
 }
 
+.color-details-collection {
+    border:none;
+    padding:0;
+}
+
 .productFilter {
     border-bottom: 1px solid #DDDDDD;
     border-top: 1px solid #DDDDDD;
@@ -3779,7 +3784,7 @@ h5.parallaxSubtitle {
     height: 33px;
     text-align: center;
     transition: all 0.25s ease 0s;
-    width: 33px;
+    min-width: 33px;
 }
 .swatches .notavailable {                                       /* Swatches Selected NotAvailable Border  */
     border: 2px dotted #b2b2b2;
@@ -3855,7 +3860,7 @@ h5.parallaxSubtitle {
     height: 33px;
     text-align: center;
     transition: all 0.25s ease 0s;
-    width: 33px;
+    min-width: 33px;
 }
 .swatches-size .notavailable a {
     background: none;

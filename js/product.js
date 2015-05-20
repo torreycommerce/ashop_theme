@@ -53,9 +53,9 @@ function VariantsManagerSingle (variants) {
         return "[id=variation-selector-"+self.product_id+"-"+selectName+"-"+optionValue+"]";
     }
 
-    this.updateVariants = function(selectName, optionValue){
+    this.updateChips = function(){
         var self = this;
-        self.selectedValues[selectName] = optionValue;
+
         $.each(self.selectsData, function(name, optionArray){
             var selectedValues2 = {};
 
@@ -110,6 +110,26 @@ function VariantsManagerSingle (variants) {
         }
     }
 
+    this.updateVariants = function(selectName, optionValue){
+        var self = this;
+
+        self.selectedValues[selectName] = optionValue;
+        var filteredVariants = self.getFilteredVariants(self.selectedValues);
+
+        if(filteredVariants.length == 0 ){
+            // display the default variant evalable 
+            var temp = {};
+            temp[selectName] = optionValue;
+            filteredVariants = self.getFilteredVariants( temp );
+            //Default selected variant with the new selected value
+            $.each(self.selectsData, function(selectName, optionArray){
+
+                self.selectedValues[selectName] = filteredVariants[0][selectName];
+            });
+        }
+        self.updateChips();
+    }
+
     this.generateSelectsData = function(filteredVariants){
         var self = this;
         var selects = {};
@@ -125,7 +145,6 @@ function VariantsManagerSingle (variants) {
                 }
             });
           });
-
         return selects;
     }
 
@@ -241,11 +260,12 @@ function VariantsManagerSingle (variants) {
                 $(self.selector).prepend(row);
             }
         });
+
+        self.updateChips();
     }
 
     this.init = function(){
         var self = this;
-
         // Build selects object containing data of the variants select tags
         $.each( this.variants, function(index, value){
             $.each(value, function(index, value){
@@ -259,6 +279,11 @@ function VariantsManagerSingle (variants) {
                     }
                 }
             });
+        });
+
+        //Default selected variant
+        $.each(self.selectsData, function(selectName,optionArray){
+            self.selectedValues[selectName] = self.variants[0][selectName];
         });
         //Bluilding HTML Select elements
         self.buildChips(self.selectsData);
@@ -278,9 +303,9 @@ function VariantsManagerCollection (variants) {
         return "[id=variation-selector-"+self.product_id+"-"+selectName+"-"+optionValue+"]";
     }
 
-    this.updateVariants = function(selectName, optionValue){
+    this.updateChips = function(){
         var self = this;
-        self.selectedValues[selectName] = optionValue;
+
         $.each(self.selectsData, function(name, optionArray){
             var selectedValues2 = {};
 
@@ -335,6 +360,26 @@ function VariantsManagerCollection (variants) {
                 }
             });
         }
+    }
+
+    this.updateVariants = function(selectName, optionValue){
+        var self = this;
+
+        self.selectedValues[selectName] = optionValue;
+        var filteredVariants = self.getFilteredVariants(self.selectedValues);
+
+        if(filteredVariants.length == 0 ){
+            // display the default variant evalable 
+            var temp = {};
+            temp[selectName] = optionValue;
+            filteredVariants = self.getFilteredVariants( temp );
+            //Default selected variant with the new selected value
+            $.each(self.selectsData, function(selectName, optionArray){
+
+                self.selectedValues[selectName] = filteredVariants[0][selectName];
+            });
+        }
+        self.updateChips();
     }
 
     this.generateSelectsData = function(filteredVariants){
@@ -417,7 +462,7 @@ function VariantsManagerCollection (variants) {
         $.each(selectData, function(selectName, optionArray){
             //Color styling
             if( selectName== "color"){
-                var div = $('<div>', {id: "variation-selector-"+self.product_id+"-"+selectName, name: selectName, class: "color-details"});           
+                var div = $('<div>', {id: "variation-selector-"+self.product_id+"-"+selectName, name: selectName, class: "color-details-collection"});           
                 var ul = $('<ul>', {class: "swatches Color"});  
                 var span = $('<span>', {class: "selected-color"}).append(
                                 $('<strong>', {}).text(selectName.toUpperCase()) 
@@ -461,6 +506,7 @@ function VariantsManagerCollection (variants) {
                 $(self.selector).prepend(div);
             } 
         });
+        self.updateChips();
     }
 
     this.init = function(){
@@ -480,6 +526,12 @@ function VariantsManagerCollection (variants) {
                 }
             });
         });
+
+        //Default selected variant
+        $.each(self.selectsData, function(selectName,optionArray){
+            self.selectedValues[selectName] = self.variants[0][selectName];
+        });
+
         //Bluilding HTML Select elements
         self.buildChips(self.selectsData);
     }

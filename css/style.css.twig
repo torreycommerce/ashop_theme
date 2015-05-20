@@ -27,7 +27,7 @@
 8-->    MAIN CONTAINER [NEW ARRIVALS]
 9-->    PARALLAX SECTION 1, 2
 10-->   CATEGORY PAGE
-11-->   PRODUCT DETAILS PAGE
+11-->   PRODUCT DETAILS PAGE - COLLECTION PAGE
 12-->   CART PAGE
 13-->   CHECKOUT PAGE
 14-->   USER END [Account || Address || Order || Creation]
@@ -224,7 +224,12 @@ h3 code {
 .no-padding-btn-right{
     padding: 10px 0 0 5px !important;
 }
-
+.no-padding-btn-collection-left{
+    padding: 10px 5px 0 15px !important;
+}
+.no-padding-btn-collection-right{
+    padding: 10px 15px 0 5px !important;
+}
 }
 
 .no-padding-btn-left{
@@ -2428,6 +2433,8 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     -ms-transition: all 0.3s ease 0s;
     border: 1px solid #DDDDDD;
     border-bottom: 1px solid #DDDDDD;
+    margin-top: 10px;
+    padding: 10px 0 10px 10px;
     text-align: center;
 }
 
@@ -3511,6 +3518,129 @@ h5.parallaxSubtitle {
     width: 60px !important;
 }
 
+/***  -------  Product Collection Page  ------- ***/
+
+#collection {
+  margin-top: 40px;
+}
+#collection .estimated-time {
+  color: #000;
+  font-size: 12px;
+}
+#collection .tab-content {
+  padding: 0;
+}
+#collection .tab-content .panel {
+  border-top: 0 none;
+}
+#collection .tab-content .panel .panel-heading .btn-toolbar {
+  margin-left: 0;
+}
+#collection .tab-content .panel .panel-heading .btn-toolbar .actions {
+  margin-bottom: 0;
+}
+#collection .tab-content .panel .panel-heading .btn-toolbar .btn {
+  padding: 6px 6px;
+}
+#collection .tab-content .panel .panel-heading .btn-toolbar .btn i {
+  display: none;
+}
+@media (min-width: 768px) {
+  #collection .tab-content .panel .panel-heading .btn-toolbar {
+    text-align: right;
+  }
+  #collection .tab-content .panel .panel-heading .btn-toolbar .btn {
+    padding: 6px 12px;
+  }
+  #collection .tab-content .panel .panel-heading .btn-toolbar .btn i {
+    display: inline-block;
+  }
+}
+@media (max-width: 767px) {
+  #collection .tab-content .panel .panel-heading .btn-toolbar .btn-cart {
+    margin-bottom: 10px;
+  }
+}
+
+#collection .tab-content .panel .product .image img {
+  border: 0;
+}
+#collection .tab-content .panel .product .details .name {
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+#collection .tab-content .panel .product .details .variation-selection {
+  margin-bottom: 10px;
+}
+#collection .tab-content .panel .product .details .color {
+  color: #666666;
+  font-size: 12px;
+}
+#collection .tab-content .panel .product .details .price {
+  margin-bottom: 5px;
+}
+#collection .tab-content .panel .product .details .stock {
+  color: #666666;
+  font-size: 12px;
+}
+#collection .tab-content .panel .product .details .model {
+  color: #666666;
+  font-size: 12px;
+}
+#collection .tab-content .panel .product ul.pricing {
+  margin-left: 0;
+  padding-left: 0;
+}
+#collection .tab-content .panel .product ul.pricing li {
+  color: #737373;
+  font-size: 12px;
+  display: inline-block;
+  list-style-type: none;
+  padding: 0;
+  margin-right: 10px;
+}
+#collection .tab-content .panel .product ul.shipping {
+  padding-left: 0;
+}
+#collection .tab-content .panel .product ul.shipping li {
+  color: #737373;
+  font-size: 12px;
+  display: inline-block;
+  list-style-type: none;
+  padding: 0;
+  margin-right: 10px;
+}
+#collection .tab-content .panel .product ul.tags {
+  padding-left: 0;
+}
+#collection .tab-content .panel .product ul.tags li {
+  color: #737373;
+  font-size: 12px;
+  display: inline-block;
+  list-style-type: none;
+  padding: 0;
+  margin-right: 10px;
+}
+#collection .tab-content .panel .product .actions {
+  margin: 10px 0 0 0;
+}
+@media (min-width: 991px) {
+  #collection .tab-content .panel .product .actions {
+    float: right;
+    margin: 0;
+  }
+}
+
+.collection-dropdown{
+  margin: 2px 0 0 15px;
+}
+
+@media (max-width: 768px) {
+    .collection-dropdown{
+      margin: 0;
+    }
+    
+}
 /***  -------  Product details style 2   ------- ***/
 
 .style2 .sp-thumbs {
@@ -3683,7 +3813,8 @@ h5.parallaxSubtitle {
 .swatches .notavailable:before {                                     /* Swatches Unselected NotAvailable - icon */
     content:  "\f068";
     font-family: 'FontAwesome' !important;
-    color: #fff;                                                
+    color: #fff;
+    cursor: pointer;                                                                      
     font-weight: 300;
     text-decoration: inherit;
     padding-right: 0.5em;
@@ -3795,6 +3926,11 @@ h5.parallaxSubtitle {
     border-bottom: 1px solid #DDDDDD;
     padding-bottom: 12px;
     clear: both;
+}
+.cart-actions, .collection {
+    margin-bottom: 0;
+    border: none;
+    padding-bottom: 0;
 }
 
 .cart-actions button, .cart-actions .btn-cart, .cart-actions .wishlist {
@@ -4058,7 +4194,10 @@ tr.CartProduct td:nth-child(2) {
     margin-top: 0;
 }
 
-
+.item h4 a {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: normal;
+} 
 
 .couponForm input[type="text"] {
     -webkit-border-radius: 3px 0 0 3px;
@@ -5926,6 +6065,9 @@ a.link,
     border-top: 4px solid;
     border-color: #{{ settings["colors"]["brand"]["brand-color"]["value"] }};
 
+}
+.panel-border{
+    border: 1px solid #e3e3e3;
 }
 
 .nav-tabs {

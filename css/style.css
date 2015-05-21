@@ -5,6 +5,7 @@
 @import url("font-awesome.css");
 @import url("animate.min.css");
 @import url("jquery.mCustomScrollbar.css");
+@import url("jquery.mmenu.css");
 @import url("alpha.css");
 @import url("jquery.minimalect.min.css");
 @import url("smoothproducts.css");
@@ -39,6 +40,7 @@
 18-->   SUBSCRIBE | PROMOTIONAL MODAL 
 19-->   WEB PAGE PROGRESS BAR CSS
 20-->   CUSTOM RESPONSIVE
+
 
 
 ******************  END TABLE OF CONTENT  **************************/
@@ -506,7 +508,7 @@ input[type="text"], input[type="password"], input[type="email"] {
     color: #888888;
     font-size: 14px;
     margin-bottom: 10px;
-    height: 36px;
+    height: 35px;
 }
 
 .btn {
@@ -5151,6 +5153,13 @@ div.quickview {
 
     .megamenu-content ul li a, .megamenu-content ul li p, .megamenu-content ul li, .navbar-nav .dropdown a, .navbar-nav .dropdown {
         color: #fff;
+    }
+
+    .dropdown-acnt {
+        padding-left: 30px;
+    }
+       .dropdown-acnt:hover {
+        padding-left: 40px;
     }
 
     .searchInputBox {

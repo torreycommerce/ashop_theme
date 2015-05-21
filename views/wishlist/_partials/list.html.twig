@@ -4,7 +4,6 @@
     <div class="col-md-12">
         <i>There are no items in this wishlist.</i><br />
         <i>Please browse the store to add more items.</i><br /><br />        
-        <a class="btn btn-primary" href="{{app.url}}">Continue Shopping</a>
         {% if wishlist.customer_id == app.user.id %}
         <a class="btn btn-default btn-edit editwishlistLink" href="{{ app.url }}/account/wishlist/{{ wishlist.id }}/edit">Manage wishlist</a>
         {% endif %}

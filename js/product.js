@@ -80,17 +80,15 @@ function VariantsManager (variants, isCollection) {
                     }else{
                         //not selected not available
                         $(self.getVariationSelector(name, value)).attr("class", "notavailable");
-                        $(self.getVariationSelector(name, value)).attr("data-original-title", "Out of stock, please try another combination");
+                        $(self.getVariationSelector(name, value)).tooltip();
                     }
                 }else{
                     if(self.selectedValues[name] == value){
                         //Selected, available
-                        $(self.getVariationSelector(name, value)).attr("class", "selected");
-                        $(self.getVariationSelector(name, value)).attr("data-original-title", "");
+                        $(self.getVariationSelector(name, value)).attr("class", "selected").tooltip("destroy");
                     }else{
                         //not Selected available
-                        $(self.getVariationSelector(name, value)).attr("class", "");
-                        $(self.getVariationSelector(name, value)).attr("data-original-title", "");
+                        $(self.getVariationSelector(name, value)).attr("class", "").tooltip("destroy");
                     }
                 }
             });
@@ -222,7 +220,7 @@ function VariantsManager (variants, isCollection) {
                                 class: "",
                                 "data-tooltip": "",
                                 "data-toggle": "tooltip",
-                                "data-original-title": ""
+                                "title": "Out of stock, please try another combination"
                     })
                     .append(
                             self.getATag(selectName, optionValue)

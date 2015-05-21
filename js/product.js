@@ -32,12 +32,12 @@ var defaultVariants = [ "position",
                         "save_price" ];
 
 $(function() {
-    if(products.length >1){
-        $.each(products, function(product_id, variants){
-        new VariantsManagerCollection(variants).init();
+    if(VariantsData.isCollection){
+        $.each(VariantsData.products, function(product_id, variants){
+            new VariantsManagerCollection(variants).init();
         });
     }else{
-        new VariantsManagerSingle(products[0]).init();
+        new VariantsManagerSingle(VariantsData.products[0]).init();
     }
 });
 
@@ -101,9 +101,12 @@ function VariantsManagerSingle (variants) {
         if(filteredVariants.length == 1){
             $.each(self.variants, function(index, variant){
                 var id = "product-" + variant.id;
+                var quantityInput = "input[name='items["+ variant.id +"]']";
                 if(variant.id == filteredVariants[0].id){
                     $("#"+id).show();
+                    $(quantityInput).val(1);
                 }else{
+                    $(quantityInput).val(0);
                     $("#"+id).hide();
                 }
             });
@@ -353,9 +356,12 @@ function VariantsManagerCollection (variants) {
         if(filteredVariants.length == 1){
             $.each(self.variants, function(index, variant){
                 var id = "product-" + variant.id;
+                var quantityInput = "input[name='items["+ variant.id +"]']";
                 if(variant.id == filteredVariants[0].id){
                     $("#"+id).show();
+                    $(quantityInput).val(0);
                 }else{
+                    $(quantityInput).val(0);
                     $("#"+id).hide();
                 }
             });
@@ -531,8 +537,9 @@ function VariantsManagerCollection (variants) {
         $.each(self.selectsData, function(selectName,optionArray){
             self.selectedValues[selectName] = self.variants[0][selectName];
         });
-
         //Bluilding HTML Select elements
         self.buildChips(self.selectsData);
+
+
     }
 }

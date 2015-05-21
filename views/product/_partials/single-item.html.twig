@@ -2,10 +2,11 @@
 {# <pre>{{dump(product)}}</pre> #}
 {# <pre>{{dump(product)}}</pre> #}
 <script type="text/javascript">
-    var products = [];
-    products.push({{product.variant|json_encode}});
+    var VariantsData = {isCollection: false, products: []}
+    VariantsData.products.push({{product.variant|json_encode}});
 </script>
 {% for variation in product.variant %}
+    <form method="post" id="productForm" action="{{ app.url }}/product/route">  
     <div class="row transitionfx" id="product-{{variation.id}}" {% if loop.index > 1 %}style="display:none"{% endif %}>
         {# Begin product images #}
         <div id="product-images" class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -197,7 +198,7 @@
                 
 
                     <!--/.size-details-->
-                    <form method="post" id="productForm" action="{{ app.url }}/product/route">                        
+                    {# <form method="post" id="productForm" action="{{ app.url }}/product/route">   #}                      
                        {% if variation['inventory_quantity'] is defined and variation['inventory_minimum_quantity'] is defined and
                            variation['inventory_policy'] is defined and (variation['inventory_policy'] == 'continue' or
                            variation['inventory_quantity'] > variation['inventory_minimum_quantity'] ) %}
@@ -248,7 +249,7 @@
 
                             <div style="clear:both"></div>
                         {% endif %}
-                    </form>
+                    {# </form> #}
                 {# End actions desktop #}
                 {# End product details #}
 
@@ -329,6 +330,7 @@
         </div>{# End Product Details #}
     </div>{# End row transitionfx #}
 {% endfor %}
+</form>
 
 {% include "/_partials/promo/new_arrivals.html.twig" %}{# New Arrivals Part #}
 

@@ -4,8 +4,8 @@
     <div class="col-md-12">
         <i>There are no items in this registry.</i><br />
         <i>Please browse the store to add more items.</i><br /><br />  
-        <a class="btn btn-primary" href="{{app.url}}">Continue Shopping</a>
-        {% if registry.customer_id == app.user.id %}
+<!--         <a class="btn btn-primary" href="{{app.url}}">Continue Shopping</a>
+ -->        {% if registry.customer_id == app.user.id %}
         <a class="btn btn-default btn-edit editregistryLink" href="{{ app.url }}/account/registry/{{ registry.id }}/edit">Manage registry</a>
         {% endif %}
     </div>

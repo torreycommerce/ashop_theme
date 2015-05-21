@@ -5,6 +5,7 @@
 @import url("font-awesome.css");
 @import url("animate.min.css");
 @import url("jquery.mCustomScrollbar.css");
+@import url("jquery.mmenu.css");
 @import url("alpha.css");
 @import url("jquery.minimalect.min.css");
 @import url("smoothproducts.css");
@@ -497,7 +498,7 @@ ul.list-border li:hover {
     outline: 0 none;
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="search"] {
+input[type="text"], input[type="password"], input[type="email"] {
     border-color: #DDDDDD;
     -webkit-border-radius: 3px 0 0 3px;
     -moz-border-radius: 3px 0 0 3px;
@@ -5152,6 +5153,13 @@ div.quickview {
 
     .megamenu-content ul li a, .megamenu-content ul li p, .megamenu-content ul li, .navbar-nav .dropdown a, .navbar-nav .dropdown {
         color: #fff;
+    }
+
+    .dropdown-acnt {
+        padding-left: 30px;
+    }
+       .dropdown-acnt:hover {
+        padding-left: 40px;
     }
 
     .searchInputBox {

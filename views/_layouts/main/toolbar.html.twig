@@ -182,6 +182,30 @@
                     </li>
                     {% endif %}
                 {% endfor %}
+                <div style="clear: both"></div>
+                {% if app.user.id %}
+                <li class="dropdown hidden-sm hidden-md hidden-lg">
+                    <a href="{{ app.url }}/account/" id="acc_btn" class="dropdown-toggle"><i class="fa fa-user"></i> My Account</a>
+                    <ul id="account category_item">
+                        <li class="dropdown-acnt"><a href="{{ app.url }}/account/notifications"><i class="fa fa-bell"></i> Notifications</a></li>
+                        <li class="dropdown-acnt"><a href="{{ app.url }}/account/addresses"><i class="fa fa-truck"></i> Addresses</a></li>
+                        <li class="dropdown-acnt"><a href="{{ app.url }}/account/orders"><i class="fa fa-credit-card"></i> Orders</a></li>
+                        <li class="dropdown-acnt"><a href="{{ app.url }}/account/wishlists"><i class="fa fa-check-square-o"></i> Wishlists</a></li>
+                        <li class="dropdown-acnt"><a href="{{ app.url }}/account/registries"><i class="fa fa-book"></i> Registries</a></li>
+                        <li class="dropdown-acnt"><a href="{{ app.url }}/account/reviews"><i class="fa fa-comments"></i> Reviews</a></li>
+                        <li class="dropdown-acnt"><a href="{{ app.url }}/account/returns"><i class="fa fa-exchange"></i> Returns</a></li>
+                        <li class="dropdown-acnt"><a href="{{ app.url }}/account/account-settings"><i class="fa fa-cogs"></i> Settings</a></li>
+                        <li class="dropdown-acnt"><a href="{{ app.url }}/account/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="hidden-sm hidden-md hidden-lg">
+                    <a href="{{app.url}}/account/login" id="acc_btn"><i class="glyphicon glyphicon-log-in"></i> Log in</a>
+                </li>
+                <li class="hidden-sm hidden-md hidden-lg">
+                    <a href="{{app.url}}/account/create" id="acc_btn"><i class="glyphicon glyphicon-user"></i> Create an account</a>
+                </li>
+                {% endif %}
             </ul>
                 {#
                 {% for main_category,items in categories %}

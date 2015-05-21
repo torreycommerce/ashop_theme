@@ -66,7 +66,10 @@ Passed into the macro is a array of key:value pairs as (title):(relative url)
             {% set wishlists = api.get('/wishlist',{query:{"customer_id":app.user.id}}) %}
 
             {% if wishlists is empty %}
-            There are no wishlists.
+            <div class="col-sm-12 col-md-9 col-lg-10">
+                <h2 class="block-title-2">Create a new wishlist.</h2>
+                There are no wishlists.
+            </div><div class="gap"></div>
             {% else %}
             {# Begin wishlists #}
                 {% for wishlist in wishlists %}

@@ -9,14 +9,17 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-12">
-        <header>
-            <h1 class="page-header">Create a Return</h1>
-            <p>To return an item you've already received, please enter the following details:</p>
-        </header>
-    </div>
-</div>
+<div class="container main-container">
+    <div class="row">
+    {# Begin header #}
+        <div class="col-sm-12 col-md-9 col-lg-10">
+            <h1 class="section-title-inner"><span><i class="fa fa-plus-circle"></i> 
+                Create a Return</span>
+            </h1>
+            <h2 class="block-title-2">To return an item you've already received, please enter the following details:</h2>
+        </div>
+    {# End header #}
+    </div> <!-- /Row -->
 {{ forms.begin('guestreturn',app.url ~ '/return/create','post', {class:'form-horizontal'}) }}
 <div class="row">
     <div class="col-md-8">
@@ -52,5 +55,5 @@
     </div>
 </div>
 {{ forms.end() }}
-
+</div> <!-- /Main -->
 {% endblock %}

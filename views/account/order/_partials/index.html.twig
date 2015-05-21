@@ -16,20 +16,46 @@
 {% endblock %}
 
 {% block content %}
-<div class="customer-account">
+<div class="container main-container">
     <div class="row">
-    	{# Begin navigation #}
-        <div class="navigation hidden-xs hidden-sm">
-            <div class="col-sm-4 col-md-3 col-lg-2">
-                {{account.navigation('orders')}}
+        <div class="customer-account">
+        {# Begin header #}
+            <div class="col-sm-12 col-md-9 col-lg-10">
+                <h1 class="section-title-inner"><span><i class="fa fa-calendar"></i> 
+                    Order Details</span>
+                </h1><hr/>
+                <div class="row userInfo hidden-xs">
+                    <div class="col-xs-12 col-sm-12">
+                        {# Begin navigation #}
+                        <div class="navigation">
+                        {{account.navigation('orders')}}
+                        </div>
+                        {# End navigation #}
+                        <div class="clear clearfix"></div><hr/>
+                    </div>
+                </div>
             </div>
-        </div>
-        {# End navigation #}
+        </div> <!-- /Row -->
+        {# End header #}            
     	<div id="customer-account-order-details">
     	    <div class="col-sm-9 col-md-9 col-lg-10">
     	        {% include '/order/_partials/details.html.twig' %}
     	    </div>
-    	</div>
+        </div>
     </div>
-</div>
+    {# Begin bottom actions #}
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-lg-10 clearfix">
+            <ul class="pager">
+                <li class="previous pull-right"><a href="{{app.url}}/"> <i class="fa fa-home"></i> Go to Shop </a>
+                </li>
+                <li class="next pull-left"><a href="{{app.url}}/account/orders">&larr; Back to My Orders</a></li>
+            </ul>
+        </div>
+    </div> <!-- /Row -->
+    {# End bottom actions #}
+    {# End registries #}
+    <div style="clear:both"></div>
+</div> <!-- /Main Container -->
+<div class="gap"></div>
 {% endblock %}

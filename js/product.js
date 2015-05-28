@@ -29,7 +29,9 @@ var defaultVariants = [ "position",
                         "inventory_minimum_quantity",
                         "images",
                         "save_percent",
-                        "save_price" ];
+                        "save_price",
+                        "group",
+                        "brand" ];
 
 $(function() {
     if(VariantsData.isCollection){

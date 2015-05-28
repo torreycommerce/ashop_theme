@@ -47,10 +47,25 @@
         {% do app.redirect(app.request.url) %}
     {% endif %}
     {% endfor %}
-
+{# Begin wishlist menu #}
+    <div class="actions">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                {% if wishlist.privacy == 'public' or wishlist.privacy == 'unlisted' %}
+                <a class="btn btn-default" id="btn-share" href="#" data-placement="top" data-content="A link to this wishlist has been copied to the clipboard." data-clipboard-text="{{ app.url}}/wishlist/{{wishlist.id}}"><i class="fa fa-share"></i> Share this wishlist</a>
+                {% endif %}
+                {% if wishlist.customer_id == app.user.id %}
+                <a class="btn btn-default btn-edit editwishlistLink" href="{{ app.url }}/account/wishlist/{{ wishlist.id }}/edit">Manage wishlist</a>
+                {% endif %}
+            </div>
+        </div>       
+    </div>
+    {# End wishlist menu #}
     {% for item in wishlist_items %}
         {% set left = item.quantity - item.quantity_purchased < 0 ? 0 : item.quantity - item.quantity_purchased %}
         {% set product = products[item.product_id][0] %}
+
+
             {# Begin product #}
             <div class="product">
                 <div class="row">
@@ -62,8 +77,8 @@
                     </div>
                     {# End product header - Mobile #}
                     {# Begin product image #}
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-                        <div class="images">
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 ">
+                        <div class="images globalPadding10 ">
                             <div class="thumbnail">
                                 <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{ product.thumbnail }}" />
                             </div>
@@ -195,56 +210,43 @@
                     </div>
                     {# End product details #}
                     {# Begin product quantity and actions #}
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-5">
+                    <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-0 col-md-2 col-lg-2">
                         <div class="actions">
-                            <div class="row">
-                                {# Begin product quantity #}
-                                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-7">
-                                    <div class="quantity">
-                                        <div class="quantity-input-group">
-                                            <label for="quantity-selector" class="control-label">Qty</label>
-                                            <div class="input-group">
-                                                <div class="input-group-btn">
-                                                    <button class="btn btn-neutral btn-remove" type="button"><i class="fa fa-minus"></i></button>
-                                                </div>
-                                                <input type="text" value="1" maxlength="2" placeholder="1" class="form-control quantity-selector" name="add_to_cart[{{ item.id }}]">
-                                                <div class="input-group-btn">
-                                                    <button type="button" class="btn btn-neutral btn-add"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </div>
+                            <div class="btn-toolbar">
+                                <div class="quantity-input-group quantity">
+                                    <label for="quantity-selector" class="control-label">QTY</label>
+                                    {# Begin product Quantity #}
+                                    <div class="input-group">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-remove btn-link bootstrap-touchspin-down" type="button">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
                                         </div>
+                                        <input class="form-control quantity-selector quanitySniper" value="0" maxlength="2" placeholder="0" name="add_to_cart[{{ item.id }}]" type="text">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-add btn-link bootstrap-touchspin-up" type="button"><i class="fa fa-plus"></i></button>
+                                            </div>
                                     </div>
                                 </div>
-                                {# End product quantity #}
+                            </div>
+                        </div>
+                    </div>
+                        <div class="actions">
+                            <div class="row">
                                 {# Begin add to cart button #}
-                                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-5">
-                                    <div class="add-to-cart">
-                                        <button class="btn btn-add-to-cart btn-block" name="action" value="add/{{ item.id }}">Add to Cart</button>
+                                <div class="col-xs-12 col-sm-6 col-md-2 col-md-offset-1 col-lg-2">
+                                    <div class="add-to-cart globalPaddingTopBottom20">
+                                        <button class="btn btn-primary btn-add-to-cart" name="action" value="add/{{ item.id }}"><i class="glyphicon glyphicon-shopping-cart"> </i>  Add to Cart </button>
                                     </div>                                    
                                 </div>
                                 {# End add to cart button #}
                             </div>
-                        </div>
-                    </div>
+                        </div> 
                     {# End product quantity and actions #}                    
                 </div>
             </div>
         {# End product #}
     {% endfor %}
-    {# Begin wishlist menu #}
-    <div class="actions">
-        <div class="row">
-            <div class="col-md-12 text-right">
-                {% if wishlist.privacy == 'public' or wishlist.privacy == 'unlisted' %}
-                <a class="btn btn-default" id="btn-share" href="#" data-placement="top" data-content="A link to this wishlist has been copied to the clipboard." data-clipboard-text="{{ app.url}}/wishlist/{{wishlist.id}}"><i class="fa fa-share"></i> Share this wishlist</a>
-                {% endif %}
-                {% if wishlist.customer_id == app.user.id %}
-                <a class="btn btn-primary btn-edit editwishlistLink" href="{{ app.url }}/account/wishlist/{{ wishlist.id }}/edit">Manage wishlist</a>
-                {% endif %}
-            </div>
-        </div>       
-    </div>
-    {# End wishlist menu #}
     {{ forms.end() }}
 </div>
 {% endif %}

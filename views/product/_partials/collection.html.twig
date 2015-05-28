@@ -322,7 +322,7 @@
                                                                         {# Begin collection product image #}
                                                                         {% if variation.images is not empty %}
                                                                             <div class="col-xs-5 col-sm-6 col-md-2 col-lg-2">
-                                                                                <div class="image">
+                                                                                <div class="image globalPadding10 ">
                                                                                     <div class="thumbnail">
                                                                                         <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{ app.image.getImageUrl("product","thumbnail",variation.images.0.id) }}" width="250" class="img-responsive" data-image-swap="main-product-image" data-image-swap-src="{{app.image.getImageUrl("product","standard",variation.images.0.id) }}"  data-image-swap-zoom="{{app.image.getImageUrl("product","large",variation.id) }}" alt="" />
                                                                                     </div>
@@ -330,7 +330,7 @@
                                                                             </div>
                                                                         {% elseif product.thumbnail is not empty %}
                                                                             <div class="col-md-2 col-sm-6 col-xs-5">
-                                                                                <div class="image">
+                                                                                <div class="image globalPadding10 ">
                                                                                     <div class="thumbnail">
                                                                                         <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{ product.thumbnail }}" width="250" class="img-responsive" data-image-swap="main-product-image" {% if product.images.0.id is defined %}data-image-swap-src="{{app.image.getImageUrl("product","standard", product.images.0.id) }}" data-image-swap-zoom="{{app.image.getImageUrl("product","large",product.images.0.id) }}"{% endif %} alt="" />
                                                                                     </div>
@@ -425,7 +425,7 @@
                                                                                             {% if product.variant[0]['inventory_quantity'] is defined and product.variant[0]['inventory_minimum_quantity'] is defined and
                                                                                             product.variant[0]['inventory_policy'] is defined and (product.variant[0]['inventory_policy'] == 'continue' or
                                                                                             product.variant[0]['inventory_quantity'] > product.variant[0]['inventory_minimum_quantity'] ) %}
-                                                                                                <label for="quantity-selector" class="control-label">Qty</label>
+                                                                                                <label for="quantity-selector" class="control-label">QTY</label>
                                                                                                {# Begin product Quantity #}
                                                                                                 <div class="input-group">
                                                                                                     <div class="input-group-btn">

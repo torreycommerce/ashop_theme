@@ -79,7 +79,7 @@ body {
     font-size: 14px;
     line-height: 21px;
     position: relative;
-    background: #fff;
+    background: #fff !important;
 }
 
 /* =============================================================== */
@@ -368,10 +368,19 @@ h3 code {
     padding: 50px 0;
 }
 
+.globalPadding10 {
+    padding: 10px 0 0 10px;
+}
+
 .globalPaddingTop {
     padding: 50px 0 0;
 }
-
+.globalPaddingTop20 {
+    padding: 20px 0 0;
+}
+.globalPaddingTopBottom20 {
+    padding: 20px 0;
+}
 .globalPaddingBottom {
     padding-bottom: 50px;
 }
@@ -379,6 +388,7 @@ h3 code {
 .globalPaddingBottom20{
      margin-bottom: 20px;
 }
+
 .hr2 {
     border-width: 2px;
     border-color: #DDDDDD;
@@ -3464,7 +3474,60 @@ h5.parallaxSubtitle {
     border-radius: 0;
 }
 
-/* -------- zoom ------- */
+/* -------- Rating ------- */
+
+.star-rating {
+  position: relative;
+  display: inline;
+  margin: 0 0 0 -0.1em;
+  padding: 0;
+}
+.star-rating div {
+  position: relative;
+  display: inline;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+.star-rating span {
+  margin: 0 .1em;
+}
+.star-rating .disabled {
+  color: #ccc;
+}
+.star-rating .active {
+  position: absolute;
+  left: 0;
+  color: #4ec67f;
+}
+.star-rating-input {
+  font-size: 2em;
+}
+.star-rating .choosing {
+  color: #4bb777;
+}
+.star-rating .active-choosing {
+  color: #4ec67f;
+}
+.star-rating .disabled-choosing {
+  color: #ccc;
+}
+
+#product-details ul.reviews {
+  border-bottom: 1px solid #eeeeee;
+  font-size: 12px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  padding-left: 0;
+}
+#product-details ul.reviews li {
+  display: inline-block;
+  list-style-type: none;
+  padding-left: 0;
+  padding-right: 4px;
+}
+
+/* -------- Zooming ------- */
 .sp-wrap {
     border: none !important;
 }

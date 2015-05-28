@@ -75,7 +75,7 @@ body {
     font-size: {{ settings["typography"]["base_styles"]["font-size-base"]["value"] }};
     line-height: 21px;
     position: relative;
-    background-color: #{{ settings["colors"]["background"]["body"]["value"] }};
+    background-color: #{{ settings["colors"]["background"]["body"]["value"] }} !important;
 }
 
 /* =============================================================== */
@@ -3469,7 +3469,47 @@ h5.parallaxSubtitle {
     border-radius: 0;
 }
 
-/* -------- zoom ------- */
+/* -------- Rating ------- */
+
+.star-rating {
+  position: relative;
+  display: inline;
+  margin: 0 0 0 -0.1em;
+  padding: 0;
+}
+.star-rating div {
+  position: relative;
+  display: inline;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+.star-rating span {
+  margin: 0 .1em;
+}
+.star-rating .disabled {
+  color: #ccc;
+}
+.star-rating .active {
+  position: absolute;
+  left: 0;
+  color: #FFC125;
+}
+.star-rating-input {
+  font-size: 2em;
+}
+.star-rating .choosing {
+  color: #0000ee;
+}
+.star-rating .active-choosing {
+  color: #FFC125;
+}
+.star-rating .disabled-choosing {
+  color: #ccc;
+}
+
+
+/* -------- Zooming ------- */
 .sp-wrap {
     border: none !important;
 }

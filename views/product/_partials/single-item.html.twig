@@ -64,26 +64,26 @@
         {# Begin Product Details #}
         <div class="col-lg-6 col-md-6 col-sm-5"> 
         {# Begin Product Heading Group #}
-            <div class="row no-margin">
+            <div class="row no-margin" id="product-details">
                 <h1 class="product-title"> <a href="{{app.url}}/brand/{{product.brand|url_encode}}">{{product.brand}}</a></h1>
                 <h2 class="product-name">{{product.title}}</h2>
                     {# End Product Heading Group #}
                     {# Begin review stars #}
-                    {% set review_score = product.product|average('review_score') %}
-                    {% if review_score > 0 %}
-                    <ul class="reviews">
-                        <li class="stars">
-                            <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">{{ base.rating( review_score ) }}</a>
-                        </li>
-                        <li class="average">
-                            <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">{{ (review_score * 5)|number_format(1) }} {% if reviews.num_total %}({{ reviews.num_total }}){% endif %}</a>
-                        </li>
-                        <li class="submit">
-                            <a href="{{ app.url }}/review/id/{{product.id}}">Write a review</a>
-                        </li>
-                    </ul>
-                    {% endif %}
-                    {# End review #}
+                {% set review_score = product.product|average('review_score') %}
+                {% if review_score > 0 %}
+                <ul class="reviews">
+                    <li class="stars">
+                        <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">{{ base.rating( review_score ) }}</a>
+                    </li>
+                    <li class="average">
+                        <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">{{ (review_score * 5)|number_format(1) }} {% if reviews.num_total %}({{ reviews.num_total }}){% endif %}</a>
+                    </li>
+                    <li class="submit">
+                        <a href="{{ app.url }}/review/id/{{product.id}}">Write a review</a>
+                    </li>
+                </ul>
+                {% endif %}
+                {# End review #}
             </div>
                {# Begin Product Prices #}
                 {% if variation.price > 0 %}

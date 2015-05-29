@@ -86,9 +86,9 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                         class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span> <span
                         class="icon-bar"> </span> <span class="icon-bar"> </span></button>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-cart"><i
-                        class="fa fa-shopping-cart colorWhite"> </i> <span
-                        class="cartRespons colorWhite"> Cart {{ api.get('/sessioncart').item_count }}</span></button>
+                
+
+
                 
 
                 <div class="navbar-brand">
@@ -102,59 +102,86 @@
                         <div id="logo-txt"><a href="{{app.url}}/">{{ app.params.site.title }}</a></div>
                     {% endif %}
 
+
                  </div>
             <!-- this part for mobile -->
-            <div class="search-box pull-right hidden-lg hidden-md hidden-sm">
+            <div class="search-box hidden-lg hidden-md hidden-sm">
                 <div class="input-group">
                     <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
                 </div>
                 <!-- /input-group -->
 
             </div>
-        </div>
-
-        <!-- this part is duplicate from cartMenu  keep it for mobile -->
-        <div class="navbar-cart  collapse">
-            <div class="cartMenu  col-lg-4 col-xs-12 col-md-4 ">
-                <div class="w100 miniCartTable scroll-pane">
-                    <section class="ajaxcart-products">
+                                    <!-- this part is duplicate from cartMenu  keep it for mobile -->
+        <div class="navbar-cart hidden-sm hidden-md hidden-lg pull-right">
+           <div class="dropdown cartMenu navbar-cart">
+            <ul class="">
+                <li class="cart"  data-content="" data-html="true" data-placement='bottom' rel='popover' data-viewport="#content">
+                    {# Begin ajax cart popover #}
+                    <div class="ajaxcart" style="display:none" style="background-color: blue;">
+<!--                         <div class="popover-close">
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <a onclick="$('li.cart').popover('hide')" id="ajaxcart-close" class="delete pull-right"><a> x </a></a>
+                                </div>
+                            </div>
+                        </div> -->
+                        {# Begin Popover products #}
+                        <section class="ajaxcart-products">
                             {# Begin product #}
-                            <div class="ajaxcart-product product">
+                            <div class="ajaxcart-product productCart">
                                 <div class="row">
                                     <div class="col-xs-4">
-                                        <div class="thumbnail">
+                                        <div class="thumbnail" style="margin: 5px;">
                                             <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" class="product-image" src="">
                                         </div>
                                     </div>
-                                    <div class="col-xs-8">
+                                    <div class="col-xs-5">
                                         <div class="name">
                                             <span class="product-name"></span>
                                         </div>
-                                        <div class="price"><strong>Price:</strong> $<span class="product-price"></span></div>
-                                        <div class="quantity"><strong>Qty:</strong> <span class="product-quantity"></span></div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="price" style="font-size: 12px;">$<span class="product-price" style="font-size:12px;"></span></div>
+                                        <div class="quantity" style="font-size: 12px;">Qty:<span class="product-quantity" style="font-size:12px;"></span></div>
                                     </div>
                                 </div>
                             </div>
                             {# Begin product #}
                         </section>
                         {# End Popover products #}
-                </div>
-                <!--/.miniCartTable-->
-
-                <div class="miniCartFooter  miniCartFooterInMobile text-right">
-                    <div class="cart-totals">
-                        <div class="items">Item count: <span class="item-count"></span></div>
-                        <div class="total">Subtotal: $<span class="subtotal">0.00</span></div>
-
-                        <a href="{{ app.url }}/cart" class="btn btn-xs btn-danger"><i class="fa fa-shopping-cart"> </i>VIEW CART</a>
-                        <a href="{{ app.url }}/cart" class="btn btn-xs b/tn-primary"><i class="fa fa-shopping-cart"> </i> CHECKOUT </a>
+                        {# Begin popover cart totals #}
+                        <div class="row">
+                            <div class="miniCartFooter text-right">
+                                <div class="cart-totals">
+<!--                                     <div class="items">Item count: <span class="item-count"></span></div>
+ -->                                    <div class="total">Subtotal: $<span class="subtotal">0.00</span></div>
+                                </div>
+                                {# End popover cart totals #}                               
+                                <a href="{{ app.url }}/cart" class="btn btn-sm btn-danger"> <i class="fa fa-shopping-cart"> </i> VIEW CART </a> 
+                                <a href="{{ app.url }}/checkout"  class="btn btn-sm btn-primary"> CHECKOUT </a>
+                            </div>
+                        <!--/.miniCartFooter-->
+                        </div>
                     </div>
-                </div>
-                <!--/.miniCartFooter-->
+                    {# End ajax cart popover #}
+                    {# Begin cart button #}
+                    <div class="cartMenubtn">
+                    <a class="dropdown-toggle" style="background: none; padding: 15px 0 15px 0;" href="{{app.url}}/cart">
+                        <div class="text class="dropdown-toggle""><i class="fa fa-shopping-cart"></i><span class="cartRespons"> ({{ api.get('/sessioncart').item_count }})</span><b class="caret"> </b></div>
+                    </a>
+                    </div>
+                    {# End cart button #}
+                </li>
+            </ul>
+            {# End cart section #}
             </div>
-            <!--/.cartMenu-->
+                <!--/.cartMenu-->
         </div>
         <!--/.navbar-cart-->
+        </div>
+
+
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -214,64 +241,72 @@
                 #}
             
 
- <!--- this part will be hidden for mobile version -->
-            <div class="nav navbar-nav navbar-right hidden-xs">
-                <div class="dropdown  cartMenu ">
-                    <a href="{{app.url}}/cart" class="dropdown-toggle" data-toggle="dropdown"> 
-                        <i class="fa fa-shopping-cart"> </i> 
-                            <span class="cartRespons"> Cart ({{ api.get('/sessioncart').item_count }}) </span> 
-                            <b class="caret"> </b> </a>
+            <!-- Start Acenda Cart  -->
 
-                    <ul class="">
-                        <li class="cart" data-content="" data-html="true" data-placement='bottom' rel='popover'>
+            {# Begin cart section #}
+            <div class="nav navbar-nav navbar-right hidden-xs">
+            <div class="dropdown cartMenu  ">
+            <ul class="">
+                <li class="cart"  data-content="" data-html="true" data-placement='bottom' rel='popover'>
                     {# Begin ajax cart popover #}
+                    <div class="ajaxcart" style="display:none">
+<!--                         <div class="popover-close">
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <a onclick="$('li.cart').popover('hide')" id="ajaxcart-close" class="delete pull-right"><a> x </a></a>
+                                </div>
+                            </div>
+                        </div> -->
+                        {# Begin Popover products #}
+                        <section class="ajaxcart-products">
                             {# Begin product #}
-                            <div class="dropdown-menu col-lg-4 col-xs-12 col-md-4 ">
-                                <div class="w100 miniCartTable scroll-pane">
-                                    <section class="ajaxcart-products">
-                                        {# Begin product #}
-                                        <div class="ajaxcart-product product">
-                                            <table>
-                                                <tbody>
-                                                    <tr class="miniCartProduct">
-                                                        <td style="width:20%" class="miniCartProductThumb">
-                                                            <div><img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" class="product-image" src="" alt="img"></a>
-                                                            </div>
-                                                        </td>
-                                                        <td style="width:40%">
-                                                            <div class="miniCartDescription">
-                                                            <span class="product-name"><h4></h4></span>
-                                                        </td>
-                                                        <td style="width:10%" class="miniCartQuantity quantity">Qty: <span class="product-quantity"></span>
-                                                        </td>
-                                                        <td style="width:15%" class="miniCartSubtotal price">$<span class="product-price"></span>
-                                                        </td>
-                                                        <td style="width:5%" class="delete"><a> x </a></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                            <div class="ajaxcart-product productCart">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="thumbnail" style="margin: 5px;">
+                                            <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" class="product-image" src="">
                                         </div>
-                                    </section>
-                                    <div class="miniCartFooter text-right">
-                                        <div class="row">
-                                            <div class="cart-totals">
-                                                <div class="items">Item count: <span class="item-count"></span></div>
-                                                <div class="total">Subtotal: $<span class="subtotal">0.00</span></div>
-                                            </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <div class="name">
+                                            <span class="product-name"></span>
                                         </div>
-                                        <div class="row">
-                                                <a href="{{ app.url }}/cart" class=""><i class="fa fa-shopping-cart"> </i>VIEW CART</a>
-                                                <a href="{{ app.url }}/checkout" class="btn btn-sm btn-primary"><i class="fa fa-shopping-cart"> </i> CHECKOUT </a>
-                                        </div>
-                                        <!--/.miniCartFooter-->
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="price" style="font-size: 12px;">$<span class="product-price" style="font-size:12px;"></span></div>
+                                        <div class="quantity" style="font-size: 12px;">Qty:<span class="product-quantity" style="font-size:12px;"></span></div>
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                
-                <!--/.dropdown-menu-->
-                </div>
+                            {# Begin product #}
+                        </section>
+                        {# End Popover products #}
+                        {# Begin popover cart totals #}
+                        <div class="row">
+                            <div class="miniCartFooter text-right">
+                                <div class="cart-totals">
+<!--                                     <div class="items">Item count: <span class="item-count"></span></div>
+ -->                                    <div class="total">Subtotal: $<span class="subtotal">0.00</span></div>
+                                </div>
+                                {# End popover cart totals #}                               
+                                <a href="{{ app.url }}/cart" class="btn btn-sm btn-danger"> <i class="fa fa-shopping-cart"> </i> VIEW CART </a> 
+                                <a href="{{ app.url }}/checkout"  class="btn btn-sm btn-primary"> CHECKOUT </a>
+                            </div>
+                        <!--/.miniCartFooter-->
+                        </div>
+                    </div>
+                    {# End ajax cart popover #}
+                    {# Begin cart button #}
+                    <div class="cartMenubtn">
+                    <a class="dropdown-toggle" href="{{app.url}}/cart">
+                        <div class="text class="dropdown-toggle""><i class="fa fa-shopping-cart"></i><span class="cartRespons"> Cart ({{ api.get('/sessioncart').item_count }})</span><b class="caret"> </b></div>
+                    </a>
+                    </div>
+                    {# End cart button #}
+                </li>
+            </ul>
+            {# End cart section #}
+            </div>
                 <!--/.cartMenu-->
 
                 <div class="search-box">
@@ -301,6 +336,5 @@
         </div>
     </div>
     <!--/.search-full-->
-
 </div>
 <!-- /.Fixed navbar  -->

@@ -1,52 +1,18 @@
-var defaultVariants = [ "position",
-                        "inventory_shipping_estimate",
-                        "has_stock",
-                        "weight",
-                        "asin",
-                        "product_id",
-                        "inventory_policy",
-                        "date_created",
-                        "inventory_tracking",
-                        "require_shipping",
-                        "id",
-                        "title",
-                        "isbn",
-                        "name",
-                        "popularity",
-                        "inventory_quantity",
-                        "inventory_returnable",
-                        "status",
-                        "date_modified",
-                        "taxable",
-                        "sku",
-                        "cost",
-                        "compare_price",
-                        "url",
-                        "ean",
-                        "discountable",
-                        "thumbnail",
-                        "price",
-                        "inventory_minimum_quantity",
-                        "images",
-                        "save_percent",
-                        "save_price",
-                        "group",
-                        "brand" ];
-
 $(function() {
     if(VariantsData.isCollection){
         $.each(VariantsData.products, function(product_id, variants){
-            new VariantsManager(variants, true).init();
+            new VariantsManager(variants, variant_options, true).init();
         });
     }else{
-        new VariantsManager(VariantsData.products[0], false).init();
+        new VariantsManager(VariantsData.products[0], variant_options, false).init();
     }
 });
 
-function VariantsManager (variants, isCollection) {
+function VariantsManager (variants, variant_options, isCollection) {
     var self = this;
-    this.isCollection = isCollection;
     this.variants = variants;
+    this.variant_options = variant_options;
+    this.isCollection = isCollection;
     this.product_id = this.variants[0].product_id;
     this.selector = "[id=variation-selector-"+this.product_id+"]";
     this.selectsData = {};
@@ -142,18 +108,25 @@ function VariantsManager (variants, isCollection) {
     this.generateSelectsData = function(filteredVariants){
         var self = this;
         var selects = {};
-        $.each( this.selectsData, function(index, value){
-            selects[index] = [];
+        $.each( this.selectsData, function(optionName, values){
+            selects[optionName] = [];
         });
-        $.each( filteredVariants, function(index, value){
-            $.each(value, function(index, value){
-                if(defaultVariants.indexOf(index)<0){
-                    if(selects[index].indexOf(value)<0){
-                            selects[index].push(value);
-                    }
-                }
+        // $.each( filteredVariants, function(index, value){
+        //     $.each(value, function(index, value){
+        //         if(defaultVariants.indexOf(index)<0){
+        //             if(selects[index].indexOf(value)<0){
+        //                     selects[index].push(value);
+        //             }
+        //         }
+        //     });
+        // });
+        $.each( filteredVariants, function(index, variant){
+            $.each( selects, function(optionName, values){
+                if( values.indexOf(variant[optionName])<0 )
+                    values.push(variant[optionName]);
             });
-          });
+        });
+
         return selects;
     }
 
@@ -249,18 +222,30 @@ function VariantsManager (variants, isCollection) {
 
     this.init = function(){
         var self = this;
+        console.log(variant_options);
         // Build selects object containing data of the variants select tags
-        $.each( this.variants, function(index, value){
-            $.each(value, function(index, value){
-                if(defaultVariants.indexOf(index)<0){
-                    if(! self.selectsData[index] ){
-                        self.selectsData[index] = [value];
-                    }else{
-                        if(self.selectsData[index].indexOf(value)<0){
-                            self.selectsData[index].push(value);
-                        }
-                    }
-                }
+        // $.each( this.variants, function(index, value){
+        //     $.each(value, function(index, value){
+        //         if(defaultVariants.indexOf(index)<0){
+        //             if(! self.selectsData[index] ){
+        //                 self.selectsData[index] = [value];
+        //             }else{
+        //                 if(self.selectsData[index].indexOf(value)<0){
+        //                     self.selectsData[index].push(value);
+        //                 }
+        //             }
+        //         }
+        //     });
+        // });
+        //Initialize select with options name
+        $.each( self.variant_options, function(index, value){
+            self.selectsData[value] = [];
+        });
+
+        $.each( self.variants, function(index, variant){
+            $.each( self.selectsData, function(optionName, values){
+                if( values.indexOf(variant[optionName])<0 )
+                    values.push(variant[optionName]);
             });
         });
 

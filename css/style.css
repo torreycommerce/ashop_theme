@@ -25,7 +25,7 @@
 3-->    TYPOGRAPHY + GLOBAL CLASS [ HEADING + GLOBAL CLASS]
 4-->    CUSTOMIZE BOOTSTRAP  [ MODAL || INPUT FORM ELEMENT || BUTTON ]
 5-->    CUSTOMIZE NAVBAR  [ Main Navigation || MiniCart Dropdown Menu  || Search Bar  ]
-6-->    HOME PAGE SLIDER [Cycle Slider || Hope V1, Home V2]
+6-->    HOME PAGE SLIDER [Cycle Slider ||
 7-->    HOME PAGE BOXES SLIDER [Swiper Slider || Fore More see > idangerous.swiper.css ]
 8-->    MAIN CONTAINER [NEW ARRIVALS]
 9-->    PARALLAX SECTION 1, 2
@@ -1337,6 +1337,7 @@ legend {
     display: block;
 }
 
+
 .cartMenu a.dropdown-toggle {
     padding-bottom: 15px;
     padding-top: 15px;
@@ -1349,6 +1350,8 @@ legend {
     line-height: 20px;
     display: block;
 }
+
+
 
 .cartMenu .dropdown-menu {
     padding-bottom: 0;
@@ -1369,6 +1372,7 @@ legend {
 .cartMenu img {
     width: 50px;
 }
+
 
 .cartMenu h4 {
     padding-bottom: 0;
@@ -1408,22 +1412,38 @@ legend {
 }
 
 .miniCartFooter {
-    background: #ECF0F1;
-    padding: 10px 10px 10px;
+    background: #ebedef;
+    max-width: 320px;
+    margin: 0 15px 0 15px;
+    padding: 10px 10px 10px 20px;
+    right: 0;
+
 }
 
-.miniCartFooter .subtotal {
+.miniCartFooter .total {
     color: #000000;
     font-size: 16px;
     font-weight: bold;
     line-height: normal;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     text-transform: uppercase;
 }
 
-.miniCartFooterInMobile .subtotal {
-    font-size: 18px;
+.miniCartFooterInMobile {
+    background: none;
+    margin: 0 15px 0 15px;
+    padding: 10px 10px 10px 20px;
+
+}
+
+.miniCartFooterInMobile .total {
     color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: normal;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    
 }
 
 .miniCartTable .mCSB_container {
@@ -2746,6 +2766,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     cursor: pointer;
 }
 
+
 .cart a {
     font-size: 20px;
     color: #2c3e50;
@@ -2757,10 +2778,55 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
     -ms-transition: all 0.3s ease-out 0s;
     -o-transition: all 0.3s ease-out 0s;
 }
+.ajaxcart-products {
+    background-color: none;
+}
 
-.load-more-block {
-    padding-bottom: 30px;
-    position: relative;
+.productCart {
+    display: block;
+    width: 100%;
+    transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+    border-bottom: 1px solid #DDDDDD;
+    margin-top: 0px;
+    text-align: center;
+}
+.productCart:hover {
+background-color: #f5f5f5;
+}
+
+.popover {
+    max-width: 320px;
+    padding: 0;
+    right: 0;
+    font-family: 'Source Sans Pro', sans-serif, "Helvetica Neue", Helvetica, Arial;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: left;
+    white-space: normal;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: none;
+    border-top: 3px solid #4ec67f;
+    border-radius: 0;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.popover-content {
+    padding: 0;
+    margin: 0;
+}
+
+.popover > .arrow,
+.popover > .arrow:after {
+    display: none;
+
 }
 
 .load-more-block .btn-thin {
@@ -5182,11 +5248,6 @@ div.quickview {
         padding: 15px;
     }
 
-    .miniCartFooter {
-        background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
-        border-top: 2px solid rgba(255, 255, 255, 0.5) !important;
-        margin-top: 10px !important;
-    }
 
     .cartMenu table tr {
         border-bottom: solid 1px rgba(255, 255, 255, 0.1);
@@ -5998,7 +6059,8 @@ a.link,
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus,
-.cartMenu:hover > a.dropdown-toggle {
+.cartMenu:hover > a.dropdown-toggle,
+.cartMenubtn:hover > a.dropdown-toggle {
     background: #27ae60;
 }
 

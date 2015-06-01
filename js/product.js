@@ -111,15 +111,6 @@ function VariantsManager (variants, variant_options, isCollection) {
         $.each( this.selectsData, function(optionName, values){
             selects[optionName] = [];
         });
-        // $.each( filteredVariants, function(index, value){
-        //     $.each(value, function(index, value){
-        //         if(defaultVariants.indexOf(index)<0){
-        //             if(selects[index].indexOf(value)<0){
-        //                     selects[index].push(value);
-        //             }
-        //         }
-        //     });
-        // });
         $.each( filteredVariants, function(index, variant){
             $.each( selects, function(optionName, values){
                 if( values.indexOf(variant[optionName])<0 )
@@ -223,21 +214,6 @@ function VariantsManager (variants, variant_options, isCollection) {
     this.init = function(){
         var self = this;
         console.log(variant_options);
-        // Build selects object containing data of the variants select tags
-        // $.each( this.variants, function(index, value){
-        //     $.each(value, function(index, value){
-        //         if(defaultVariants.indexOf(index)<0){
-        //             if(! self.selectsData[index] ){
-        //                 self.selectsData[index] = [value];
-        //             }else{
-        //                 if(self.selectsData[index].indexOf(value)<0){
-        //                     self.selectsData[index].push(value);
-        //                 }
-        //             }
-        //         }
-        //     });
-        // });
-        //Initialize select with options name
         $.each( self.variant_options, function(index, value){
             self.selectsData[value] = [];
         });

@@ -6,9 +6,6 @@
     VariantsData.products.push({{product.variant|json_encode}});
     var variant_options = {{product.variant_options|json_encode}};
 </script>
-<pre>
-    {{dump(product)}}
-</pre>
 {% for variation in product.variant %}
     <form method="post" id="productForm" action="{{ app.url }}/product/route">  
     <div class="row transitionfx" id="product-{{variation.id}}" {% if loop.index > 1 %}style="display:none"{% endif %}>

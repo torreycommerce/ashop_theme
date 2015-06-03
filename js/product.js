@@ -127,20 +127,21 @@ function VariantsManager (variants, variant_options, isCollection) {
 
         $.each( this.variants, function(index, variant){
             var passfilter = true;
-
-            $.each( selectedValues, function(selectName, selectValue){
-                
-                if(selectValue != ""){
-                    if(variant[selectName]){
-                        if(variant[selectName] != selectValue){
+            if(variant.price > 0){
+                $.each( selectedValues, function(selectName, selectValue){
+                    if(selectValue != ""){
+                        if(variant[selectName]){
+                            if(variant[selectName] != selectValue){
+                                passfilter = false;
+                            }
+                        }else{
                             passfilter = false;
                         }
-                    }else{
-                        passfilter = false;
                     }
-                }
-            });
-
+                });
+            }else{
+                passfilter = false;
+            }
             if(passfilter) filteredVariants.push(variant);
         });
         return filteredVariants;

@@ -78,7 +78,7 @@
                         <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">{{ base.rating( review_score ) }}</a>
                     </li>
                     <li class="average">
-                        <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">{{ (review_score * 5)|number_format(1) }} {% if reviews.num_total %}({{ reviews.num_total }}){% endif %}</a>
+                        <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">{{ (review_score * 5) / reviews.num_total |number_format(1) }} {% if reviews.num_total %}({{ reviews.num_total }}){% endif %}</a>
                     </li>
                     {% endif %}
                     <li class="submit">

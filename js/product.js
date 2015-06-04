@@ -1,10 +1,10 @@
 $(function() {
     if(VariantsData.isCollection){
-        $.each(VariantsData.products, function(product_id, variants){
-            new VariantsManager(variants, variant_options, true).init();
+        $.each(VariantsData.products, function(index, product){
+            new VariantsManager(product.variants, product.variant_options, true).init();
         });
     }else{
-        new VariantsManager(VariantsData.products[0], variant_options, false).init();
+        new VariantsManager(VariantsData.products[0].variants, VariantsData.products[0].variant_options, false).init();
     }
 });
 
@@ -214,7 +214,6 @@ function VariantsManager (variants, variant_options, isCollection) {
 
     this.init = function(){
         var self = this;
-        console.log(variant_options);
         $.each( self.variant_options, function(index, value){
             self.selectsData[value] = [];
         });

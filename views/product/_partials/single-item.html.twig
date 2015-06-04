@@ -3,8 +3,7 @@
 {# <pre>{{dump(product)}}</pre> #}
 <script type="text/javascript">
     var VariantsData = {isCollection: false, products: []}
-    VariantsData.products.push({{product.variant|json_encode}});
-    var variant_options = {{product.variant_options|json_encode}};
+    VariantsData.products.push({variants: {{product.variant|json_encode}}, variant_options: {{product.variant_options|json_encode}}});
 </script>
 {% for variation in product.variant %}
     <form method="post" id="productForm" action="{{ app.url }}/product/route">  

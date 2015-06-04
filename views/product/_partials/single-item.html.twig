@@ -71,19 +71,21 @@
                     {# End Product Heading Group #}
                     {# Begin review stars #}
                 {% set review_score = product.product|average('review_score') %}
-                {% if review_score > 0 %}
+                
                 <ul class="reviews">
+                    {% if review_score > 0 %}
                     <li class="stars">
                         <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">{{ base.rating( review_score ) }}</a>
                     </li>
                     <li class="average">
-                        <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">{{ (review_score * 5)|number_format(1) }} {% if reviews.num_total %}({{ reviews.num_total }}){% endif %}</a>
+                        <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">{{ (review_score * 5) / reviews.num_total |number_format(1) }} {% if reviews.num_total %}({{ reviews.num_total }}){% endif %}</a>
                     </li>
+                    {% endif %}
                     <li class="submit">
                         <a href="{{ app.url }}/review/id/{{product.id}}">Write a review</a>
                     </li>
                 </ul>
-                {% endif %}
+                
                 {# End review #}
             </div>
                {# Begin Product Prices #}

@@ -443,10 +443,12 @@ client.on( "load", function(client) {
 //Newsletter Validator
 $(document).ready(function() {
   $('#NewsLSub').click(function () {
-    var email = $(this).parent().prev('input').val();
+
+    var email = $('#NewsLInput').val();
     if (email == 'undefined' || email == '' || !validateEmail(email)) {
+      alert('Invalid email');
       event.preventDefault();
-      $("#NewsLInput").parent().addClass('has-error');
+      $("#NewsLInput").addClass('has-error');
     }
   });
   $("#NewsLInput").keyup(function(){

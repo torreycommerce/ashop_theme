@@ -24,6 +24,7 @@ function VariantsManager (variants, variant_options, isCollection) {
 
     this.updateChips = function(){
         var self = this;
+        console.log("UPDATE");
 
         $.each(self.selectsData, function(name, optionArray){
             var selectedValues2 = {};
@@ -43,8 +44,8 @@ function VariantsManager (variants, variant_options, isCollection) {
 
                 if(generatedSelectsData[name].indexOf(value) < 0){
                     if(self.selectedValues[name] == value){
-                        //Selected, not available
-                        // $(self.getVariationSelector(name, value)).attr("class", "notavailable-selected");
+                        // Selected, not available
+                        $(self.getVariationSelector(name, value)).attr("class", "notavailable-selected");
                     }else{
                         //not selected not available
                         $(self.getVariationSelector(name, value)).attr("class", "notavailable");
@@ -97,10 +98,11 @@ function VariantsManager (variants, variant_options, isCollection) {
             temp[selectName] = optionValue;
             filteredVariants = self.getFilteredVariants( temp );
             //Default selected variant with the new selected value
-            $.each(self.selectsData, function(selectName, optionArray){
-
-                self.selectedValues[selectName] = filteredVariants[0][selectName];
-            });
+            if(filteredVariants.length != 0){
+                $.each(self.selectsData, function(selectName, optionArray){
+                    self.selectedValues[selectName] = filteredVariants[0][selectName];
+                });
+            }
         }
         self.updateChips();
     }

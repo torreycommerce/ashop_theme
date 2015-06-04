@@ -8,6 +8,8 @@ $(function() {
     }
 });
 
+var disabled_cart_button = 0;
+
 function VariantsManager (variants, variant_options, isCollection) {
     var self = this;
     this.variants = variants;
@@ -17,6 +19,7 @@ function VariantsManager (variants, variant_options, isCollection) {
     this.selector = "[id=variation-selector-"+this.product_id+"]";
     this.selectsData = {};
     this.selectedValues = {};
+    this.disabled = false;
 
     this.getVariationSelector = function(selectName, optionValue){
         return "[id=variation-selector-"+self.product_id+"-"+selectName+"-"+optionValue+"]";
@@ -81,6 +84,20 @@ function VariantsManager (variants, variant_options, isCollection) {
                     $("#"+id).hide();
                 }
             });
+            if(this.disabled == true){
+                this.disabled = false;
+                disabled_cart_button--;
+                if(disabled_cart_button == 0){
+                    $('button[value=cart]').attr('disabled',false);
+                }
+            }
+            
+        }else{
+            if(this.disabled == false){
+                this.disabled = true;
+                $('button[value=cart]').attr('disabled',true);
+                disabled_cart_button++;
+            }
         }
     }
 
@@ -225,9 +242,19 @@ function VariantsManager (variants, variant_options, isCollection) {
             });
         });
 
+        var selected_variant = null;
+
+        $.each(self.variants, function(index,variant){
+            console.log(variant);
+            if(variant.price > 0){
+                selected_variant = variant;
+                return false;
+            }
+        });
+
         //Default selected variant
         $.each(self.selectsData, function(selectName,optionArray){
-            self.selectedValues[selectName] = self.variants[0][selectName];
+            self.selectedValues[selectName] = selected_variant[selectName];
         });
         //Bluilding HTML Select elements
         self.buildChips(self.selectsData);

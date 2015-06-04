@@ -24,8 +24,6 @@ function VariantsManager (variants, variant_options, isCollection) {
 
     this.updateChips = function(){
         var self = this;
-        console.log("UPDATE");
-
         $.each(self.selectsData, function(name, optionArray){
             var selectedValues2 = {};
 

@@ -298,8 +298,8 @@
                                                     {# <pre>{{dump(children)}}</pre> #}
                                                     <script type="text/javascript">
                                                         var VariantsData = {isCollection: true, products: []};
+                                                        var variant_options = {{product.variant_options|json_encode}};
                                                     </script>
-
                                                     {% for product in children %}
                                                         {% set variation_dropdown = '' %}
                                                         {% if product.variant|length > 1 %}

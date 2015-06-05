@@ -6,7 +6,7 @@
     VariantsData.products.push({variants: {{product.variant|json_encode}}, variant_options: {{product.variant_options|json_encode}}});
 </script>
 {% for variation in product.variant %}
-    <form method="post" id="productForm" action="{{ app.url }}/product/route">  
+    <!-- <form method="post" id="productForm" action="{{ app.url }}/product/route">   -->
     <div class="row transitionfx" id="product-{{variation.id}}" {% if loop.index > 1 %}style="display:none"{% endif %}>
         {# Begin product images #}
         <div id="product-images" class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -62,7 +62,7 @@
 
 
         {# Begin Product Details #}
-        <div class="col-lg-6 col-md-6 col-sm-5"> 
+        <div class="col-lg-6 col-md-6 col-sm-5">
         {# Begin Product Heading Group #}
             <div class="row no-margin" id="product-details">
                 <h1 class="product-title"> <a href="{{app.url}}/brand/{{product.brand|url_encode}}">{{product.brand}}</a></h1>
@@ -70,7 +70,7 @@
                     {# End Product Heading Group #}
                     {# Begin review stars #}
                 {% set review_score = product.product|average('review_score') %}
-                
+
                 <ul class="reviews">
                     {% if review_score > 0 %}
                     <li class="stars">
@@ -84,7 +84,7 @@
                         <a href="{{ app.url }}/review/id/{{product.id}}">Write a review</a>
                     </li>
                 </ul>
-                
+
                 {# End review #}
             </div>
                {# Begin Product Prices #}
@@ -93,7 +93,7 @@
                         {% set stock_description = variation.inventory_quantity > 0 ? 'In Stock' :  variation.inventory_shipping_estimate is not empty ? variation.inventory_shipping_estimate : '' %}
                         <div class="row no-padding">
                             <div class="col-md-12">
-                                <div class="price-product"><span class="price-sales">{{ prod.price(variation.price) }}</span> 
+                                <div class="price-product"><span class="price-sales">{{ prod.price(variation.price) }}</span>
                                 {# Begin regular price #}
                                     {% if variation.price != variation.compare_price and variation.compare_price is not empty %}
                                     <span class="price-standard">
@@ -195,7 +195,7 @@
                         </div>
                     </div> #}
                     <!--/.size-details-->
-                    {# <form method="post" id="productForm" action="{{ app.url }}/product/route">   #}                      
+                    <form method="post" id="productForm" action="{{ app.url }}/product/route">
                        {% if variation['inventory_quantity'] is defined and variation['inventory_minimum_quantity'] is defined and
                            variation['inventory_policy'] is defined and (variation['inventory_policy'] == 'continue' or
                            variation['inventory_quantity'] > variation['inventory_minimum_quantity'] ) %}
@@ -229,7 +229,7 @@
                                         <button type="submit" class="btn btn-cart btn-block cart first" name="action" value="cart">
                                             <i class="fa fa-shopping-cart"></i>
                                                 <span>Add to Cart</span>
-                                        </button> 
+                                        </button>
                                     </div>
                                         <!--/.cart-actions-->
                                        {% include "/product/_partials/list/actions-single.html.twig" %}
@@ -246,7 +246,7 @@
 
                             <div style="clear:both"></div>
                         {% endif %}
-                    {# </form> #}
+                    </form>
                 {# End actions desktop #}
                 {# End product details #}
 
@@ -323,13 +323,12 @@
                             </div>
                         </div>
                 {% endif %} {# End social sharing #}
-                             
+
         </div>{# End Product Details #}
     </div>{# End row transitionfx #}
 {% endfor %}
-</form>
+<!-- </form> -->
 
 {% include "/_partials/promo/new_arrivals.html.twig" %}{# New Arrivals Part #}
 
 </div> {# End Main  #}
-

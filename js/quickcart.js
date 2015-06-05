@@ -38,24 +38,29 @@ $('#ajaxcart-close').click(function() {
 });
 
 $('button[value=cart]').click(function(event) {
+    
     event.preventDefault();
-
-    // Sum product quantities
+    var cartButton = event.currentTarget;
+    var form = cartButton.parentElement;
+    while(form.nodeName != 'FORM'){
+        form = form.parentElement;
+    }
+    form = $(form);
     var sum = 0;
-    $('#productForm .quantity-selector').each(function() {
+    form.find(".quantity-selector").each(function() {
         if (!isNaN($(this).val())) {
             sum += parseInt($(this).val());
         }
     });
-
     if (sum === 0) {
         alert('Need to enter a quantity!');
         return false;
     }
+
     // Disable submit button
     $('button[value=cart]').attr('disabled',true);
     $.post(acendaBaseUrl + '/product/route',
-        $('#productForm').serialize())
+        form.serialize())
     .always(function(data) {
         // Make sure to reenable it, success or failure
         $('button[value=cart]').attr('disabled',false);

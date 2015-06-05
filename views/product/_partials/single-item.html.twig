@@ -6,7 +6,6 @@
     VariantsData.products.push({variants: {{product.variant|json_encode}}, variant_options: {{product.variant_options|json_encode}}});
 </script>
 {% for variation in product.variant %}
-    <!-- <form method="post" id="productForm" action="{{ app.url }}/product/route">   -->
     <div class="row transitionfx" id="product-{{variation.id}}" {% if loop.index > 1 %}style="display:none"{% endif %}>
         {# Begin product images #}
         <div id="product-images" class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -327,7 +326,6 @@
         </div>{# End Product Details #}
     </div>{# End row transitionfx #}
 {% endfor %}
-<!-- </form> -->
 
 {% include "/_partials/promo/new_arrivals.html.twig" %}{# New Arrivals Part #}
 

@@ -178,7 +178,7 @@ function VariantsManager (variants, variant_options, isCollection) {
         var self = this;
         $.each(selectData, function(selectName, optionArray){
             //Color styling
-            if( selectName== "color"){
+            if( selectName.toLowerCase() == "color"){
                 if(self.isCollection){
                     var div = $('<div>', {id: "variation-selector-"+self.product_id+"-"+selectName, name: selectName, class: "color-details-collection"}); 
                 }else{
@@ -218,11 +218,19 @@ function VariantsManager (variants, variant_options, isCollection) {
             div.append(ul);
 
             if(self.isCollection){
-                $(self.selector).prepend(div);
+                if(selectName.toLowerCase() == "color"){
+                    $(self.selector).prepend(div);
+                }else{
+                    $(self.selector).append(div);
+                }
             }else{
                 var row = $('<div>', {class: "row no-margin"});
                 row.append(div);
-                $(self.selector).prepend(row);
+                if(selectName.toLowerCase() == "color"){
+                    $(self.selector).prepend(row);
+                }else{
+                    $(self.selector).append(row);
+                }
             }
         });
 

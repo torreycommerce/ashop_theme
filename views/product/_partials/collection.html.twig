@@ -423,9 +423,9 @@
                                                                                 <div class="actions">
                                                                                     <div class="btn-toolbar">
                                                                                         <div class="quantity-input-group quantity">
-                                                                                            {% if product.variant[0]['inventory_quantity'] is defined and product.variant[0]['inventory_minimum_quantity'] is defined and
-                                                                                            product.variant[0]['inventory_policy'] is defined and (product.variant[0]['inventory_policy'] == 'continue' or
-                                                                                            product.variant[0]['inventory_quantity'] > product.variant[0]['inventory_minimum_quantity'] ) %}
+                                                                                            {% if variation.price > 0 and variation['inventory_quantity'] is defined and variation['inventory_minimum_quantity'] is defined and
+                                                                                            variation['inventory_policy'] is defined and (variation['inventory_policy'] == 'continue' or
+                                                                                            variation['inventory_quantity'] > variation['inventory_minimum_quantity'] ) %}
                                                                                                 <label for="quantity-selector" class="control-label">QTY</label>
                                                                                                {# Begin product Quantity #}
                                                                                                 <div class="input-group">

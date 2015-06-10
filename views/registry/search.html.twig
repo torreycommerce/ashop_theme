@@ -14,17 +14,19 @@
     {% set params = params + {privacy:'public'} %}
     {% set registries = api.get('/registry', {query:params}) %}
 {% endif %}
+<div class="container main-container">
 <div id="registry_search">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-9 col-md-9 col-sm-7">
             <header>
-                <h1 class="page-header">Gift Registry</h1>
+                <h1 class="section-title-inner"><span><i class="fa fa-gift"></i> Gift Registry</span></h1>
             </header>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6 col-lg-6">
+        <div class="well">
             <h2>Find a Registry</h2>
 
             {{ forms.begin('registry_search','','get',{class:'form-horizontal'}) }}
@@ -78,10 +80,13 @@
             </div>
             {{ forms.end() }}
         </div>
-        <div class="col-md-4">
+        </div>
+        <div class="col-md-6 col-lg-6">
+        <div class="well">
             <h2>Create a New Registry</h2>
             <p>Please login to create a new registry</p>
             <a class="btn btn-primary" href="{{ app.url }}/account/registries"><i class="fa fa-plus"></i> Create a New Registry</a>
+        </div>
         </div>
     </div>
 
@@ -110,4 +115,6 @@
 </div>
 {% endif %}
 </div>
+</div><div class="gap"></div>
+
 {% endblock %}

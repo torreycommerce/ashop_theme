@@ -73,6 +73,7 @@ set in the array in /account/_macros/base.html.twig
     {# End header #}
     {# End Address #}
     </div>  <!-- /Row -->
+    <form name="address" novalidate="" parsley-validate="" action="" method="POST" enctype="multipart/form-data" class="form-horizontal">
     <div class="row userInfo">
         <div class="w100 clearfix">
                 {% set addresses = api.get('/customeraddress',{'query':{'customer_id':app.user.id}}) %}
@@ -137,6 +138,7 @@ set in the array in /account/_macros/base.html.twig
                 {% endif %}
         </div> <!--/.w100-->
     </div> <!-- /Row -->
+</form>
     {# New Address Button #}
     <div class="row">
         <div class="col-sm-12 col-md-9 col-lg-10 clearfix">

@@ -172,7 +172,7 @@
                             {# Begin cart button #}
                             <div class="cartMenubtn">
                                 <a class="dropdown-toggle" style="background: none; padding: 15px 0 15px 0;" href="{{app.url}}/cart">
-                                    <div class="text class="dropdown-toggle""><i class="fa fa-shopping-cart"></i><span class="cartRespons"> ({{ api.get('/sessioncart').item_count }})</span><b class="caret"> </b></div>
+                                    <div class="text class="dropdown-toggle""><i class="fa fa-shopping-cart"></i><span class="cartRespons"> (<span class="item-count">{{ api.get('/sessioncart').item_count }}</span>)</span><b class="caret"> </b></div>
                                 </a>
                             </div>
                             {# End cart button #}
@@ -282,7 +282,7 @@
                             {# Begin cart button #}
                             <div class="cartMenubtn">
                                 <a class="dropdown-toggle" href="{{app.url}}/cart">
-                                    <div class="text class="dropdown-toggle""><i class="fa fa-shopping-cart"></i><span class="cartRespons"> Cart ({{ api.get('/sessioncart').item_count }})</span><b class="caret"> </b></div>
+                                    <div class="text class="dropdown-toggle""><i class="fa fa-shopping-cart"></i><span class="cartRespons"> Cart (<span class="item-count">{{ api.get('/sessioncart').item_count }}</span>)</span><b class="caret"> </b></div>
                                 </a>
                             </div>
                             {# End cart button #}

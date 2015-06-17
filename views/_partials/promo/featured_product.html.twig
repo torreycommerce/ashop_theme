@@ -58,7 +58,7 @@
                             <span>
                                 {% if product.attributes.price %}
                                     {{ prod.price(product.attributes.price) }}
-                                    {% if product.attributes.compare_price[0] is not empty %}
+                                    {% if product.attributes.compare_price[0] > product.attributes.price %}
                                         <span class="price-standard">
                                             {{ prod.price(product.variant[0].compare_price) }}
                                         </span>

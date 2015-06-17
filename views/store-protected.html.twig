@@ -12,7 +12,7 @@
 {% set form_errors = api.error() %}
 {% endif %}
 {% else %}
-{% do app.user.setFlash('The captcha is not valide', 'danger') %}
+{% do app.user.setFlash('The captcha is not valid', 'danger') %}
 {% do app.redirect('store-protected') %}
 {% endif %}
 {% endif %}

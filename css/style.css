@@ -17,7 +17,6 @@
 /* =============================================================== */
 /* =============================================================== */
 /*******************  TABLE OF CONTENT  ****************************
-
 1-->    IMPORT
 2-->    GENERAL FOUNDATION
 3-->    TYPOGRAPHY + GLOBAL CLASS [ HEADING + GLOBAL CLASS]
@@ -38,9 +37,6 @@
 18-->   SUBSCRIBE | PROMOTIONAL MODAL 
 19-->   WEB PAGE PROGRESS BAR CSS
 20-->   CUSTOM RESPONSIVE
-
-
-
 ******************  END TABLE OF CONTENT  **************************/
 /* =============================================================== */
 /* FOUNDATION
@@ -2265,7 +2261,7 @@ h1.bolder-style.dark a {
     -o-transition: all 0.3s ease 0s;
     -ms-transition: all 0.3s ease 0s;
     margin-bottom: 15px;
-    height: 480px;
+    max-height: 480px !important;
 }
 #SimilarProductSlider .item {
     height: auto !important;
@@ -2455,17 +2451,17 @@ h1.bolder-style.dark a {
     -o-transform: scale(1.1) rotate(-1.5deg);
 }
 .promotion {
-    position: absolute;
-    z-index: 10;
-    bottom: 20px;
-    left: 0;
-    height: 24px;
-    width: auto;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -o-border-radius: 4px;
-    -ms-border-radius: 4px;
-    border-radius: 4px;
+      position: absolute;
+      z-index: 10;
+      bottom: 20px;
+      left: 0;
+      height: 24px;
+      width: auto;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -o-border-radius: 4px;
+      -ms-border-radius: 4px;
+      border-radius: 4px;
 }
 .description {
     margin: 0 auto;
@@ -2482,28 +2478,25 @@ h1.bolder-style.dark a {
 }
 .new-product,
 .top-sellers {
-    color: #FFFFFF;
-    display: inline-block;
-    float: left;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: lighter;
-    height: 100%;
-    padding: 3px 10px;
-}
+      color: #FFFFFF;
+      display: inline-block;
+      float: left;
+      font-family: Oswald,Helvetica Neue,Helvetica,Arial,sans-serif;
+      font-size: 16px;
+      font-weight: lighter;
+      height: 100%;
+      padding: 3px 10px;
+  }
 .discount {
-    background: #eb5e58;
-    /* old browser */
-    
-    border-radius: 0 4px 4px 0;
-    color: #fff;
-    display: inline-block;
-    float: left;
-    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: lighter;
-    height: 100%;
-    padding: 3px 5px;
+  background: #eb5e58;
+  color: #fff;
+  display: inline-block;
+  float: left;
+  font-family: Oswald,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: lighter;
+  height: 100%;
+  padding: 3px 5px;
 }
 .item h4 {
     margin: 0;
@@ -2532,9 +2525,10 @@ h1.bolder-style.dark a {
     line-height: 18px;
 }
 .price {
+    color: #2c3e50;
     font-size: 18px;
     font-weight: bold;
-    color: #2c3e50;
+    height: 45px;
 }
 .action-control {
     border: 0;
@@ -3546,7 +3540,7 @@ h5.parallaxSubtitle {
     padding-left: 0;
 }
 .swatches li {
-    border: 2px solid #b2b2b2;
+    border: 1px solid #b2b2b2;
     display: inline-block;
     margin: 2px 1px;
     vertical-align: top;
@@ -3556,7 +3550,7 @@ h5.parallaxSubtitle {
 .swatches li:hover {
     /* Swatches Selected Available Hover Border */
     
-    border: 2px solid #4ec67f;
+    border: 1px solid #4ec67f;
 }
 .notavailable li:hover {
     /* Swatches Selected Available Hover Border */
@@ -3566,10 +3560,11 @@ h5.parallaxSubtitle {
 .swatches a {
     background-position: center center;
     background-repeat: no-repeat;
-    border: 2px solid #FFFFFF;
+    border: 1px solid #FFFFFF;
     box-shadow: 1px 1px 2px #C5C5C5;
     display: block;
     height: 33px;
+    padding-top: 5px;
     text-align: center;
     transition: all 0.25s ease 0s;
     min-width: 33px;
@@ -3577,7 +3572,7 @@ h5.parallaxSubtitle {
 .swatches .notavailable {
     /* Swatches Selected NotAvailable Border  */
     
-    border: 2px dotted #b2b2b2;
+    border: 1px dotted #b2b2b2;
     opacity: 0.5;
     -webkit-opacity: 0.5;
     -ms-opacity: 0.5;
@@ -3586,7 +3581,7 @@ h5.parallaxSubtitle {
 .swatches .notavailable-selected {
     /* Swatches Selected NotAvailable Border  */
     
-    border: 2px dotted red;
+    border: 1px dotted red;
     opacity: 0.5;
     -webkit-opacity: 0.5;
     -ms-opacity: 0.5;
@@ -3643,10 +3638,11 @@ h5.parallaxSubtitle {
     background-position: center center;
     background-repeat: no-repeat;
     background-color: #ecebe9;
-    border: 2px solid #FFFFFF;
+    border: 1px solid #FFFFFF;
     box-shadow: 1px 1px 2px #C5C5C5;
     display: block;
     height: 33px;
+    padding-top: 5px;
     text-align: center;
     transition: all 0.25s ease 0s;
     min-width: 33px;
@@ -5120,7 +5116,7 @@ div.quickview {
 /* IMAGE HOVER */
 
 .itemauto {
-    height: auto;
+    height: auto !important;
     max-height: none;
 }
 .imageHover {

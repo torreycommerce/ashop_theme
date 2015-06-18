@@ -47,24 +47,32 @@
                         <div class="image">
                             <a href="{{ app.url }}/product/{{ product.slug }}">
                                 <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{ img_url }}" alt="img" class="img-responsive">
-                            </a>
+                            </a>                            
+                                <div class="promotion">
+                                {% for tag in product.tags %}
+                                    {% if tag == 'new' %}
+                                        <span class="new-product">{{ tag|capitalize }}</span> 
+                                    {% else %}
+                                        <span class="discount">{{ tag|capitalize }}</span> 
+                                    {% endif %}
+                                {% endfor %}
+                                </div>
                         </div>
                         <div class="description">
                             <h4><a href="{{ app.url }}/product/{{ product.slug }}">{{ product.title }} </a></h4>
 
                             <p>{{ product.description|striptags|slice(0, 60) }}... </p>
                         </div><!--/.End Description-->
-                        <div class="price">
-                            <span>
-                                {% if product.attributes.price %}
+                        <div class="price"> <span>
+                            {% if product.attributes.price %}
                                     {{ prod.price(product.attributes.price) }}
-                                    {% if product.attributes.compare_price[0] > product.attributes.price %}
-                                        <span class="price-standard">
-                                            {{ prod.price(product.variant[0].compare_price) }}
-                                        </span>
-                                    {% endif %}
+                                {% if product.attributes.compare_price[0] is not empty and product.attributes.compare_price > product.attributes.price %}
+                                    <span class="price-standard">
+                                        {{ prod.price(product.attributes.compare_price) }}
+                                    </span>
                                 {% endif %}
-                            </span>
+                            {% endif %}
+                        </span>
                         </div><!--/.End Price-->
                         <div class="action-control"><a class="btn btn-primary"> <span class="add2cart">
                             <i class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a>

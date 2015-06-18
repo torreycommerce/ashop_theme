@@ -63,14 +63,13 @@
 
                         <p>{{ product.description|striptags|slice(0, 60) }}... </p>
                     </div>
-                    <div class="price">
                         <span>
                             {% if product.attributes.price %}
                                     {{ prod.price(product.attributes.price) }}
-                                {% if product.attributes.compare_price[0] is not empty %}
-                                    <span class="price-standard">
-                                        {{ prod.price(product.attributes.compare_price) }}
-                                    </span>
+                                    {% if product.attributes.compare_price > product.attributes.price %}
+                                <span class="price-standard">
+                                    {{ prod.price(product.attributes.compare_price) }}
+                                </span>
                                 {% endif %}
                             {% endif %}
                         </span>

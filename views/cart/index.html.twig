@@ -126,9 +126,9 @@
                     <div class="col-md-3 col-lg-3">
                         <div class="pricing">
                             <div class="regular">
-                                {% if product.compare_price is not empty and product.compare_price != product.price %}
+                                {% if product.compare_price is not empty and product.compare_price > product.price %}
                                 <strike>
-                                    <div class="item-label">Reg:
+                                    <div class="item-label">Resdg:
                                     <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.compare_price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.compare_price|number_format(2)|split('.')|last }}</span></span></div>
                                 </strike>
                                 {% else %}
@@ -136,7 +136,7 @@
                                 <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.price|number_format(2)|split('.')|last }}</span></span></div>
                                 {% endif %}
                             </div>
-                            {% if product.compare_price is not empty %}
+                            {% if product.compare_price is not empty and product.compare_price > product.price %}
                             <div class="sale">
                                 <div class="item-label">Sale: 
                                 <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.price|number_format(2)|split('.')|last }}</span></span></div>

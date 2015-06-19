@@ -77,9 +77,8 @@
                                 {% endif %}
                             {% endif %}
                         </span></div><!--./ End price -->
-                    <div class="action-control"><a class="btn btn-primary"> <span class="add2cart"><i
-                            class="glyphicon glyphicon-shopping-cart"> </i> Add to cart </span> </a>
-                    </div>
+                            <div class="action-control"><a href="{{ app.url }}/product/{{ product.slug }}" class="btn btn-primary"> <span class="add2cart"><i
+                            class="glyphicon glyphicon-shopping-cart"> </i> Go to Product </span> </a></div>
                     </div>
                 </div> <!--/.End Product-->
                 {% endfor %}

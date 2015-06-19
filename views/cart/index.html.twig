@@ -61,8 +61,21 @@
         <div class="box-footer">
             <div class="col-xs-4 col-sm-6 col-md-4 col-lg-4 text-center"><i class="fa fa-info-circle"></i> PRODUCT DETAIL</div>
             <div class="col-xs-4 col-sm-6 col-md-3 col-lg-3 text-center"><i class="fa fa-money"></i> PRICE DETAIL</div>
-            <div class="col-xs-4 col-sm-6 col-md-3 col-lg-3 text-center"><i class="fa fa-heart"></i>
- WISHLIST/REGISTRY</div> 
+
+            {% set needRegistryOrWishlist = false %}
+            {% for id, item in cart.items %}
+                {% if (item.wishlist_id is not empty) %}
+                    {% set needRegistryOrWishlist = true %}
+                {% endif %}
+                {% if (item.registry_id is not empty) %}
+                    {% set needRegistryOrWishlist = true %}
+                {% endif %}
+            {% endfor %}
+
+            {% if needRegistryOrWishlist == true %}
+                <div class="col-xs-4 col-sm-6 col-md-3 col-lg-3 text-center"><i class="fa fa-heart"></i> WISHLIST/REGISTRY</div> 
+            {% endif %}
+            
             <div class="col-xs-4 col-sm-6 col-md-2 col-lg-2 text-right"><i class="fa fa-plus"></i> QUANTITY</div>
         </div>
     </div>
@@ -93,13 +106,19 @@
     {% endif %}
     {% endfor %}
 
+
     {% for id, item in cart.items %}
     {% set product = products[item.product_id].0 %}
         <div class="row userInfo">
             {# Begin item image #}
             <div class="col-xs-4 col-sm-6 col-md-2 col-lg-2">
                 <div class="thumbnail">
-                    <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{ product.thumbnail }}" />
+                    {% if product.images.0.thumbnail is not empty %}
+                        {% set prod_image = product.images.0.thumbnail %}
+                    {% else %}
+                        {% set prod_image = product.thumbnail %}
+                    {% endif %}                    
+                    <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{ prod_image }}" />
                 </div>
             </div>
             {# End item image #}
@@ -126,52 +145,56 @@
                     <div class="col-md-3 col-lg-3">
                         <div class="pricing">
                             <div class="regular">
-                                {% if product.compare_price is not empty %}
+                                {% if product.compare_price is not empty and product.compare_price > product.price %}
                                 <strike>
-                                    <div class="item-label">Reg:</div>
-                                    <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.compare_price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.compare_price|number_format(2)|split('.')|last }}</span></span>
+                                    <div class="item-label">Resdg:
+                                    <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.compare_price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.compare_price|number_format(2)|split('.')|last }}</span></span></div>
                                 </strike>
                                 {% else %}
-                                <div class="item-label">Price:</div>
-                                <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.price|number_format(2)|split('.')|last }}</span></span>
+                                <div class="item-label">Price:
+                                <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.price|number_format(2)|split('.')|last }}</span></span></div>
                                 {% endif %}
                             </div>
-                            {% if product.compare_price is not empty %}
+                            {% if product.compare_price is not empty and product.compare_price > product.price %}
                             <div class="sale">
-                                <div class="item-label">Sale:</div>
-                                <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.price|number_format(2)|split('.')|last }}</span></span>
+                                <div class="item-label">Sale: 
+                                <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.price|number_format(2)|split('.')|last }}</span></span></div>
                             </div>
                             {% endif %}
                             <div class="price">
                                 {% set price = product.price * item.quantity %}
-                                <div class="item-label">Total:</div>
-                                <span class="dollar-sign float-left">$</span><span class="amount"><span class="dollars">{{ price|number_format(2)|split('.')|first }}.{{ price|number_format(2)|split('.')|last }}</span></span>
+                                <div class="item-label">Total:
+                                <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ price|number_format(2)|split('.')|first }}.{{ price|number_format(2)|split('.')|last }}</span></span></div>
                             </div>
                             <div class="error alert alert-danger" style="display:none">
                             </div>
                         </div>
                     </div>
                     {# End item prices #}
-                    {# Begin wishlist / registry #}
-                    <div class="col-md-3 col-lg-3">
-                        {# Begin wishlist #}
-                        {% if (item.wishlist_id is not empty) %}
-                        {% set wishlist = api.get('/wishlist/' ~ item.wishlist_id) %}
-                        <div class="wishlist">
-                            <a href="{{ app.url }}/wishlist/{{ wishlist.id }}"><i class="fa fa-list"></i> For {{ wishlist.name }}</a>
+                    
+                    {% if needRegistryOrWishlist == true %}
+                        {# Begin wishlist / registry #}
+                        <div class="col-md-3 col-lg-3">
+                            {# Begin wishlist #}
+                            {% if (item.wishlist_id is not empty) %}
+                            {% set wishlist = api.get('/wishlist/' ~ item.wishlist_id) %}
+                            <div class="wishlist">
+                                <a href="{{ app.url }}/wishlist/{{ wishlist.id }}"><i class="fa fa-list"></i> For {{ wishlist.name }}</a>
+                            </div>
+                            {% endif %}
+                            {# End wishlist #}
+                            {# Begin registry #}
+                            {% if (item.registry_id is not empty) %}
+                            {% set registry = api.get('/registry/' ~ item.registry_id) %}
+                            <div class="registry">
+                                <a href="{{ app.url }}/registry/{{ registry.id }}"><i class="fa fa-gift"></i> For {{ registry.name}}</a>
+                            </div>
+                            {% endif %}
+                            {# End registry #}
                         </div>
-                        {% endif %}
-                        {# End wishlist #}
-                        {# Begin registry #}
-                        {% if (item.registry_id is not empty) %}
-                        {% set registry = api.get('/registry/' ~ item.registry_id) %}
-                        <div class="registry">
-                            <a href="{{ app.url }}/registry/{{ registry.id }}"><i class="fa fa-gift"></i> For {{ registry.name}}</a>
-                        </div>
-                        {% endif %}
-                        {# End registry #}
-                    </div>
-                    {# End wishlist / registry #}
+                        {# End wishlist / registry #}
+                    {% endif %}
+                        
                     {# Begin quantity #}
                     <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
                         <div class="quantity">
@@ -264,7 +287,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="price">
-                            Subtotal:&nbsp;<span class="amount" id="total-price"><span class="dollars"><span class="dollar-sign float-left">$</span>{{ cart.subtotal|number_format(2)|split('.')|first }}.{{ cart.subtotal|number_format(2)|split('.')|last }}</span></span>
+                            Subtotal:&nbsp;<span class="amount" id="total-price"><span class="dollars"><span class="dollar-sign">$</span>{{ cart.subtotal|number_format(2)|split('.')|first }}.{{ cart.subtotal|number_format(2)|split('.')|last }}</span></span>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -310,5 +333,5 @@
     {% endif %}
     {% endblock %}
     {% block js %}
-    {{ app.asset.js(app.url ~ '/js/estimator.js') }}
+    {{ app.asset.js(app.url_asset ~ '/js/estimator.js') }}
     {% endblock %}

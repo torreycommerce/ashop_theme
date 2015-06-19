@@ -32,8 +32,12 @@
 	                            </div>
 	                        </div>
 	                    </div>
+	                     {% if carousel is not empty %}
+                            <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{ carousel }}" alt="">
+                        {% else %}
 		                	<img src="{{ slide_img }}" alt="{{ slide.alt }}"
 							class="img-responsive parallaximg sliderImg">
+							{% endif %}
 		                </div>
 		             {% endfor %}
             {% endif %}

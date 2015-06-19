@@ -151,6 +151,7 @@ function ajaxCart(data, r) {
             }
             product_attr[product_id] = {quantity:product_quantity};
             // Generate a request for product data
+            //alert(product_id);
             var request = $.getJSON(acendaBaseUrl + '/api/variant/' + product_id)
             .done(function(data) {
                 response.push(data.result);
@@ -166,7 +167,8 @@ function ajaxCart(data, r) {
             for (var i = 0; i < response.length; i++) {
                 var product_name = response[i].title;
                 var product_price = parseFloat(response[i].price).toFixed(2);
-                var product_thumbnail = response[i].thumbnail;
+                var product_thumbnail = (typeof response[i].images !== 'undefined' && 
+                    typeof response[i].images[0].url !== 'undefined') ? response[i].images[0].url : response[i].thumbnail;
                 var product_id = response[i].id;
 
                 if (!first_product_added) {

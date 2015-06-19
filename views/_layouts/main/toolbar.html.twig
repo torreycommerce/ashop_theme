@@ -1,9 +1,5 @@
-{% set categories = api.get('/category/tree') %}
-{#
-<pre>
-{{ dump(categories) }}
-</pre>
-#}
+{% set categories = api.get('/category/sapling') %}
+
 <!-- Navbar start -->
 <div class="navbar navbar-ashop navbar-fixed-top megamenu" role="navigation">
     <div class="navbar-top">
@@ -51,12 +47,20 @@
                                     <i class="glyphicon glyphicon-user hide hidden-xs "></i>
                                 </a>
                             </li>
-                            {% endif %}     
+                            {% endif %}
+                            {% if app.user.id != '' %}     
                             <li>
                                 <a href="{{ app.url }}/account/registries"><span class="hidden-xs hidden-sm">Gift Registry</span> 
                                     <i class="glyphicon glyphicon-user hide hidden-xs "></i>
                                 </a>
                             </li>
+                            {% else %}
+                            <li>
+                                <a href="{{app.url}}/registry/search"><span class="hidden-xs hidden-sm">Gift Registry</span> 
+                                    <i class="glyphicon glyphicon-user hide hidden-xs "></i>
+                                </a>
+                            </li>
+                            {% endif %}
                             {% if app.user.id is null %}
                             {#Begin login button#}
                             <li>
@@ -164,7 +168,7 @@
                             {# Begin cart button #}
                             <div class="cartMenubtn">
                                 <a class="dropdown-toggle" style="background: none; padding: 15px 0 15px 0;" href="{{app.url}}/cart">
-                                    <div class="text class="dropdown-toggle""><i class="fa fa-shopping-cart"></i><span class="cartRespons"> ({{ api.get('/sessioncart').item_count }})</span><b class="caret"> </b></div>
+                                    <div class="text class="dropdown-toggle""><i class="fa fa-shopping-cart"></i><span class="cartRespons"> (<span class="item-count">{{ api.get('/sessioncart').item_count }}</span>)</span><b class="caret"> </b></div>
                                 </a>
                             </div>
                             {# End cart button #}
@@ -178,17 +182,17 @@
             <ul class="nav navbar-nav">
                 <!-- <li class="active"><a href="{{ app.url }}/"> Home </a></li> -->
                 {% for main_category,items in categories if main_category != "clearance" %}
-                    {% if items|length %}
+                    {% if items.limb|length %}
                     {# Begin dropdown #}
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown " href="{{app.url}}/category/{{main_category}}">{{main_category|replace('-',' ')|title}}
+                        <a class="dropdown-toggle" data-toggle="dropdown " href="{{app.url}}/category/{{items.slug}}">{{main_category|replace('-',' ')|title}}
                             <i class="fa fa-caret-down"></i>
                         </a>
                         <ul id="category_item" class="dropdown-menu">
-                            {% for category,subitems in items %}
+                            {% for category,subitems in items.limb %}
                             {% set i = i + 1 %}
                             <li>
-                                <a tabindex="-1" href="{{app.url}}/category/{{category}}">{{category|replace('-',' ')|title}}</a>
+                                <a tabindex="-1" href="{{app.url}}/category/{{subitems.slug}}">{{category|replace('-',' ')|title}}</a>
                             </li>
                             {% endfor %}
                         </ul>
@@ -196,7 +200,7 @@
                     {# End dropdown #}
                     {% else %}
                     <li>
-                        <a href="{{app.url}}/category/{{main_category}}">{{main_category|replace('-',' ')|title}}</a>
+                        <a href="{{app.url}}/category/{{items.slug}}">{{main_category|replace('-',' ')|title}}</a>
                     </li>
                     {% endif %}
                 {% endfor %}
@@ -274,7 +278,7 @@
                             {# Begin cart button #}
                             <div class="cartMenubtn">
                                 <a class="dropdown-toggle" href="{{app.url}}/cart">
-                                    <div class="text class="dropdown-toggle""><i class="fa fa-shopping-cart"></i><span class="cartRespons"> Cart ({{ api.get('/sessioncart').item_count }})</span><b class="caret"> </b></div>
+                                    <div class="text class="dropdown-toggle""><i class="fa fa-shopping-cart"></i><span class="cartRespons"> Cart (<span class="item-count">{{ api.get('/sessioncart').item_count }}</span>)</span><b class="caret"> </b></div>
                                 </a>
                             </div>
                             {# End cart button #}

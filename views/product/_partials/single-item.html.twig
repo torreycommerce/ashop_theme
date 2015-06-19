@@ -25,7 +25,7 @@
             </div>
             {# Begin main image #}
             {# Begin image carousel #}
-            {% if variation.images is not empty or variation.videos is not empty %}
+            {% if variation.images is not empty or variation.videos is not empty or product.images is not empty or product.videos is not empty %}
             <div id="image-carousel" class="hidden-xs row">
                 <div class="image-carousel">
                     <div id="image-carousel-{{variation.id}}" class="carousel">
@@ -39,9 +39,27 @@
                                     </div>
                                 </div>
                                 {% endfor %}
+                                {% for image in product.images %}
+                                {% set name = image.name is not empty ? image.name : product.name %}
+                                <div class="col-sm-2">
+                                    <div class="thumbnail" data-tooltip="" data-toggle="tooltip" data-original-title="{{ name }}">
+                                        <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" class="" src="{{app.image.getImageUrl("product","thumbnail",image.id,secure) }}" data-image-swap="main-product-image" data-image-swap-src="{{app.image.getImageUrl("product","standard",image.id) }}"  data-image-swap-zoom="{{app.image.getImageUrl("product","large",image.id) }}" alt="" />
+                                    </div>
+                                </div>
+                                {% endfor %}                                
                                 {% if variation.videos is not empty %}
                                 {% do app.asset.js(app.url_asset ~ '/js/video-player.js') %}
                                 {% for video in variation.videos %}
+                                <div class="col-sm-2">
+                                    <div class="thumbnail video" data-video-src="{{ video }}" data-tooltip="" data-toggle="tooltip" data-original-title="">
+                                        <i class="video-icon fa fa-play-circle"></i><img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="">
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                {% if product.videos is not empty %}
+                                {% do app.asset.js(app.url_asset ~ '/js/video-player.js') %}
+                                {% for video in product.videos %}
                                 <div class="col-sm-2">
                                     <div class="thumbnail video" data-video-src="{{ video }}" data-tooltip="" data-toggle="tooltip" data-original-title="">
                                         <i class="video-icon fa fa-play-circle"></i><img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="">

@@ -555,7 +555,7 @@
             }
         }
     },
-    "blue": {
+    "red": {
         "colors": {
             "brand": {
                 "brand-color": {
@@ -634,7 +634,7 @@
                 },
                 "secondary-background": {
                     "type": "color",
-                    "value": "9AADBD693441"
+                    "value": "9AADBD"
                 },
                 "secondary-border": {
                     "type": "color",

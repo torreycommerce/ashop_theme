@@ -1046,6 +1046,7 @@ legend {
     color: #{{ settings["colors"]["content"]["header-top-text"]["value"] }};
     display: block;
     float: right;
+    font-family: {{ settings["typography"]["content"]["nav-typeface"]["value"] }};
     font-size: 12px;
     line-height: 30px;
     padding: 0 20px 0 0;
@@ -1334,6 +1335,7 @@ legend {
     padding-left: 20px;
     padding-right: 20px;
     color: #{{ settings["colors"]["content"]["header-menu-text"]["value"] }};
+    font-family: {{ settings["typography"]["content"]["nav-typeface"]["value"] }};
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
@@ -2678,8 +2680,7 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 }
 
 .discount {
-    background: #eb5e58; /* old browser */
-    border-radius: 0 4px 4px 0;
+    background-color: #{{ settings["colors"]["brand"]["brand-secondary-color"]["value"] }}
     color: #fff;
     display: inline-block;
     float: left;
@@ -5973,11 +5974,13 @@ a.link,
 }
 
 .navbar-top {
-    background-color: #{{ settings["colors"]["background"]["header-top"]["value"] }};
+    background-color: #{{ settings["colors"]["nav_styles"]["header-top"]["value"] }};
 }
 
 .navbar-nav > li > a {
     color: #{{ settings["colors"]["content"]["header-menu-text"]["value"] }};
+    font-family: {{ settings["typography"]["content"]["nav-typeface"]["value"] }};
+    font-size: {{ settings["typography"]["content"]["nav-size-base"]["value"] }};
 }
 
 .nav > li.active,

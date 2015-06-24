@@ -148,6 +148,11 @@
                     </div>
                 {% endif %}
                 {# End Product Prices #}
+                {% if variation.sku is not empty %}
+                    <div> 
+                        ITEM #{{variation.sku}}
+                    </div>
+                {% endif %}
             </div>
         {% endfor %}
 

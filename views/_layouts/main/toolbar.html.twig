@@ -105,7 +105,7 @@
                 <div class="navbar-brand">
                     {% if app.params.logoimages is not empty %}
                         {% set logo_info = app.params.logoimages | first %}
-                        {% set logo = app.image.getImageUrl('logo','thumbnail',logo_info.id) %}
+                        {% set logo = logo_info.url %}
                     {% endif %}
                     {% if logo is not empty %}
                         <a href="{{app.url}}/" style="background-image: url({{ logo }});background-position: 0 0; background-repeat: no-repeat; display: block; height:27px; width:125px; background-size: contain;"></a>

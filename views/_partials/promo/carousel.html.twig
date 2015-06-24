@@ -18,7 +18,7 @@
 	                 data-cycle-prev=".prevControl"
 	                 data-cycle-next=".nextControl" data-cycle-loader="wait">
 	                {% for slide in app.params.carousel %}
-	                	{% set slide_img = app.image.getImageUrl('carousel','original',slide.id) %}
+	                	{% set slide_img = slide.url %}
 		                <div class="slider-item slider-item-img">
  						<div class="sliderInfo">
 	                        <div class="container">
@@ -41,7 +41,7 @@
 		                </div>
 		             {% endfor %}
 		    {% else %}
-		    	<img src="{{ app.url_asset }}/images/slider-ashop_720.png" alt="">
+		    	<img src="{{ app.url_asset }}/images/slider-ashop_720.png" alt="" class="img-responsive parallaximg sliderImg">
             {% endif %}
             {#slider#}
         </div>

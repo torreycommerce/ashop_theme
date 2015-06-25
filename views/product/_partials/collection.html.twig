@@ -310,7 +310,7 @@
                                                             </script>
                                                         {% endif %}
                                                         <div class="variations">
-                                                            <div class="product">
+                                                            <div class="product" style="text-align:left;">
                                                                 <div class="row">
                                                                     {% for variation in product.variant %}
                                                                         <div id="product-{{variation.id}}" {% if loop.index > 1 %}style="display:none"{% endif %}>
@@ -345,7 +345,7 @@
                                                                                     <h4 class='name'>{{ product.name }}</h4>
                                                                                     {# Begin variation dropdown #}
                                                                                     {% if variation.price > 0 %}
-                                                                                        <div class="price">
+                                                                                        <div class="price" style="height:auto;">
                                                                                             {{ prod.price(variation.price) }}
                                                                                         </div>
                                                                                     {% endif %}
@@ -406,8 +406,8 @@
                                                                                         {# End product tags #}
                                                                                 </div>
                                                                                 {% if variation.sku is not empty %}
-                                                                                    <div> 
-                                                                                        ITEM #{{variation.sku}}
+                                                                                    <div style="padding: 5px 0;"> 
+                                                                                        <strong>ITEM :</strong> #{{variation.sku}}
                                                                                     </div>
                                                                                 {% endif %}
                                                                             </div>
@@ -417,7 +417,7 @@
 
                                                                     {# Begin Color-Size variants #}
                                                                     <div class="col-xs-7 col-sm-6 col-md-4 col-lg-5">
-                                                                            <div class="variation-selection">
+                                                                            <div class="variation-selection globalPaddingTopBottom10" style="padding-left:10px;">
                                                                                 <div id="variation-selector-{{product.id}}" class="input-group">
                                                                                 </div>
                                                                             </div>
@@ -427,14 +427,14 @@
                                                                     {% for variation in product.variant %}
                                                                         <div id="product-{{variation.id}}" {% if loop.index > 1 %}style="display:none"{% endif %}>
                                                                             {# Begin collection product actions #}
-                                                                            <div class="col-xs-7 col-sm-6 col-md-3 col-lg-2 pull-right">
-                                                                                <div class="actions">
+                                                                            <div class="col-xs-6 col-sm-6 Col-sm-offset-3 col-md-3 col-lg-2">
+                                                                                <div class="actions" style="padding-left:10px;">
                                                                                     <div class="btn-toolbar">
                                                                                         <div class="quantity-input-group quantity">
                                                                                             {% if variation.price > 0 and variation['inventory_quantity'] is defined and variation['inventory_minimum_quantity'] is defined and
                                                                                             variation['inventory_policy'] is defined and (variation['inventory_policy'] == 'continue' or
                                                                                             variation['inventory_quantity'] > variation['inventory_minimum_quantity'] ) %}
-                                                                                                <label for="quantity-selector" class="control-label">QTY</label>
+                                                                                                <label for="quantity-selector" class="control-label" style="padding-left:5px;">QTY</label>
                                                                                                {# Begin product Quantity #}
                                                                                                 <div class="input-group">
                                                                                                     <div class="input-group-btn">

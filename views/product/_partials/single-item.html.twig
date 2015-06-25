@@ -149,8 +149,8 @@
                 {% endif %}
                 {# End Product Prices #}
                 {% if variation.sku is not empty %}
-                    <div> 
-                        ITEM #{{variation.sku}}
+                    <div class="row no-margin" style="padding-top:5px;"> 
+                        <strong>ITEM: </strong> #{{variation.sku}}
                     </div>
                 {% endif %}
             </div>
@@ -190,9 +190,13 @@
 
 
                             <div class="row no-margin"> {# Begin Row#}
-                               <div class="productFilter productFilterLook2">
+                               <div class="productFilter productFilterLook2">                                           
+
+                                    
+
                                    {# Begin product Quantity #}
-                                    <div class="input-group  col-md-3 col-sm-6 col-xs-6 no-padding-left">
+                                    <div class="input-group  col-md-4 col-sm-5 col-xs-6 no-padding-left">
+                                    <label for="quantity-selector" class="control-label">QTY:</label>
                                         <div class="input-group-btn">
                                             <button class="btn btn-remove btn-link bootstrap-touchspin-down" type="button">
                                                 <i class="fa fa-minus"></i>

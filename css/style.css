@@ -320,6 +320,9 @@ h3 code {
 .globalPaddingTopBottom20 {
     padding: 20px 0;
 }
+.globalPaddingTopBottom10 {
+    padding: 10px 0;
+}
 .globalPaddingBottom {
     padding-bottom: 50px;
 }
@@ -3048,7 +3051,7 @@ h5.parallaxSubtitle {
     margin-bottom: 20px;
     padding-bottom: 7px;
     padding-top: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .productFilter p {
     display: block;
@@ -3361,8 +3364,7 @@ h5.parallaxSubtitle {
     border: 0;
 }
 #collection .tab-content .panel .product .details .name {
-    margin-bottom: 10px;
-    margin-top: 0px;
+    margin-top: 10px;
 }
 #collection .tab-content .panel .product .details .variation-selection {
     margin-bottom: 10px;
@@ -3533,16 +3535,16 @@ h5.parallaxSubtitle {
     text-transform: uppercase;
 }
 .color-details {
-    margin-top: 14px;
+    margin-top: 10px;
 }
 .swatches {
-    margin: 0.5em 0;
+    margin: 5px 0 5px 0;
     padding-left: 0;
 }
 .swatches li {
     border: 1px solid #b2b2b2;
     display: inline-block;
-    margin: 2px 1px;
+    margin: 0 1px;
     vertical-align: top;
     list-style: none;
 }
@@ -3608,10 +3610,10 @@ h5.parallaxSubtitle {
 /******--Size Details--******/
 
 .size-details {
-    margin-top: 14px;
+    margin-top: 5px;
 }
 .swatches-size {
-    margin: 0.5em 0;
+    margin: 5px 0 5px 0;
     padding-left: 0;
 }
 .swatches-size li {
@@ -3686,6 +3688,15 @@ h5.parallaxSubtitle {
     background: none;
     margin: 0;
     padding-top: 5px;
+}
+
+.control-label {
+    margin-left: 0;
+    margin-bottom: 0;
+    vertical-align: middle;
+    display: table-cell;
+    position: relative;
+
 }
 /***  ------- filterBox ------- ***/
 

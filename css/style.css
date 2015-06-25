@@ -320,6 +320,9 @@ h3 code {
 .globalPaddingTopBottom20 {
     padding: 20px 0;
 }
+.globalPaddingTopBottom10 {
+    padding: 10px 0;
+}
 .globalPaddingBottom {
     padding-bottom: 50px;
 }
@@ -3361,8 +3364,7 @@ h5.parallaxSubtitle {
     border: 0;
 }
 #collection .tab-content .panel .product .details .name {
-    margin-bottom: 10px;
-    margin-top: 0px;
+    margin-top: 10px;
 }
 #collection .tab-content .panel .product .details .variation-selection {
     margin-bottom: 10px;

@@ -23,30 +23,26 @@ function onYouTubeIframeAPIReady() {
 
     $("[data-video-src]").each(function() {
         var id;
-        if(id = youtubeUrlToId($(this).attr("data-video-src"))) {
-            
+        var url = $(this).attr("data-video-src");
+        if(id = youtubeUrlToId(url)) {
             var el = $(this);
-            infoUrl = "https://gdata.youtube.com/feeds/api/videos/" + id + "?alt=json";
-            $.getJSON( infoUrl, function( data ) {
-                var title = data.entry.title['$t'];
-                var thumbnail = data.entry['media$group']['media$thumbnail'][0].url;
-                el.find('img').first().attr('src',thumbnail);
-                el.attr("data-original-title","Video: "+title);
-                el.tooltip();
-                el.click(function() {
+            var title = 'Video Title';
+            var thumbnail = '';
+            el.find('img').first().attr('src', 'http://img.youtube.com/vi/'+id+'/default.jpg');
+            el.click(function() {
                     $("#main-product-video").show();
                     $("#main-product-image").hide();
                     player.loadVideoById(id);
                     $("[data-image-swap]").click(function() {
+                        alert('start video');
                         $("#main-product-video").hide();
                         $("#main-product-image").show();
                         player.stopVideo();
 
                     });
-                });
-                console.log( thumbnail );
             });
         }
     });
+     
 
 }( window.jQuery ));

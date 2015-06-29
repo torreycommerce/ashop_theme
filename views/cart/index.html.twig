@@ -147,7 +147,7 @@
                             <div class="regular">
                                 {% if product.compare_price is not empty and product.compare_price > product.price %}
                                 <strike>
-                                    <div class="item-label">Resdg:
+                                    <div class="item-label">Reg:
                                     <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.compare_price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.compare_price|number_format(2)|split('.')|last }}</span></span></div>
                                 </strike>
                                 {% else %}

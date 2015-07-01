@@ -2443,8 +2443,8 @@ h1.bolder-style.dark a {
     -webkit-transition: all 0.5s ease 0s;
     -ms-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
-    max-height: 250px;
-    margin: 0 auto;
+    height: 262px;
+    margin: 0;
 }
 .product:hover .image a img {
     transform: scale(1.15) rotate(-1.5deg);

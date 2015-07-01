@@ -2264,7 +2264,7 @@ h1.bolder-style.dark a {
     -o-transition: all 0.3s ease 0s;
     -ms-transition: all 0.3s ease 0s;
     margin-bottom: 15px;
-    max-height: 480px !important;
+    max-height: 491px !important;
 }
 #SimilarProductSlider .item {
     height: auto !important;
@@ -2443,7 +2443,7 @@ h1.bolder-style.dark a {
     -webkit-transition: all 0.5s ease 0s;
     -ms-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
-    max-height: 240px;
+    max-height: 250px;
     margin: 0 auto;
 }
 .product:hover .image a img {
@@ -2468,7 +2468,7 @@ h1.bolder-style.dark a {
 }
 .description {
     margin: 0 auto;
-    min-height: 107px;
+    min-height: 100px;
     max-width: 235px;
 }
 .list-view .description {
@@ -2522,14 +2522,21 @@ h1.bolder-style.dark a {
 .description p {
     color: #7F8C8D;
     font-size: 14px;
-    min-height: 55px;
-    max-height: 90px;
+    height: 40px;
     overflow: hidden;
     line-height: 18px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 .price {
     color: #2c3e50;
     font-size: 18px;
+    font-weight: bold;
+    height: 45px;
+}
+.cart-price {
+    color: #2c3e50;
+    font-size: 14px;
     font-weight: bold;
     height: 45px;
 }
@@ -3951,8 +3958,14 @@ span.success,
 p.success div.success {
     color: #8BB418;
 }
+
 #total-price {
     font-size: 22px;
+    font-weight: bold;
+}
+
+#cart-total-price {
+    font-size: 16px;
     font-weight: bold;
 }
 /* =============================================================== */

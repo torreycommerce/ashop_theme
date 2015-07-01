@@ -192,23 +192,24 @@
                         </div>
                     </section>
                 </div>
-                
             </div>
         </div>
     </div>
 </section>
-                    <div class="cartFooter w100">
-                        <div class="box-footer">
-                            <div class="pull-left"><a href="{{app.url}}/cart" class="btn btn-default"> <i
-                                    class="fa fa-arrow-left"></i> &nbsp; Back to Cart </a></div>
-                                    <div class="actions pull-right">{{ forms.hidden('shipping[test_order]', app.request.get.test_order) }}
-                                    <input type="hidden" name="step" value="shipping">
-                                    {{ forms.submit('continue', '', 'Continue to Billing <i class="fa fa-arrow-circle-right"></i>', {'class':'btn btn-primary btn-small'}) }}</div>
-                        </div>
-                    </div>
-                    {{ forms.end() }}
-                    <!--/ cartFooter -->
+<div class="cartFooter w100">
+    <div class="box-footer">
+        <div class="pull-left"><a href="{{app.url}}/cart" class="btn btn-default"> <i
+                class="fa fa-arrow-left"></i> &nbsp; Back to Cart </a>
         </div>
+        <div class="actions pull-right">{{ forms.hidden('shipping[test_order]', app.request.get.test_order) }}
+            <input type="hidden" name="step" value="shipping">
+            {{ forms.submit('continue', '', 'Continue to Billing <i class="fa fa-arrow-circle-right"></i>', {'class':'btn btn-primary btn-small'}) }}
+        </div>
+    </div>
+</div>
+{{ forms.end() }}
+<!--/ cartFooter -->
+</div>
 <div class="gap"></div>
 {% endblock %}
 {% block js %}

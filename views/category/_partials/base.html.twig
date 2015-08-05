@@ -269,6 +269,11 @@
                         No products found. <a href="{{app.url}}/{{ app.request.url}}">Go back</a>
                     </div>
                     {% endif %}
+                    {% if search_suggestion is not empty %}
+                    <div class="col-sm-12">
+                        <p>Showing results for <strong><i>{{search_suggestion}}</i></strong></p>
+                    </div>
+                    {% endif %}
                     {% set options = ['image'] %}
                      {% for row,product in products if collection_ids[product.id] is empty and product_count < 13 %}
                         {% if product.group == 'product' %}

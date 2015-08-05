@@ -147,7 +147,7 @@
                             <div class="regular">
                                 {% if product.compare_price is not empty and product.compare_price > product.price %}
                                 <strike>
-                                    <div class="item-label">Resdg:
+                                    <div class="item-label">Reg:
                                     <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.compare_price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.compare_price|number_format(2)|split('.')|last }}</span></span></div>
                                 </strike>
                                 {% else %}
@@ -161,7 +161,7 @@
                                 <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.price|number_format(2)|split('.')|last }}</span></span></div>
                             </div>
                             {% endif %}
-                            <div class="price">
+                            <div class="cart-price">
                                 {% set price = product.price * item.quantity %}
                                 <div class="item-label">Total:
                                 <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ price|number_format(2)|split('.')|first }}.{{ price|number_format(2)|split('.')|last }}</span></span></div>
@@ -286,8 +286,8 @@
             <div class="well">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="price">
-                            Subtotal:&nbsp;<span class="amount" id="total-price"><span class="dollars"><span class="dollar-sign">$</span>{{ cart.subtotal|number_format(2)|split('.')|first }}.{{ cart.subtotal|number_format(2)|split('.')|last }}</span></span>
+                        <div class="cart-price" style="height:auto;">
+                            Subtotal:&nbsp;<span class="amount" id="cart-total-price"><span class="dollars"><span class="dollar-sign">$</span>{{ cart.subtotal|number_format(2)|split('.')|first }}.{{ cart.subtotal|number_format(2)|split('.')|last }}</span></span>
                         </div>
                     </div>
                     <div class="col-md-12">

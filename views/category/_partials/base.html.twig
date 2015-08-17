@@ -309,10 +309,10 @@
                     <div class="col-md-{{12 / items_per_row}} col-sm-{{18 / items_per_row}} col-xs-{{ 36 / items_per_row }}">
                                     <div class="item">
                 <div class="product">
-                   {# <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
-                                          data-placement="left">
-                                           <i class="glyphicon glyphicon-heart"></i>
-                                       </a> #}
+                    <a class="add-fav tooltipHere" data-toggle="tooltip" data-original-title="Add to Wishlist"
+                       data-placement="left">
+                        <i class="glyphicon glyphicon-heart"></i>
+                    </a>
 
 
                     <div class="image">
@@ -331,7 +331,7 @@
                     <div class="description">
                         <h4><a href="{{ app.url }}/product/{{ product.slug }}">{{ product.title }} </a></h4>
 
-                        <p>{{ product.description|striptags|slice(0, 100) }}</p>
+                        <p>{{ product.description|striptags|slice(0, 100) }}... </p>
                         {# <span class="size">XL / XXL / S </span>#}</div>
                     <div class="price"><span>
                         {% if product.attributes.price %}

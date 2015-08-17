@@ -65,7 +65,7 @@
                     <div class="description">
                         <h4><a href="{{ app.url }}/product/{{ product.slug }}">{{ product.title|striptags|slice(0, 50) }} </a></h4>
 
-                        <p>{{ product.description|striptags|slice(0, 60) }}</p>
+                        <p>{{ product.description|striptags|slice(0, 60) }}... </p>
                     </div>
                             <div class="price"> <span>
                             {% if product.attributes.price %}

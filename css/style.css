@@ -1848,8 +1848,6 @@ h1.bolder-style.dark a {
 
 .sliderImg {
     background: url('../images/site/loading1.gif') center center no-repeat;
-    width: 100%;
-
     /* prealoder */
 }
 .banner {
@@ -2341,7 +2339,7 @@ h1.bolder-style.dark a {
 }
 .product {
     display: block;
-    height: 480px;
+    height: auto;
     transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -webkit-transition: all 0.3s ease 0s;

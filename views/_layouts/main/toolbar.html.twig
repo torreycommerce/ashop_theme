@@ -69,9 +69,8 @@
                                 </a>
                             </li>
                             {% else %}
-                            {% set customer = api.get('/customer/' ~ app.user.id) %}
                             <li>
-                                <a href="{{app.url}}/account/login"><span class="hidden-xs">{{ customer.first_name }} {{ customer.last_name}}</span> <i
+                                <a href="{{app.url}}/account/login"><span class="hidden-xs">Your account</span> <i
                                     class="glyphicon glyphicon-user hide visible-xs "></i>
                                 </a>
                             </li>
@@ -300,10 +299,10 @@
     </div><!--/.container -->
     <div class="search-full text-right"><a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i> </a>
         <div class="searchInputBox pull-right twitter-typeahead">
-            <form action="/search" type="GET" >
-            <input type="search" data-searchurl="search?=" name="s" placeholder="start typing and hit enter to search"
+            <form action="{{app.url}}/search" type="GET" >
+            <input type="search" data-searchurl="{{app.url}}/search?=" name="s" placeholder="start typing and hit enter to search"
                    class="search-input typeahead search-autocomplete" data-provide="typeahead" autocomplete="off">
-            <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
+                    <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
     </div>

@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="flash-notifications-container row">
+          <div class="col-md-12">
+            {% for row,message in app.user.getFlashes() %}
+            <div class="alert alert-dismissable alert-block alert-{{row}} flash-notification flash-notification-{{row}}" id="flash-notification-{{row}}">
+             <button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
+             {{message}}
+           </div>
+            {% endfor %}
+         </div>
+        </div>
+    </div>
+</div>

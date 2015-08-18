@@ -1848,6 +1848,7 @@ h1.bolder-style.dark a {
 
 .sliderImg {
     background: url('../images/site/loading1.gif') center center no-repeat;
+    width: 100%;
     /* prealoder */
 }
 .banner {
@@ -2562,6 +2563,19 @@ h1.bolder-style.dark a {
       height: 100%;
       padding: 3px 10px;
   }
+
+.sold-out {
+    background: #2c3e50;
+      color: #FFFFFF;
+      display: inline-block;
+      float: left;
+      font-family: Oswald,Helvetica Neue,Helvetica,Arial,sans-serif;
+      font-size: 16px;
+      font-weight: lighter;
+      height: 100%;
+      padding: 3px 10px;
+  }
+
 .discount {
   background: #eb5e58;
   color: #fff;
@@ -5577,6 +5591,7 @@ a.link,
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
     -ms-filter: progid: DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
 }
+
 .top-sellers {
     background-color: # {
         {

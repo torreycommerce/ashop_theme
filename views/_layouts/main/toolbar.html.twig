@@ -22,7 +22,7 @@
                 <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6 no-margin no-padding">
                     <div class="pull-right">
                         <ul class="userMenu">
-                            {% if app.user.id != '' %}
+                            {% if app.user.isLoggedIn() %}
                             <li>
                                 <a href="{{app.url}}/account/orders"><span class="hidden-xs hidden-sm">Order Status</span> 
                                     <i class="glyphicon glyphicon-user hide hidden-xs "></i>
@@ -35,7 +35,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if app.user.id != '' %}
+                            {% if app.user.isLoggedIn() %}
                             <li>
                                 <a href="{{app.url}}/account/returns"><span class="hidden-xs hidden-sm">Easy Returns</span> 
                                     <i class="glyphicon glyphicon-user hide hidden-xs "></i>
@@ -48,7 +48,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if app.user.id != '' %}     
+                            {% if app.user.isLoggedIn() %}    
                             <li>
                                 <a href="{{ app.url }}/account/registries"><span class="hidden-xs hidden-sm">Gift Registry</span> 
                                     <i class="glyphicon glyphicon-user hide hidden-xs "></i>
@@ -61,7 +61,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if app.user.id is null %}
+                            {% if not app.user.isLoggedIn() %}
                             {#Begin login button#}
                             <li>
                                 <a href="{{app.url}}/account/login"><span class="hidden-xs">Log in</span> <i
@@ -75,7 +75,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if app.user.id is null %}
+                            {% if not app.user.isLoggedIn() %}
                             {#Begin create account button#}
                             <li>
                                 <a href="{{app.url}}/account/create"><span class="hidden-xs">Create Account</span><i

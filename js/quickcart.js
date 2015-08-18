@@ -167,8 +167,11 @@ function ajaxCart(data, r) {
             for (var i = 0; i < response.length; i++) {
                 var product_name = response[i].title;
                 var product_price = parseFloat(response[i].price).toFixed(2);
-                var product_thumbnail = (typeof response[i].images !== 'undefined' && 
-                    typeof response[i].images[0].url !== 'undefined') ? response[i].images[0].url : response[i].thumbnail;
+                
+
+                var product_thumbnail = (typeof response[i].images !== "undefined" && 
+                    typeof response[i].images[0] !== "undefined" && 
+                    typeof response[i].images[0].url !== "undefined") ? response[i].images[0].url : response[i].thumbnail;
                 var product_id = response[i].id;
 
                 if (!first_product_added) {

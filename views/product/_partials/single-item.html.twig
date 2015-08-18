@@ -277,7 +277,7 @@
                         </div>
                     {% endif %}
                     {# Begin reviews #}
-                    <div id="reviews-desktop" class="tab-pane fade {% if variation.description is empty %}active{% else %}in{% endif %}">
+                    <div id="reviews-desktop" class="tab-pane fade {% if product.description is empty %}active in{% endif %}">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 {% include "/product/_partials/reviews.html.twig" %}

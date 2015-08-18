@@ -52,6 +52,8 @@
                                 {% for tag in product.tags %}
                                     {% if tag == 'new' %}
                                         <span class="new-product">{{ tag|capitalize }}</span> 
+                                    {% elseif tag == 'sold-out' %}
+                                        <span class="sold-out">{{ tag|capitalize }}</span> 
                                     {% else %}
                                         <span class="discount">{{ tag|capitalize }}</span> 
                                     {% endif %}

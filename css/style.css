@@ -2245,6 +2245,10 @@ h1.bolder-style.dark a {
 /* MAIN CONTAINER || TOP CONTAINER START (NEW ARRIVALS)
 /* =============================================================== */
 
+#content{
+    margin-top: 81px;
+}
+
 .section-block {
     margin-bottom: 30px;
 }

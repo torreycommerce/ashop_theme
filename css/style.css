@@ -3058,7 +3058,7 @@ h5.parallaxSubtitle {
     min-height: 580px;
 }
 .headerOffset {
-    padding-top: 120px;
+    padding-top: 20px;
 }
 .subCategoryList .thumbnail {
     -moz-transition: all .2s ease-in;

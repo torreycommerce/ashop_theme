@@ -62,15 +62,25 @@ ol {
     margin: 0;
     padding: 0;
 }
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
 body {
-    margin: 0;
+    margin-bottom: 300px;
     padding: 0;
     color: #34495E;
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
     line-height: 21px;
-    position: relative;
     background: #fff !important;
+}
+@media (max-width: 969px) {
+    body {
+        margin-bottom: 500px;
+    }
 }
 /* =============================================================== */
 /* TYPOGRAPHY + GLOBAL CLASS
@@ -2891,10 +2901,10 @@ h5.parallaxSubtitle {
 }
 .footer {
     background: #EDEFF1;
-    height: auto;
     padding-bottom: 30px;
-    position: relative;
+    position: absolute;
     width: 100%;
+    bottom: 0;
     border-bottom: 1px solid #CCCCCC;
     border-top: 1px solid #DDDDDD;
 }

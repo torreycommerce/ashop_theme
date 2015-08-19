@@ -54,13 +54,15 @@
                     </div>#}
                     <a href="{{ app.url }}/product/{{ product.slug }}"><img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{ img_url }}" alt="img" class="img-responsive"></a>
                         <div class="promotion">
-                        {% for tag in product.tags %}
-                            {% if tag == 'new' %}
-                                <span class="new-product">{{ tag|capitalize }}</span> 
-                            {% else %}
-                                <span class="discount">{{ tag|capitalize }}</span> 
-                            {% endif %}
-                        {% endfor %}
+                            {% for tag in product.tags %}
+                                {% if tag == 'new' %}
+                                    <span class="new-product">{{ tag|capitalize }}</span> 
+                                {% elseif tag == 'sold-out' %}
+                                    <span class="sold-out">{{ tag|capitalize }}</span> 
+                                {% else %}
+                                    <span class="discount">{{ tag|capitalize }}</span> 
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="description">

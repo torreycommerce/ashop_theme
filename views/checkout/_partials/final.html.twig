@@ -41,8 +41,6 @@
                                         <a href="{{app.url}}/account/order/{{final_order.order_number}}">{{ final_order.order_number }}</a>.
                                     </div>
                                     <div class="order-placed">Order Placed: {{ final_order.date_created|date("F jS, Y") }}</div>
-                                    <!-- <div class="order-estimated-delivery">Estimated Delivery: June 5, 2014</div> -->
-                                    <!-- <div class="order-invoice"><a href="#">Order Invoice (Print)</a></div> -->
                                 {% else %}
                                     <form name="order", action="{{app.url}}/order", method="POST", class="form-horizontal" id="view-order">
                                         <input type="hidden" name="order[id]" value="{{ final_order.order_number }}" />
@@ -121,15 +119,17 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                                            <div class="billing-address">
-                                                <div><strong>Billing Address:</strong></div>
-                                                <div class="address">
-                                                    <div class="name">{{ final_order.billing_first_name }} {{ final_order.billing_first_name }}</div>
-                                                    <div class="address1">{{ final_order.billing_street_line1 }}</div>
-                                                    <div class="city-state">{{ final_order.billing_city }}, {{ final_order.billing_state }} {{ final_order.billing_zip }}</div>
-                                                    <div class="billing-method">Card: {{ final_order.card_type }} | Last Digits {{ final_order.card_last4 }} </div>
+                                            {% if final_order.billing_first_name is not empty %}
+                                                <div class="billing-address">
+                                                    <div><strong>Billing Address:</strong></div>
+                                                    <div class="address">
+                                                        <div class="name">{{ final_order.billing_first_name }} {{ final_order.billing_first_name }}</div>
+                                                        <div class="address1">{{ final_order.billing_street_line1 }}</div>
+                                                        <div class="city-state">{{ final_order.billing_city }}, {{ final_order.billing_state }} {{ final_order.billing_zip }}</div>
+                                                        <div class="billing-method">Card: {{ final_order.card_type }} | Last Digits {{ final_order.card_last4 }} </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
@@ -169,12 +169,6 @@
                                                 <div class="amount col-xs-4 col-sm-4 col-md-5 col-lg-4">${{ final_order.tax|number_format(2, '.')}}</div>
                                             </div>
                                         </div>
-                                        <!-- <div class="gift-card">
-                                            <div class="row">
-                                                <div class="txt-label col-xs-8 col-sm-8 col-md-7 col-lg-8">Gift Card Amount:</div>
-                                                <div class="amount col-xs-4 col-sm-4 col-md-5 col-lg-4">$ XXX</div>
-                                            </div>
-                                        </div> -->
                                         <div class="order-total">
                                             <div class="row">
                                                 <div class="txt-label col-xs-8 col-sm-8 col-md-7 col-lg-8">Order Total:</div>

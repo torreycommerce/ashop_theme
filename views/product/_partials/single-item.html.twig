@@ -183,20 +183,13 @@
                 {% if variation.price > 0 %}
                     <!--/.size-details-->
                     <form method="post" id="productForm" action="{{ app.url }}/product/route">
-                       {% if variation['inventory_quantity'] is defined and variation['inventory_minimum_quantity'] is defined and
-                           variation['inventory_policy'] is defined and (variation['inventory_policy'] == 'continue' or
-                           variation['inventory_quantity'] > variation['inventory_minimum_quantity'] ) %}
-                               {# Begin product Size-Quantity #}
-
-
+                       {% if variation['inventory_quantity'] is defined and variation['inventory_minimum_quantity'] is defined and variation['inventory_policy'] is defined and  variation['has_stock'] %}
+                            {# Begin product Size-Quantity #}
                             <div class="row no-margin"> {# Begin Row#}
                                <div class="productFilter productFilterLook2">                                           
-
-                                    
-
                                    {# Begin product Quantity #}
                                     <div class="input-group  col-md-4 col-sm-5 col-xs-6 no-padding-left">
-                                    <label for="quantity-selector" class="control-label">QTY:</label>
+                                        <label for="quantity-selector" class="control-label">QTY:</label>
                                         <div class="input-group-btn">
                                             <button class="btn btn-remove btn-link bootstrap-touchspin-down" type="button">
                                                 <i class="fa fa-minus"></i>
@@ -207,36 +200,35 @@
                                         <button class="btn btn-add btn-link bootstrap-touchspin-up" type="button"><i class="fa fa-plus"></i></button>
                                         </div>
                                     </div>
+                                    {# End product quantity #}
                                </div>
-                               {# End product quantity #}
                             </div> {# End Row#}
-
-                            <div class="row no-margin"> {# Begin Row#}
-                                {% set stock_description = variation.inventory_quantity > 0 ? 'In Stock' :  variation.inventory_shipping_estimate is not empty ? variation.inventory_shipping_estimate : '' %}
-                               {# Begin add to cart button #}
-                                <div class="cart-actions">
-                                    <div class="addto">
-                                    <div class="col-sm-12 col-md-6 no-padding-side">
-                                        <button type="submit" class="btn btn-cart btn-block cart first" name="action" value="cart">
-                                            <i class="fa fa-shopping-cart"></i>
-                                                <span>Add to Cart</span>
-                                        </button>
-                                    </div>
-                                        <!--/.cart-actions-->
-                                       {% include "/product/_partials/list/actions-single.html.twig" %}
-                                    </div>
-                                    <div style="clear:both"></div>
-                                    {% if stock_description == 'In Stock'%}
-                                        <h3 class="incaps"><i class="fa fa fa-check-circle-o color-in"></i>{{stock_description}}</h3>
-                                    {% else %}
-                                        <h3 class="incaps"><i class="fa fa-minus-circle color-out"></i> Out of stock</h3>
-                                    {% endif %}
-                                    <h3 class="incaps"><i class="glyphicon glyphicon-lock"></i> Secure online ordering</h3>
+                        {% endif %}
+                        <div class="row no-margin"> {# Begin Row#}
+                            {% set stock_description = variation.has_stock ? 'In Stock' :  variation.inventory_shipping_estimate is not empty ? variation.inventory_shipping_estimate : 'Out of Stock' %}
+                           {# Begin add to cart button #}
+                            <div class="cart-actions">
+                                <div class="addto">
+                                <div class="col-sm-12 col-md-6 no-padding-side">
+                                    <button type="submit" class="btn btn-cart btn-block cart first" name="action" value="cart">
+                                        <i class="fa fa-shopping-cart"></i>
+                                            <span>Add to Cart</span>
+                                    </button>
                                 </div>
-                            </div> {# End Row#}
+                                    <!--/.cart-actions-->
+                                   {% include "/product/_partials/list/actions-single.html.twig" %}
+                                </div>
+                                <div style="clear:both"></div>
+                                {% if stock_description == 'In Stock'%}
+                                    <h3 class="incaps"><i class="fa fa fa-check-circle-o color-in"></i>{{stock_description}}</h3>
+                                {% else %}
+                                    <h3 class="incaps"><i class="fa fa-minus-circle color-out"></i> {{stock_description}}</h3>
+                                {% endif %}
+                                <h3 class="incaps"><i class="glyphicon glyphicon-lock"></i> Secure online ordering</h3>
+                            </div>
+                        </div> {# End Row#}
 
                             <div style="clear:both"></div>
-                        {% endif %}
                     </form>
                     {# End actions desktop #}
                     {# End product details #}

@@ -2526,7 +2526,7 @@ h1.bolder-style.dark a {
     -webkit-transition: all 0.5s ease 0s;
     -ms-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
-    height: 262px;
+    width: 262px;
     margin: 0;
 }
 .product:hover .image a img {
@@ -2901,6 +2901,7 @@ h5.parallaxSubtitle {
 }
 .footer {
     background: #EDEFF1;
+    padding-bottom: 30px;
     position: absolute;
     width: 100%;
     bottom: 0;

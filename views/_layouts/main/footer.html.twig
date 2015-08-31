@@ -5,8 +5,9 @@
                 <h3> Support </h3>
                 <ul>
                     <li class="supportLi">
+                        <p> Lorem ipsum dolor sit amet, consectetur </p>
                         <h4><a class="inline" href="callto:{{ app.params.information['phone_number'] }}"> <strong> <i class="fa fa-phone"> </i>{{ app.params.information['phone_number'] }}</strong> </a></h4>
-                        <h4><a class="inline" href="mailto:help@tshopweb.com"> <i class="fa fa-envelope-o"> 
+                        <h4><a class="inline" href="{{ app.params['contact-us']['to'] }}"> <i class="fa fa-envelope-o"> 
                         </i>{{ app.params['contact-us']['to'] }}</a></h4>
                     </li>
                 </ul>

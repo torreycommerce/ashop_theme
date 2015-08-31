@@ -205,7 +205,7 @@
                             </div> {# End Row#}
                         {% endif %}
                         <div class="row no-margin"> {# Begin Row#}
-                            {% set stock_description = variation.has_stock ? 'In Stock' :  variation.inventory_shipping_estimate is not empty ? variation.inventory_shipping_estimate : '' %}
+                            {% set stock_description = variation.has_stock ? 'In Stock' :  variation.inventory_shipping_estimate is not empty ? variation.inventory_shipping_estimate : 'Out of Stock' %}
                            {# Begin add to cart button #}
                             <div class="cart-actions">
                                 <div class="addto">

@@ -388,6 +388,8 @@
                                                                                                     In Stock
                                                                                                 {% elseif variation.inventory_shipping_estimate is not empty %}
                                                                                                     {{ variation.inventory_shipping_estimate }}
+                                                                                                {% else %}
+                                                                                                    Out of Stock
                                                                                                 {% endif %}
                                                                                             </li>
                                                                                         </ul>

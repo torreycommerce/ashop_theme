@@ -34,9 +34,8 @@
             <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                 <h3> My Account </h3>
                 <ul>
-                    <li><a href="account-1.html"> Account Login </a></li>
-                    <li><a href="account.html"> My Account </a></li>
-                    <li><a href="my-address.html"> My Address </a></li>
+                    <li><a href="{{app.url}}/account"> My Account </a></li>
+                    <li><a href="{{app.url}}/account/addresses"> My Address </a></li>
                     <li><a href="{{app.url}}/registry/search">Gift Registry</a></li>
                     <li><a href="{{app.url}}/cart">Cart</a></li>                        
                     {% if app.user.id != '' %}
@@ -71,20 +70,11 @@
             </div>
         </div><!--/.Endrow-->
     </div><!--/.Endcontainer-->
-</div><!--/.Endfooter-->
 <div class="footer-bottom">
     <div class="container">
         <p class="pull-left">Copyright &copy; {{ app.params.site.title }} {{"now"|date("Y")}}. All right reserved. Powered by Acenda.</p>
-
-        <div class="pull-right paymentMethodImg">
-            <img height="30" class="pull-right" src="{{app.url_asset}}/images/site/payment/master_card.png" alt="img"> 
-            <img height="30" class="pull-right" src="{{app.url_asset}}/images/site/payment/visa_card.png" alt="img">
-            <img height="30" class="pull-right" src="{{app.url_asset}}/images/site/payment/paypal.png" alt="img">
-            <img height="30" class="pull-right" src="{{app.url_asset}}/images/site/payment/american_express_card.png" alt="img"> 
-            <img height="30" class="pull-right" src="{{app.url_asset}}/images/site/payment/discover_network_card.png" alt="img">
-            <img height="30" class="pull-right" src="{{app.url_asset}}/images/site/payment/google_wallet.png" alt="img">
-
-        </div>
     </div>
 </div>
 <!--/.footer-bottom-->
+</div><!--/.Endfooter-->
+

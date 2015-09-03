@@ -1,91 +1,150 @@
-<div class="container main-container">
-    <!-- Main component call to action -->
-    {% set items_per_row = 4 %}
-    {% set collection_ids = [] %}
-    {% set product_count = 1 %}
-    {% set products = api.get('/catalog?query=tags:{$in:featured}') %}
 
+<div class="container main-container">
 
     <div class="morePost row featuredPostContainer style2 globalPaddingTop ">
         <h3 class="section-title style2 text-center"><span>FEATURED PRODUCT</span></h3>
 
         <div class="container">
-            <div class="row xsResponse">
-                {% set options = ['image'] %}
-                {% for row,product in products if collection_ids[product.id] is empty and product_count < 13 %}
-                    {% if product.group == 'product' %}
-                        {% for id in product.product.collection_id %}
-                            {% set collection_ids = collection_ids|merge({(id):true}) %}
-                        {% endfor %}
-                    {% else %}
-                        {% set collection_ids = collection_ids|merge({(product.id):true}) %}
-                    {% endif %}
-                    {% set product_count = product_count + 1 %}
-                    {# Begin product #}
-                    {% set product =  product|merge({'variant':product.product|values_in('variant')}) %}
-                    {% set product =  product|merge({'attributes':product.variant|values_in(['price','compare_price','save_price','save_percent','color'])}) %}
-                        
-                   {% if 'image' in options %}
-                    {# Grab image based on color facets #}
-                    {% set img_url = product.thumbnail %}
+            <div class="row xsResponse" id="featured_products">
 
-                    {% if product.attributes.color|length > 1 %}
-                        {% set current_colors = app.request.get.f.color|keys %}
-                        {% for variant in product.variant 
-                            if variant.status == 'active' and variant.color in current_colors and variant.images is not empty %}
-                                {% set img_url = variant.thumbnail %}
-                        {% endfor %}
-                {% endif %}
-
-                {% set secure =  app.url_asset | slice(0,5)  %}
-                {% if secure == 'https' %}
-                {% set img_url = img_url | replace({'http:':'https:'}) %}
-                {% endif %}
-                {% endif %}
-                <div class="item itemauto col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                    <div class="product">
-                        <div class="image">
-                            <a href="{{ app.url }}/product/{{ product.slug }}">
-                                <img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{ img_url }}" alt="img" class="img-responsive">
-                            </a>                            
-                                <div class="promotion">
-                                {% for tag in product.tags %}
-                                    {% if tag == 'new' %}
-                                        <span class="new-product">{{ tag|capitalize }}</span> 
-                                    {% elseif tag == 'sold-out' %}
-                                        <span class="sold-out">{{ tag|capitalize }}</span> 
-                                    {% else %}
-                                        <span class="discount">{{ tag|capitalize }}</span> 
-                                    {% endif %}
-                                {% endfor %}
-                                </div>
-                        </div>
-                        <div class="description">
-                            <h4><a href="{{ app.url }}/product/{{ product.slug }}">{{ product.title }} </a></h4>
-
-                            <p>{{ product.description|striptags|slice(0, 60) }}... </p>
-                        </div><!--/.End Description-->
-                        <div class="price"> <span>
-                            {% if product.attributes.price %}
-                                    {{ prod.price(product.attributes.price) }}
-                                {% if product.attributes.compare_price[0] is not empty and product.attributes.compare_price > product.attributes.price %}
-                                    <span class="price-standard">
-                                        {{ prod.price(product.attributes.compare_price) }}
-                                    </span>
-                                {% endif %}
-                            {% endif %}
-                        </span>
-                        </div><!--/.End Price-->
-                        <div class="action-control"><a href="{{ app.url }}/product/{{ product.slug }}" class="btn btn-primary"> <span class="add2cart"><i
-                            class="glyphicon glyphicon-shopping-cart"> </i> Go to Product </span> </a></div>
-                    </div><!--/.End Product-->
-                </div><!--/.End Item Itemauto-->
-                {% endfor %}
             </div><!--/.End Row xsResponse-->
-            <div class="row">
-                <div class="load-more-block text-center"><a class="btn btn-thin" href="#"> <i
-                        class="fa fa-plus-sign">+</i> load more products</a></div>
+            
+            <div class="row" id="load_more_featured">
+                <div class="load-more-block text-center"><a class="btn btn-thin" href="javascript: void(0);">
+                    <i class="fa fa-plus-sign">+</i> load more products</a>
+                </div>
             </div>
         </div> <!--/.End container-->
     </div> <!--/.End morePost row featuredPostContainer-->
 </div> <!--/.End container main-container-->
+
+<!-- Main component call to action -->
+{# {% set items_per_row = 4 %}
+{% set collection_ids = [] %}
+{% set product_count = 1 %}
+{% set products = api.get('/catalog?query=tags:{$in:featured}') %}
+{% if products|length %} #}
+
+{% set js %}
+    $(document).ready(function(){
+        var limit = 4;
+        var page = 1;
+     
+        var format_price = function(prices){
+            if (!Array.isArray(prices)){
+                return ("$"+String(parseFloat(prices).toFixed(2)));
+            }else{
+                var min = parseFloat(prices[0]);
+                var max = parseFloat(prices[0]);
+                for (i in prices){
+                    min = (min > parseFloat(prices[i])) ? parseFloat(prices[i]) : min;
+                    max = (max < parseFloat(prices[i])) ? parseFloat(prices[i]) : max;
+                }
+                if (min == max || min == 0)
+                    return ("$"+String(parseFloat(max).toFixed(2)));
+                else
+                    return ("$"+String(parseFloat(min).toFixed(2))+" - $"+String(parseFloat(max).toFixed(2)));
+            }
+        }
+
+        var aggregate_product = function(product, callback){
+            var price = [];
+            var compare_price = [];
+            var save_price = [];
+            var save_percent = [];
+
+            var img_url = product.thumbnail;
+
+            for(x in product.product){
+                var p = product.product[x]
+                for(i in p.variant){
+                    var v = p.variant[i];
+                    if (v.price){ price.push(v.price); }
+                    if (v.compare_price){compare_price.push(v.compare_price);}
+                    if (v.save_price){save_price.push(v.save_price);}
+                    if (v.save_percent){save_percent.push(v.save_percent);}
+                }
+            }
+
+            product.price = price;
+            product.compare_price = compare_price;
+            product.save_price = save_price;
+            product.save_percent = save_percent;
+
+            callback(product);
+        }
+
+        var product_tpl = function(product){
+            console.log(product);
+            var product_template = '<div class="item itemauto col-lg-3 col-md-3 col-sm-4 col-xs-12">';
+            product_template += '<div class="product">';
+            product_template += '<div class="image">';
+            product_template += '<a href="{{ app.url }}/product/'+product.slug+'">';
+            product_template += '<img src="'+product.thumbnail+'" alt="img" class="img-responsive">';
+            product_template += '</a>';
+            product_template += '<div class="promotion">';
+            for (x in product.tags){
+                switch (product.tags[x]){
+                    case 'new':
+                        product_template += '<span class="new-product">'+product.tags[x].toUpperCase()+'</span> ';
+                        break;
+                    case 'sold-out':
+                        product_template += '<span class="sold-out">'+product.tags[x].toUpperCase()+'</span> ';
+                        break;
+                    default:
+                        product_template += '<span class="discount">'+product.tags[x].toUpperCase()+'</span> ';
+                        break;
+                }
+            }
+            product_template += '</div>';
+            product_template += '</div>';
+            product_template += '<div class="description">';
+            product_template += '<h4><a href="{{ app.url }}/product/'+product.slug+'">'+product.title+'</a></h4>';
+            product_template += '<p>Description without html tags... </p>';
+            // product_template += '<p>{{ product.description|striptags|slice(0, 60) }}... </p>';
+            product_template += '</div>';
+            product_template += '<div class="price"> <span>';
+            if (product.price){
+                product_template += format_price(product.price);
+                if ((product.compare_price) && (product.compare_price[0] > product.price)){
+                    product_template += ' <span class="price-standard">';
+                    product_template += format_price(product.compare_price[0]);
+                    product_template += '</span>';
+                }
+            }
+            product_template += '</span>';
+            product_template += '</div>';
+            product_template += '<div class="action-control">';
+            product_template += '<a href="{{ app.url }}/product/'+product.slug+'" class="btn btn-primary">';
+            product_template += '<span class="add2cart">';
+            product_template += '<i class="glyphicon glyphicon-shopping-cart"></i> Go to Product ';
+            product_template += '</span>';
+            product_template += '</a>';
+            product_template += '</div>';
+            product_template += '</div>';
+            product_template += '</div>';
+
+            return (product_template);
+        }
+
+        var fetch_featured_products = function(){
+            $.getJSON( "{{app.url}}/api/catalog?query=tags:{$in:featured}&limit="+limit+"&page="+page, function( data ) {
+                if (data.num_total <= 4){ $("#load_more_featured").hide(); }
+                var html = '';
+                for(x in data.result){
+                    aggregate_product(data.result[x], function(product){
+                        $("#featured_products").append(product_tpl(product));
+                    })
+                }
+            });
+        }
+
+        fetch_featured_products();
+
+        $("#load_more_featured a").click(function(){
+            page += 1;
+            fetch_featured_products();
+        })
+    });
+{% endset %}
+{% do app.asset.script('featured_product', js) %}

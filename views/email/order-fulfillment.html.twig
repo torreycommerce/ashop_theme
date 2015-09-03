@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+}
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -309,7 +310,7 @@
                                                                                     </h3>
                                                                                     <div style="text-align:left;font-family: 'Source Sans Pro', sans-serif, helvetica, arial;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
                                                                                     Status: {{ item.status }} <br>
-                                                                                    Item name: <a href="{{app.live_url}}{{products[item.product_id].0.url}}" target="_blank">{{ item.name }}</a> <br>
+                                                                                    Item name: <a href="{{app.params['url']['current']}}{{products[item.product_id].0.url}}" target="_blank">{{ item.name }}</a> <br>
                                                                                     SKU: {{item.sku}} <br>
                                                                                     {% for ffi in fulfillment.items %}
                                                                                         {% if ffi.id == item.id %}

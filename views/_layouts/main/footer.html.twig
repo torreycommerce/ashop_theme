@@ -26,9 +26,15 @@
                 <ul>
                     <li><a href="{{app.url}}/about"> About us </a></li>
                     <li><a href="{{app.url}}/contact"> Contact us </a></li>
-                    <li><a href="{{app.url}}/content/faq">Help &amp; FAQs</a></li>                        
-                    <li><a href="{{app.url}}/content/privacy-policy">Privacy &amp; Security</a></li>
-                    <li><a href="{{app.url}}/content/terms-and-conditions"> Terms &amp; Conditions </a></li>
+                    {% if "faq" in contents_available %}
+                        <li><a href="{{app.url}}/content/faq">Help &amp; FAQs</a></li>
+                    {% endif %}                    
+                    {% if "faq" in contents_available %}
+                        <li><a href="{{app.url}}/content/privacy-policy">Privacy &amp; Security</a></li>
+                    {% endif %}
+                    {% if "faq" in contents_available %}
+                        <li><a href="{{app.url}}/content/terms-and-conditions"> Terms &amp; Conditions </a></li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">

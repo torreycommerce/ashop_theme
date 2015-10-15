@@ -28,9 +28,26 @@ function VariantsManager (variants, variant_options, isCollection) {
     }
 
     this.getVariationSelector = function(selectName, optionValue){
+        selectName = selectName.replace(" ", "-");
+        optionValue = optionValue.replace(" ", "-");
         return "[id=variation-selector-"+ this.jqSelector(self.product_id+"-"+selectName+"-"+optionValue) +"]";
     }
+    this.getVariationValueId = function(selectName, optionValue){
+        selectName = selectName.replace(" ", "-");
+        optionValue = optionValue.replace(" ", "-");
+        return "variation-selector-"+this.product_id+"-"+selectName+"-"+optionValue;
+    }
+    this.getVariationOptionId = function(selectName){
+        selectName = selectName.replace(" ", "-");
+        return "variation-selector-"+this.product_id+"-"+selectName;
+    }
+    this.getVariationSelectedId = function(selectName){
+        selectName = selectName.replace(" ", "-");
+        return "selected-"+selectName+"-"+this.product_id;
+    }
+    
     this.getSelectedValue = function(selectName){
+        selectName = selectName.replace(" ", "-");
         return "[id=selected-"+ this.jqSelector(selectName+"-"+self.product_id) +"]";
     }
     this.getProductVariation = function(variant_id){
@@ -221,9 +238,9 @@ function VariantsManager (variants, variant_options, isCollection) {
             //Color styling
             if( selectName.toLowerCase() == "color"){
                 if(self.isCollection){
-                    var div = $('<div>', {id: "variation-selector-"+self.product_id+"-"+selectName, name: selectName, class: "color-details-collection"}); 
+                    var div = $('<div>', {id: self.getVariationOptionId(selectName), name: selectName, class: "color-details-collection"}); 
                 }else{
-                    var div = $('<div>', {id: "variation-selector-"+self.product_id+"-"+selectName, name: selectName, class: "color-details"});
+                    var div = $('<div>', {id: self.getVariationOptionId(selectName), name: selectName, class: "color-details"});
                 }
      
                 var ul = $('<ul>', {class: "swatches Color"});  
@@ -232,7 +249,7 @@ function VariantsManager (variants, variant_options, isCollection) {
                             );
 
             }else{//size (default) styling
-                var div = $('<div>', {id: "variation-selector-"+self.product_id+"-"+selectName, name: selectName, class: "size-details"});           
+                var div = $('<div>', {id: self.getVariationOptionId(selectName), name: selectName, class: "size-details"});           
                 var ul = $('<ul>', {class: "swatches-size Size"});  
                 var span = $('<span>', {class: "selected-size"}).append(
                                 $('<strong>', {}).text(selectName.toUpperCase() + ":  ") 
@@ -241,7 +258,7 @@ function VariantsManager (variants, variant_options, isCollection) {
             
             $.each(optionArray, function(index, optionValue){
                 ul.append( 
-                    $('<li>', { id: "variation-selector-"+self.product_id+"-"+selectName+"-"+optionValue, 
+                    $('<li>', { id: self.getVariationValueId(selectName, optionValue), 
                                 class: "",
                                 "data-tooltip": "",
                                 "data-toggle": "tooltip",
@@ -255,7 +272,7 @@ function VariantsManager (variants, variant_options, isCollection) {
                 );
             });
 
-            var span_selected = $('<span>', {class: "", id: "selected-"+selectName+"-"+self.product_id}).text("");
+            var span_selected = $('<span>', {class: "", id: self.getVariationSelectedId(selectName)}).text("");
 
             div.append(span);
             div.append(span_selected);

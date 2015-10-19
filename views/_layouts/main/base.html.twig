@@ -43,6 +43,9 @@
 {{ app.asset.js(app.url_asset ~ '/js/jquery.zoomify.js') }}
 {{ app.asset.js(app.url_asset ~ '/js/rating.js') }}
 {{ app.asset.js(app.url_asset ~ '/js/typeahead.js') }}
+{% if app.params.seo.google_analytics is not empty or app.params.seo.google_tag_manager is not empty %}
+{{ app.asset.js(app.url_asset ~ '/js/acendaAnalytics.js') }}
+{% endif %}
 {# End Scripts #}
 
 {% endspaceless %}
@@ -84,9 +87,25 @@
     var acendaBaseUrl = '{{app.url}}'
     var acendaBaseThemeUrl = '{{app.url_asset}}'
     </script>
+    <script>
+        {% block acenda %}
+            {% include '/_partials/acenda.html.twig' %}
+        {% endblock %}
+    </script>
     {% endblock %}
 </head>
 <body>
+    {% if app.params.seo.google_tag_manager is not empty and app.params.seo.google_analytics is empty %}
+        <!-- Google Tag Manager DataLayer -->
+        <script>
+            var dataLayer = [];
+            {% block dataLayer %}
+                {% include '/_partials/tag-manager.html.twig' %} {# Google Tag Manager Snippet #}
+            {% endblock %}
+        </script>
+        <!-- Google Tag Manager DataLayer End -->
+    {% endif %}
+
     {% block body %}
 <!--[if lte IE 8]>
 <div id="outdated-warning" class="alert alert-dismissable alert-block alert-danger flash-notification flash-notification-danger">

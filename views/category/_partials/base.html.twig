@@ -191,7 +191,7 @@
                                     <div class="product thumbnail">
                                         <div class="image">
                                             <a href="{{app.url}}/category/{{category.slug}}">
-                                                <img clas="img-rounded"  onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" src="{{category.thumbnail|default(app.url_asset ~ "/images/product/image-250x250.jpg")}}" class="img-responsive" data-image-source="{{category.thumbnail|default(app.url_asset ~ "/images/product/image-250x250.jpg")}}">
+                                                <img clas="img-rounded"  onerror="this.src='{{ app.url_asset }}/assets/images/product/image-250x250.jpg'" src="{{category.thumbnail|default(app.url_asset ~ "/assets/images/product/image-250x250.jpg")}}" class="img-responsive" data-image-source="{{category.thumbnail|default(app.url_asset ~ "/assets/images/product/image-250x250.jpg")}}">
                                             </a>
                                         </div>
                                             <h4 class="subCategoryTitle"><a href="{{app.url}}/category/{{category.slug}}">{{ category.name }}</a></h4>
@@ -320,7 +320,7 @@
                             <a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal"
                                data-toggle="modal"> Quick View </a>
                         </div>#}
-                        <a href="{{ app.url }}/product/{{ product.slug }}"><img onerror="this.src='{{ app.url_asset }}/images/product/image-250x250.jpg'" 
+                        <a href="{{ app.url }}/product/{{ product.slug }}"><img onerror="this.src='{{ app.url_asset }}/assets/images/product/image-250x250.jpg'" 
                         src="{{ img_url }}" alt="img" class="img-responsive"></a>
 
                         <div class="promotion">

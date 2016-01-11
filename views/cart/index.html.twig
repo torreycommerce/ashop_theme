@@ -108,14 +108,14 @@
             {% endfor %}
 
             {% if needRegistryOrWishlist == true %}
-                <div class="col-xs-4 col-sm-6 col-md-3 col-lg-3 text-center"><i class="fa fa-heart"></i> WISHLIST/REGISTRY</div> 
+                <div class="col-xs-4 col-sm-6 col-md-3 col-lg-3 text-center"><i class="fa fa-heart"></i> WISHLIST/REGISTRY</div>
             {% endif %}
-            
+
             <div class="col-xs-4 col-sm-6 col-md-2 col-lg-2 text-right"><i class="fa fa-plus"></i> QUANTITY</div>
         </div>
     </div>
     <!--/ cartTop -->
-    </div>    
+    </div>
     {{ forms.begin('cart','','post', {class:'form-horizontal'}) }}
 
     {% for id, item in cart.items %}
@@ -128,7 +128,7 @@
                         {% set prod_image = product.images.0.thumbnail %}
                     {% else %}
                         {% set prod_image = product.thumbnail %}
-                    {% endif %}                    
+                    {% endif %}
                     <img onerror="this.src='{{ app.url_asset }}/assets/images/product/image-250x250.jpg'" src="{{ prod_image }}" />
                 </div>
             </div>
@@ -153,7 +153,7 @@
                         </div>
 
 
-                        
+
                         <div class="remove"><button class="glyphicon glyphicon-trash fa-2x" type="submit" name="cart[action]" value="remove/{{ id }}"></button></div>
                     </div>
                     {# Begin item prices #}
@@ -172,7 +172,7 @@
                             </div>
                             {% if product.compare_price is not empty and product.compare_price > product.price %}
                             <div class="sale">
-                                <div class="item-label">Sale: 
+                                <div class="item-label">Sale:
                                 <span class="dollar-sign">$</span><span class="amount"><span class="dollars">{{ product.price|number_format(2)|split('.')|first }}</span>.<span class="cents">{{ product.price|number_format(2)|split('.')|last }}</span></span></div>
                             </div>
                             {% endif %}
@@ -186,7 +186,7 @@
                         </div>
                     </div>
                     {# End item prices #}
-                    
+
                     {% if needRegistryOrWishlist == true %}
                         {# Begin wishlist / registry #}
                         <div class="col-md-3 col-lg-3">
@@ -209,7 +209,7 @@
                         </div>
                         {# End wishlist / registry #}
                     {% endif %}
-                        
+
                     {# Begin quantity #}
                     <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2">
                         <div class="quantity">
@@ -345,14 +345,14 @@
     {{ forms.end() }}
 
     <div class="gap"></div>
-        
+
     </div>
     {# End third party payments #}
     {% endif %}
     {% endif %}
     {% endblock %}
     {% block js %}
-    {{ app.asset.js(app.url_asset ~ '/js/estimator.js') }}
+    {{ app.asset.js(app.url_asset ~ '/assets/js/estimator.js') }}
     {% endblock %}
 
     {% block acenda %}

@@ -118,15 +118,6 @@ h3 code {
     font-size: 14px;
     font-weight: normal;
 }
-.block-title-1 {
-    display: block;
-    font-family: 'Oswald', sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    letter-spacing: 2px;
-    margin: 15px 20px 0 0;
-    text-transform: uppercase;
-}
 .block-title-2 {
     border-bottom: 1px solid #CECECE;
     font-size: 13px;
@@ -134,32 +125,6 @@ h3 code {
     margin: 0 0 15px;
     padding: 10px 0 0;
     position: relative;
-    text-transform: uppercase;
-}
-.block-title-3 {
-    border-bottom: 1px solid #CECECE;
-    font-weight: bold;
-    margin: 0 0 15px;
-    padding: 10px 0 10px;
-    position: relative;
-    text-transform: uppercase;
-}
-.block-title-4 {
-    display: inline;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    margin: 0 auto;
-    padding: 0 12px;
-    text-transform: uppercase;
-}
-.block-title-5 {
-    display: block;
-    font-size: 16px;
-    margin: 0 0 5px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    padding: 0;
     text-transform: uppercase;
 }
 .border-title {

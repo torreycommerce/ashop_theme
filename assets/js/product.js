@@ -504,6 +504,9 @@ function VariantsManager (variants, variant_options, img, videos, isCollection) 
                 var div = $('<div>', {class: "col-md-6 swatches-height"});
                 div.append(row);
                 $(self.selector).append(div);
+                /*var row = $('<div>', {class: "row no-margin"});
+                row.append(div);
+                $(self.selector).append(row);*/
             }
         });
 

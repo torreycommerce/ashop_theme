@@ -194,7 +194,7 @@
                                    {% include "/product/_partials/list/actions-single.html.twig" %}
                                 </div>
                             </div>
-                            {% if product.variant[0].price > 0 %}
+                            {# if product.variant[0].price > 0 #}
                      <!--/.size-details-->
                      {# Begin product tabs - desktop #}
         <div id="product-tabs">
@@ -229,6 +229,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     {{full_description}}
+                                    <div id="variant-description-{{product.id}}" ></div>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +263,7 @@
             </div>
             {# End tab panel #}
         </div>
-                  {% endif %}
+                  {# endif #}
                </div>   <!-- /End Product Details -->
 
             </div>   <!-- / End Row product-details -->

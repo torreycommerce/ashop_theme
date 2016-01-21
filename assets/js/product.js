@@ -191,9 +191,8 @@ function VariantsManager (variants, variant_options, img, videos, isCollection) 
                 $("#variant-input-"+self.product_id).attr('name', 'items['+obj_variant.id+']');
                 if(obj_variant.inventory_policy != 'continue'){
                     var limit = !obj_variant.inventory_minimum_quantity ? obj_variant.inventory_quantity : obj_variant.inventory_quantity - obj_variant.inventory_minimum_quantity;
-                    $("#variant-input-"+self.product_id).attr('data-limit', limit);
+                    $("#variant-input-"+self.product_id).data('limit', limit);
                 }
-
         }
         $('#div-sku-'+self.product_id).hide();
         if (obj_variant.sku) {

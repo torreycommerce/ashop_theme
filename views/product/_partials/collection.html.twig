@@ -5,13 +5,17 @@
             {# Begin main image #}
             {% set main_image_id = product.images.0.id is not empty ? product.images.0.id : product.product|values_in('images')[0]['id'] %}
             {% set main_image_id = main_image_id is empty ? 'default' : main_image_id %}
+
+            {% set main_image_alt = product.images.0.alt is not empty ? product.images.0.alt :product.product|values_in('images')[0]['alt'] %}
+            {% set main_image_alt = main_image_alt is empty ? '' : main_image_alt %}
+
             <div id="image-main">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="thumbnail">
                             <span class="helper hidden-xs"></span>
                             <div id="main-product-video" style="display:none"></div>
-                            <img onerror="this.src='{{ app.url_asset }}/assets/images/product/image-250x250.jpg'" id="main-product-image" class="img-responsive" src="{{app.image.getImageUrl("product","standard",main_image_id) }}" data-image-zoom="{{app.image.getImageUrl("product","large",main_image_id) }}" alt="" />
+                            <img onerror="this.src='{{ app.url_asset }}/assets/images/product/image-450x450.jpg'" id="main-product-image" class="img-responsive" src="{{app.image.getImageUrl("product","standard",main_image_id) }}" data-image-zoom="{{app.image.getImageUrl("product","large",main_image_id) }}" alt="{{ main_image_alt }}" />
                         </div>
                     </div>
                 </div>
@@ -72,28 +76,28 @@
             {# End product header #}
             {# Begin review stars #}
             {% set review_score = product.product|values_in('review_score')|merge( product.review_score ? [product.review_score] : [])|average() %}
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="reviews">
-                            {% if review_score > 0 %}
-                            <li class="stars">
-                                <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">{{ base.rating( review_score ) }}</a>
-                            </li>
-                            <li class="average">
-                                <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">
-                                    {{ (review_score * 5) |number_format(1) }} 
-                                    {% if reviews.num_total %}
-                                        {{ reviews.num_total }})
-                                    {% endif %}
-                                </a>
-                            </li>
-                            {% endif %}
-                            <li class="submit">
-                                <a href="{{ app.url }}/review/id/{{product.id}}">Write a Review</a>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="reviews">
+                        {% if review_score > 0 %}
+                        <li class="stars">
+                            <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">{{ base.rating( review_score ) }}</a>
+                        </li>
+                        <li class="average">
+                            <a onclick="$('.nav-tabs a:last').tab('show')" href="#reviews">
+                                {{ (review_score * 5) |number_format(1) }} 
+                                {% if reviews.num_total %}
+                                    {{ reviews.num_total }})
+                                {% endif %}
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li class="submit">
+                            <a href="{{ app.url }}/review/id/{{product.id}}">Write a Review</a>
+                        </li>
+                    </ul>
                 </div>
+            </div>
             
             {# End review stars #}
             {# Begin product prices #}
@@ -179,147 +183,153 @@
     </div>
 
     <div class="gap"></div>
-    {% if product.description is not empty %}
-        <section id="collection-short-description-mobile" class="hidden-sm hidden-md hidden-lg">
-            <div class="row">
-                <div class="col-sm-12 col-xs-12">
-                    <div class="description-content">
-                        {{ description }}
+        {% if product.description is not empty %}
+            <section id="collection-short-description-mobile" class="hidden-sm hidden-md hidden-lg">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="description-content">
+                            {{ description }}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    {% endif %}
-    {# End Product Details #}
-    {# Begin Product Tabs #}
-    <section id="collection" class="row">
-        <div class="col-md-12">
-            {# Begin tabs nav #}
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel-tabs">
-                        <ul class="nav nav-tabs">
-                            <li class="active">
-                                <a href="#children" data-toggle="tab">Products</a>
-                            </li>
-                            {% if product.description is not empty %}
-                                <li>
-                                    <a href="#details" data-toggle="tab">Description</a>
+            </section>
+        {% endif %}
+        {# End Product Details #}
+        {# Begin Product Tabs #}
+        <section id="collection" class="row">
+            <div class="col-md-12">
+                {# Begin tabs nav #}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-tabs">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#children" data-toggle="tab">Products</a>
                                 </li>
-                            {% endif %}
-                            <li>
-                                <a href="#reviews" data-toggle="tab">Reviews</a>
-                            </li>
-                        </ul>
+                                {% if product.description is not empty %}
+                                    <li>
+                                        <a href="#details" data-toggle="tab">Description</a>
+                                    </li>
+                                {% endif %}
+                                <li>
+                                    <a href="#reviews" data-toggle="tab">Reviews</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {# End tabs nav #}
-            {# Begin tab pane #}
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="tab-content">
-                        <div id="children" class="tab-pane fade in active">
-                            <form method="post" id="productForm" action="{{ app.url }}/product/route" class="form-inline">
-                                <div class="panel panel-default panel-tab">
-                                    {# Begin pane actions / registry / wishlist / add to cart #}
-                                    {% if app.user.id is not empty %}
-                                        {% set children_ids = [] %}
-                                        {% for child in children %}
-                                            {% set children_ids = children_ids|merge([child.id]) %}
-                                        {% endfor %}
-                                        {% set registries = api.get('/registry', {query:{customer_id:app.user.id}}) %}
-                                        {% if registries is not empty %}
-                                            {% set registry_ids = [] %}
-                                            {% for registry in registries %}
-                                                {% set registry_ids = registry_ids|merge([registry.id]) %}
+                {# End tabs nav #}
+                {# Begin tab pane #}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tab-content">
+                            <div id="children" class="tab-pane fade in active">
+                                <form method="post" id="productForm" action="{{ app.url }}/product/route" class="form-inline">
+                                    <div class="panel panel-default panel-tab">
+                                        {# Begin pane actions / registry / wishlist / add to cart #}
+                                        {% if app.user.id is not empty %}
+                                            {% set children_ids = [] %}
+                                            {% for child in children %}
+                                                {% set children_ids = children_ids|merge([child.id]) %}
                                             {% endfor %}
-                                            {% set items_in_registry = api.get('/registryitem', {query:{registry_id:{'$in':registry_ids},product_id:{'$in':children_ids}}}) %}
+                                            {% set registries = api.get('/registry', {query:{customer_id:app.user.id}}) %}
+                                            {% if registries is not empty %}
+                                                {% set registry_ids = [] %}
+                                                {% for registry in registries %}
+                                                    {% set registry_ids = registry_ids|merge([registry.id]) %}
+                                                {% endfor %}
+                                                {% set items_in_registry = api.get('/registryitem', {query:{registry_id:{'$in':registry_ids},product_id:{'$in':children_ids}}}) %}
+                                            {% endif %}
+                                            {% set wishlists = api.get('/wishlist', {query:{customer_id:app.user.id}}) %}
+                                            {% if wishlists is not empty %}
+                                                {% set wishlist_ids = [] %}
+                                                {% for wishlist in wishlists %}
+                                                    {% set wishlist_ids = wishlist_ids|merge([wishlist.id]) %}
+                                                {% endfor %}
+                                                {% set items_in_wishlist = api.get('/wishlistitem', {query:{wishlist_id:{'$in':wishlist_ids},product_id:{'$in':children_ids}}}) %}
+                                            {% endif %}
                                         {% endif %}
-                                        {% set wishlists = api.get('/wishlist', {query:{customer_id:app.user.id}}) %}
-                                        {% if wishlists is not empty %}
-                                            {% set wishlist_ids = [] %}
-                                            {% for wishlist in wishlists %}
-                                                {% set wishlist_ids = wishlist_ids|merge([wishlist.id]) %}
-                                            {% endfor %}
-                                            {% set items_in_wishlist = api.get('/wishlistitem', {query:{wishlist_id:{'$in':wishlist_ids},product_id:{'$in':children_ids}}}) %}
-                                        {% endif %}
-                                    {% endif %}
-                                    <div class="panel-heading">
-                                        {# Begin desktop buttons #}
-                                        <div class="cart-actions collection hidden-xs">
-                                            <div class="addto">
-                                                {% include "/product/_partials/list/actions-collection.html.twig" %}
-                                                {# Begin add to cart button #}
-                                                <div class="col-sm-4 col-md-3 col-lg-2 no-padding-right">
-                                                    <button type="submit" class="btn btn-block btn-primary" name="action" value="cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                        <span>Add to Cart</span>
-                                                    </button>
+                                        <div class="panel-heading">
+                                            {# Begin desktop buttons #}
+                                            <div class="cart-actions collection hidden-xs">
+                                                <div class="addto">
+                                                    {% include "/product/_partials/list/actions-collection.html.twig" %}
+                                                    {# Begin add to cart button #}
+                                                    <div class="col-sm-4 col-md-3 col-lg-2 no-padding-right">
+                                                        <button type="submit" class="btn btn-block btn-primary" name="action" value="cart">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                            <span>Add to Cart</span>
+                                                        </button>
+                                                    </div>
+                                                    {# End add to cart button #}
                                                 </div>
-                                                {# End add to cart button #}
                                             </div>
-                                        </div>
-                                        {# End desktop buttons #}
-                                        {# Begin mobile buttons #}
-                                        <div class="visible-xs cart-actions collection">
-                                            <div class="actions row">
-                                                {# Begin buy button #}
-                                                <div class="col-sm-12 col-xs-12 globalPaddingBottom-btn">
-                                                    <button type="submit" name="action" value="cart" class="btn btn-primary btn-block ">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                        <span>Add to Cart</span>
-                                                    </button>
+                                            {# End desktop buttons #}
+                                            {# Begin mobile buttons #}
+                                            <div class="visible-xs cart-actions collection">
+                                                <div class="actions row">
+                                                    {# Begin buy button #}
+                                                    <div class="col-sm-12 col-xs-12 globalPaddingBottom-btn">
+                                                        <button type="submit" name="action" value="cart" class="btn btn-primary btn-block ">
+                                                            <i class="fa fa-shopping-cart"></i>
+                                                            <span>Add to Cart</span>
+                                                        </button>
+                                                    </div>
+                                                    {# End buy button #}
+                                                    {% include "/product/_partials/list/buttons-mobile.html.twig" %}
                                                 </div>
-                                                {# End buy button #}
-                                                {% include "/product/_partials/list/buttons-mobile.html.twig" %}
                                             </div>
+                                            {# End mobile buttons #}
                                         </div>
-                                        {# End mobile buttons #}
-                                    </div>
-                                    {# End pane actions #}
-                                    <div class="panel-body">
-                                        {% set items = product.product %}
-                                        {% set layouts = product.layout is not empty ? product.layout : [{'name':'','items':items|values_in('id')}]%}
-                                        {% for layout in layouts %}
-                                            {% set children = items|find({'id':layout.items}) %}
+                                        {# End pane actions #}
+                                        <div class="panel-body">
+                                            {% set items = product.product %}
+                                            {% set layouts = product.layout is not empty ? product.layout : [{'name':'','items':items|values_in('id')}]%}
+                                            {% for layout in layouts %}
 
-                                            {% if children is not empty %}
-                                                <div class="panel-group">
-                                                    {# Begin collection group header #}
-                                                    {% if layout.name != '' %}
-                                                        <div class="group-header">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <h4>{{layout.name}}</h4>
+                                                {# Build ordered children array #}
+                                                {% set children = [] %}
+                                                {% for item in layout.items %}
+                                                    {% set children = children|merge( items|find({'id':item}) ) %}
+                                                {% endfor %}
+                                                {# set children = items|find({'id':layout.items}) #}
+
+                                                {% if children is not empty %}
+                                                    <div class="panel-group">
+                                                        {# Begin collection group header #}
+                                                        {% if layout.name != '' %}
+                                                            <div class="group-header">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <h4>{{layout.name}}</h4>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    {% endif %}
-
-                                                    {# End collection group header #}
-                                                    {# Begin collection product $(this).parentsUntil('.product').hide(); #}
-
-                                                    <script type="text/javascript">
-                                                        var VariantsData = {isCollection: true, products: []};
-                                                    </script>
-                                                    {% for product in children %} 
-                                                        {% if product.variant|length > 1 %}
-                                                            <script type="text/javascript">
-                                                                VariantsData.products.push({variants: {{product.variant|json_encode}}, variant_options: {{product.variant_options|json_encode}}});
-                                                            </script>
                                                         {% endif %}
-                                                        <div class="variations">
-                                                            <div class="product" style="text-align:left;">
-                                                                <div class="row">
-                                                                    {% for variation in product.variant %}
-                                                                        <div id="product-{{variation.id}}" {% if loop.index > 1 %}style="display:none"{% endif %}>
+
+                                                        {# End collection group header #}
+                                                        {# Begin collection product $(this).parentsUntil('.product').hide(); #}
+
+                                                        {% for product in children %} 
+                                                            <div class="variations">
+                                                                <div class="product" style="text-align:left;">
+                                        
+                                                                    <div class="row">
+                                                                        <div>
                                                                             {# Begin collection product image #}
-                                                                            {% if variation.images is not empty %}
+                                                                            <div class="col-xs-5 col-sm-6 col-md-2 col-lg-2">
+                                                                                <div class="image globalPadding10 " id="variant-selected-image-{{product.id}}">
+                                                                                    <div class="thumbnail">
+                                                                                        <img onerror="this.src='{{ app.url_asset }}/assets/images/product/image-250x250.jpg'" src="" width="250" class="img-responsive" alt="" />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            {# if variation.images is not empty %}
                                                                                 <div class="col-xs-5 col-sm-6 col-md-2 col-lg-2">
-                                                                                    <div class="image globalPadding10 ">
+                                                                                    <div class="image globalPadding10 " id="variant-selected-image-{{product.id}}">
                                                                                         <div class="thumbnail">
-                                                                                            <img onerror="this.src='{{ app.url_asset }}/assets/images/product/image-250x250.jpg'" src="{{ app.image.getImageUrl("product","thumbnail",variation.images.0.id) }}" width="250" class="img-responsive" data-image-swap="main-product-image" data-image-swap-src="{{app.image.getImageUrl("product","standard",variation.images.0.id) }}"  data-image-swap-zoom="{{app.image.getImageUrl("product","large",variation.id) }}" alt="" />
+                                                                                            <img onerror="this.src='{{ app.url_asset }}/assets/images/product/image-250x250.jpg'" src="" width="250" class="img-responsive" alt="" />
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -337,173 +347,145 @@
                                                                                         <div class="thumbnail"></div>
                                                                                     </div>
                                                                                 </div>
-                                                                            {% endif %}
+                                                                            {% endif #}
                                                                             {# End collection product image #}
                                                                             {# Begin collection product details #}
                                                                             <div class="col-xs-7 col-sm-6 col-md-3">
                                                                                 <div class="details">
                                                                                     <h4 class='name'>{{ product.name }}</h4>
-                                                                                    {# Begin variation dropdown #}
-                                                                                    {% if variation.price > 0 %}
-                                                                                        <div class="price" style="height:auto;">
-                                                                                            {{ prod.price(variation.price) }}
-                                                                                        </div>
-                                                                                    {% endif %}
-                                                                                    {# End variation dropdown #}
+                                                                                    <div class="price" style="height:auto;" id="product-price-{{product.id}}">
+                                                                                        {{ prod.price(variation.price) }}
+                                                                                    </div>
                                                                                     {# Begin pricing #}
-                                                                                    {% if (variation.compare_price is not empty) or (variation.price >= 100) or (variation.save_price is not empty) %}
                                                                                         <ul class="pricing">
                                                                                             {# Begin regular price #}
-                                                                                            {% if variation.compare_price > 0 %}
-                                                                                                <li class="regular">
-                                                                                                    Compare at {{ prod.price(variation.compare_price) }}
-                                                                                                </li>
-                                                                                            {% endif %}
+                                                                                            <li class="regular" id="product-standard-price-{{product.id}}">
+                                                                                                Compare at {{ prod.price(variation.compare_price) }}
+                                                                                            </li>
                                                                                             {# End regular price #}
                                                                                             {# Begin price per month #}
-                                                                                            {% if variation.price >= 100 %}
-                                                                                                <li class="per-month">
+                                                                                            {# if variation.price >= 100 #}
+                                                                                                {#<li class="per-month">
                                                                                                     <span data-tooltip data-toggle="tooltip" data-original-title="Spread payments over six months by selecting &quot;Checkout with Paypal&quot; on the Shopping Cart page. Then log in and apply for a &quot;Bill Me Later&quot; account.">
                                                                                                         {{ prod.billmelater(variation.price) }}
                                                                                                     </span>
-                                                                                                </li>
-                                                                                            {% endif %}
+                                                                                                </li>#}
+                                                                                            {# endif #}
                                                                                             {# End price per month #}
                                                                                             {# Begin percent off #}
-                                                                                            {% if variation.save_price is not empty %}
-                                                                                                <li class="percent">
-                                                                                                    Save {{ prod.saveprice(variation.save_price) }} {{ prod.savepercent(variation.save_percent) }}
-                                                                                                </li>
-                                                                                            {% endif %}
+                                                                                            <li class="percent" id="save-pricing-{{product.id}}">
+                                                                                                Save {{ prod.saveprice(variation.save_price) }} {{ prod.savepercent(variation.save_percent) }}
+                                                                                            </li>
                                                                                             {# End percent off #}
                                                                                         </ul>
-                                                                                    {% endif %}
                                                                                     {# End pricing #}
                                                                                     {# Begin estimated shipping #}
-                                                                                    {% if (variation.inventory_quantity is not empty and variation.inventory_minimum_quantity is not empty) or
-                                                                                        (variation.inventory_shipping_estimate is not empty) %}
                                                                                         <ul class="shipping">
-                                                                                            <li class="estimated-time">
-                                                                                                {% if variation.has_stock %}
-                                                                                                    In Stock
-                                                                                                {% elseif variation.inventory_shipping_estimate is not empty %}
-                                                                                                    {{ variation.inventory_shipping_estimate }}
-                                                                                                {% else %}
-                                                                                                    Out of Stock
-                                                                                                {% endif %}
+                                                                                            <li class="estimated-time" id="stock-text-{{product.id}}">
                                                                                             </li>
                                                                                         </ul>
-                                                                                    {% endif %}
                                                                                         {# End estimated shipping #}
                                                                                         {# Begin product tags #}
                                                                                         {% if product.tags is not empty %}
                                                                                             <ul class="tags hidden-xs hidden-sm">
                                                                                                 <li>
                                                                                                     {% for tag in product.tags %}
-                                                                                                    <span class="label label-info">{{tag|title}}</span>
+                                                                                                    <!-- <span class="label label-info">{{tag|title}}</span> -->
                                                                                                     {% endfor %}
                                                                                                 </li>
                                                                                             </ul>
                                                                                         {% endif %}
                                                                                         {# End product tags #}
                                                                                 </div>
-                                                                                {% if variation.sku is not empty %}
-                                                                                    <div style="padding: 5px 0;"> 
-                                                                                        <strong>ITEM :</strong> #{{variation.sku}}
-                                                                                    </div>
-                                                                                {% endif %}
+                                                                                <div style="padding: 5px 0;" id="div-sku-{{product.id}}"> 
+                                                                                    <strong>ITEM :</strong> #<span id="variant-sku-{{product.id}}"></span>
+                                                                                </div>
                                                                             </div>
                                                                             {# End collection product details #}
                                                                         </div>
-                                                                    {% endfor %}
 
-                                                                    {# Begin Color-Size variants #}
-                                                                    <div class="col-xs-7 col-sm-6 col-md-4 col-lg-5">
-                                                                            <div class="variation-selection globalPaddingTopBottom10" style="padding-left:10px;">
-                                                                                <div id="variation-selector-{{product.id}}" class="input-group">
+                                                                        {# Begin Color-Size variants #}
+                                                                        <div class="col-xs-7 col-sm-6 col-md-4 col-lg-5">
+                                                                                <div class="variation-selection globalPaddingTopBottom10" style="padding-left:10px;">
+                                                                                    <div id="variation-selector-{{product.id}}" class="input-group">
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                    </div>
-                                                                    {# End Color-Size variants #}
-
-                                                                    {% for variation in product.variant %}
-                                                                        <div id="product-{{variation.id}}" {% if loop.index > 1 %}style="display:none"{% endif %}>
-                                                                            {# Begin collection product actions #}
+                                                                        </div>
+                                                                        {# End Color-Size variants #}
+                                                                        {# Begin collection product actions #}
+                                                                        <div>
                                                                             <div class="col-xs-6 col-sm-6 Col-sm-offset-3 col-md-3 col-lg-2">
                                                                                 <div class="actions" style="padding-left:10px;">
                                                                                     <div class="btn-toolbar">
-                                                                                        <div class="quantity-input-group quantity">
-                                                                                            {% if variation.price > 0 and variation['inventory_quantity'] is defined and variation['inventory_minimum_quantity'] is defined and
-                                                                                            variation['inventory_policy'] is defined and variation['has_stock'] %}
-                                                                                                <label for="quantity-selector" class="control-label" style="padding-left:5px;">QTY</label>
-                                                                                               {# Begin product Quantity #}
-            <div class="input-group">
-                <div class="input-group-btn">
-                    <button class="btn btn-remove btn-link bootstrap-touchspin-down" type="button">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                </div>
-                {% set limit = variation.inventory_minimum_quantity is empty ? variation.inventory_quantity : variation.inventory_quantity - variation.inventory_minimum_quantity %}
-                <input {% if variation.inventory_policy !='continue' %} data-limit="{{limit}}" {% endif %} class="form-control quantity-selector quanitySniper" value="0" maxlength="2" placeholder="0" name="items[{{variation.id}}]" type="text">
-                <div class="input-group-btn">
-                    <button class="btn btn-add btn-link bootstrap-touchspin-up" type="button"><i class="fa fa-plus"></i></button>
-                </div>
-            </div>
-                                                                                            {% endif %}
+                                                                                        <div class="quantity-input-group quantity" id="div-quantity-{{product.id}}">
+                                                                                            <label for="quantity-selector" class="control-label" style="padding-left:5px;">QTY</label>
+                                                                                           {# Begin product Quantity #}
+                                                                                            <div class="input-group">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-remove btn-link bootstrap-touchspin-down" type="button">
+                                                                                                        <i class="fa fa-minus"></i>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <input id="variant-input-{{product.id}}" data-limit="" class="form-control quantity-selector quanitySniper" value="0" maxlength="2" placeholder="0" name="" type="text">
+                                                                                                <div class="input-group-btn">
+                                                                                                    <button class="btn btn-add btn-link bootstrap-touchspin-up" type="button"><i class="fa fa-plus"></i></button>
+                                                                                                </div>
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                                 {# End collection product actions #}
                                                                             </div>
                                                                         </div>
-                                                                    {% endfor %}
-                                                                    {# End variation block of product #}
+                                                                        {# End collection product actions #}
+
+                                                                        {# End variation block of product #}
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    {% endfor %}
-                                                    {# End collection product #}
-                                                </div>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                    {% if children|length > 3 %}
-                                        <div class="panel-footer">
-                                            {# Begin desktop buttons #}
-                                            <div class="hidden-xs btn-toolbar">
-                                                {% include "/product/_partials/list/buttons.html.twig" %}
-                                            </div>
-                                            {# End desktop buttons #}
-                                            {# Begin mobile buttons #}
-                                            <div class="visible-xs btn-toolbar">
-                                                {% include "/product/_partials/list/buttons-mobile.html.twig" %}
-                                            </div>
-                                            {# End mobile buttons #}
+                                                        {% endfor %}
+                                                        {# End collection product #}
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
                                         </div>
-                                    {% endif %}
-                                </div>
-                            </form>
-                        </div>
-                        <div id="details" class="tab-pane fade">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    {{product.description}}
+                                        {% if children|length > 3 %}
+                                            <div class="panel-footer">
+                                                {# Begin desktop buttons #}
+                                                <div class="hidden-xs btn-toolbar">
+                                                    {% include "/product/_partials/list/buttons.html.twig" %}
+                                                </div>
+                                                {# End desktop buttons #}
+                                                {# Begin mobile buttons #}
+                                                <div class="visible-xs btn-toolbar">
+                                                    {% include "/product/_partials/list/buttons-mobile.html.twig" %}
+                                                </div>
+                                                {# End mobile buttons #}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="details" class="tab-pane fade">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        {{product.description}}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="reviews" class="tab-pane fade">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    {% include "/product/_partials/reviews.html.twig" %}
+                            <div id="reviews" class="tab-pane fade">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        {% include "/product/_partials/reviews.html.twig" %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {# End tab pane #}
             </div>
-            {# End tab pane #}
-        </div>
-    </section>
+        </section>
     {# End Product Tabs #}
     {% include "/_partials/promo/new_arrivals.html.twig" %}  {# New Arrivals Part #}
 

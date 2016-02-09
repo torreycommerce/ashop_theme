@@ -292,7 +292,6 @@
                                                 {% for item in layout.items %}
                                                     {% set children = children|merge( items|find({'id':item}) ) %}
                                                 {% endfor %}
-                                                {# set children = items|find({'id':layout.items}) #}
 
                                                 {% if children is not empty %}
                                                     <div class="panel-group">
@@ -324,30 +323,6 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            
-                                                                            {# if variation.images is not empty %}
-                                                                                <div class="col-xs-5 col-sm-6 col-md-2 col-lg-2">
-                                                                                    <div class="image globalPadding10 " id="variant-selected-image-{{product.id}}">
-                                                                                        <div class="thumbnail">
-                                                                                            <img onerror="this.src='{{ app.url_asset }}/assets/images/product/image-250x250.jpg'" src="" width="250" class="img-responsive" alt="" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            {% elseif product.thumbnail is not empty %}
-                                                                                <div class="col-md-2 col-sm-6 col-xs-5">
-                                                                                    <div class="image globalPadding10 ">
-                                                                                        <div class="thumbnail">
-                                                                                            <img onerror="this.src='{{ app.url_asset }}/assets/images/product/image-250x250.jpg'" src="{{ product.thumbnail }}" width="250" class="img-responsive" data-image-swap="main-product-image" {% if product.images.0.id is defined %}data-image-swap-src="{{app.image.getImageUrl("product","standard", product.images.0.id) }}" data-image-swap-zoom="{{app.image.getImageUrl("product","large",product.images.0.id) }}"{% endif %} alt="" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            {% else %}
-                                                                                <div class="col-md-2 col-sm-6 col-xs-5">
-                                                                                    <div class="image">
-                                                                                        <div class="thumbnail"></div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            {% endif #}
                                                                             {# End collection product image #}
                                                                             {# Begin collection product details #}
                                                                             <div class="col-xs-7 col-sm-6 col-md-3">
@@ -363,15 +338,6 @@
                                                                                                 Compare at {{ prod.price(variation.compare_price) }}
                                                                                             </li>
                                                                                             {# End regular price #}
-                                                                                            {# Begin price per month #}
-                                                                                            {# if variation.price >= 100 #}
-                                                                                                {#<li class="per-month">
-                                                                                                    <span data-tooltip data-toggle="tooltip" data-original-title="Spread payments over six months by selecting &quot;Checkout with Paypal&quot; on the Shopping Cart page. Then log in and apply for a &quot;Bill Me Later&quot; account.">
-                                                                                                        {{ prod.billmelater(variation.price) }}
-                                                                                                    </span>
-                                                                                                </li>#}
-                                                                                            {# endif #}
-                                                                                            {# End price per month #}
                                                                                             {# Begin percent off #}
                                                                                             <li class="percent" id="save-pricing-{{product.id}}">
                                                                                                 Save {{ prod.saveprice(variation.save_price) }} {{ prod.savepercent(variation.save_percent) }}

@@ -123,19 +123,44 @@ $(document).ready(function() {
     $('#account').trigger('open');
   });
 
-  $(".close-menu").click(function(){
-    $('#nav-mobile-main').trigger('close');
+  //Begin Mobile navigation menu
+  $('#mobileMenu').slicknav({
+    appendTo:'#mobileMenuAnchor',
+    'allowParentLinks': true,
+    'closeOnClick': false,
+    'closedSymbol': '<i class="fa fa-chevron-right"></i>',
+    'openedSymbol': '<i class="fa fa-chevron-down"></i>',
   });
-
-    $("#nav-mobile-main").mmenu({
-       zposition: "front",
-       position: "left",
-       classes: "mm-light",
-       dragOpen: true,
-       moveBackground: true
-    }, {
-    }).trigger("open.btn-nav-mobile");
-
+  var isOpen = false;
+  var closingMenus = false;
+  $('#mobile_nav_button').click(function(){
+    event.stopPropagation();
+    if(isOpen){
+      closingMenus = true;
+      $('.slicknav_open >> .slicknav_arrow').children().trigger('click');
+      closingMenus = false;
+      $('#mobileMenu').slicknav('close');
+      isOpen =false;
+    }else{
+      $('#mobileMenu').slicknav('open');
+      isOpen = true;
+    }
+  });
+  $('body').click(function(){
+    if(isOpen && !closingMenus){
+      closingMenus = true;
+      $('.slicknav_open >> .slicknav_arrow').children().trigger('click');
+      closingMenus = false;
+      $('#mobileMenu').slicknav('close');
+      isOpen =false;
+    }
+  });
+  $('.slicknav_nav').click(function(){
+    if(event){
+      event.stopPropagation();
+    }
+  });
+  //End Mobile navigation menu
 
 
     $("#acc_btn").click(function(){$('#account').trigger('open');});

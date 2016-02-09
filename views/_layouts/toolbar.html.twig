@@ -96,12 +96,12 @@
             </div><!--/.row-->
         </div><!--/.container-->
     </div><!--/.navbar-top-->
-    <div class="container">
+    <div class="container" id="mobileMenuAnchor">
         <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <a class="navbar-toggle" id="mobile_nav_button">
                     <span class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span> 
                     <span class="icon-bar"> </span> <span class="icon-bar"> </span>
-                </button>
+                </a>
                 <div class="navbar-brand">
                     {% if app.params.logoimages is not empty %}
                         {% set logo_info = app.params.logoimages | first %}
@@ -192,10 +192,13 @@
                         </a>
                         <ul id="category_item" class="dropdown-menu">
                             {% for category,subitems in items.limb %}
-                            {% set i = i + 1 %}
-                            <li>
-                                <a tabindex="-1" href="{{app.url}}/category/{{subitems.slug}}">{{category|replace('-',' ')|title}}</a>
-                            </li>
+                                {% if subitems.limb|length %}
+                                    {{ base.subcategory(category,subitems) }}
+                                {% else %}
+                                  <li>
+                                      <a tabindex="-1" href="{{app.url}}/category/{{subitems.slug}}">{{category|replace('-',' ')|title}}</a>
+                                  </li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     </li>
@@ -298,6 +301,9 @@
                     <!--/.search-box -->
             </div><!--/.navbar-nav hidden-xs-->
         </div><!--/.nav-collapse -->
+
+
+
     </div><!--/.container -->
     <div class="search-full text-right"><a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i> </a>
         <div class="searchInputBox pull-right twitter-typeahead">
@@ -310,3 +316,42 @@
     </div>
     <!--/.search-full-->
 </div><!-- /.End navbar  -->
+
+<!-- Mobile Menu
+.............................................. -->
+<ul id="mobileMenu" style="display:none;">
+    <!-- <li><h2>Categories</h2></li> -->
+    <li>
+        <a href="{{app.url}}">
+            Home
+        </a>
+    </li>
+    <!-- TESTING -->
+    {% set id = 0 %}
+    {% for main_category,items in categories %}
+        {% set id = id + 1 %}
+        <li>
+            <a class="itemT" href="{{app.url}}/category/{{ items.slug }}">
+                {{main_category|replace('-',' ')|title}}
+            </a>
+            {% if items.limb|length %}
+            <ul>
+                {% set i = 0 %}
+                {% for category,subitems in items.limb %}
+                    {% set i = i + 1 %}
+                    {% if subitems.limb|length %}
+                        {% set subid = "submenu-" ~ id ~ "-" ~ i %}
+                        {{ base.subcategory_mobile(category, subitems, subid) }}
+                    {% else %}
+                        <li>
+                            <a href="{{app.url}}/category/{{subitems.slug}}">
+                                {{category|replace('-',' ')|title}}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

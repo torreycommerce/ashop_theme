@@ -5631,3 +5631,62 @@ sp-current:visited {
 .orderStep li a {
     background: #66de97;
 }
+
+/* Category dropdown styling
+----------------------------------------- */
+.dropdown-submenu {
+    position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+}
+.dropdown-submenu>.dropdown-menu{
+    display: none !important;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block !important;
+}
+
+/* Slicknav Mobile Nav
+----------------------------------------- */
+@media (min-width: 768px){
+  .slicknav_menu{
+    display: none !important;
+  }
+}
+
+#mobileMenu{
+    display: none !important;
+}
+.slicknav_btn{
+    display: none !important;
+}
+.slicknav_menu{
+    padding: 0px !important;
+    background-color: #4ec67f !important;
+}
+.slicknav_nav ul{
+    background-color: #4bb777 !important;
+}
+.slicknav_nav{
+    max-height: 60vh !important;
+    overflow-y: auto !important;
+}
+.slicknav_nav a{
+    color: #fff !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border-top: solid 1px #fff !important;
+    border-radius: 0px !important;
+    font: normal 14px "Roboto" !important;
+}
+.slicknav_nav li:first-child a{
+    border-top: none !important;
+}
+.slicknav_nav a:hover{
+    background-color: inherit !important;
+}
+.slicknav_arrow{
+    float: right !important;
+}

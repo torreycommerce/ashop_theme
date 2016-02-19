@@ -38,7 +38,7 @@ $('#ajaxcart-close').click(function() {
 });
 
 $('button[value=cart]').click(function(event) {
-    
+
     event.preventDefault();
     var cartButton = event.currentTarget;
     var form = cartButton.parentElement;
@@ -169,12 +169,12 @@ function ajaxCart(data, r) {
                 return product_cart_id[a.id] > product_cart_id[b.id];
             });
             for (var i = 0; i < response.length; i++) {
-                var product_name = response[i].title;
+                var product_name = response[i].name;
                 var product_price = parseFloat(response[i].price).toFixed(2);
-                
 
-                var product_thumbnail = (typeof response[i].images !== "undefined" && 
-                    typeof response[i].images[0] !== "undefined" && 
+
+                var product_thumbnail = (typeof response[i].images !== "undefined" &&
+                    typeof response[i].images[0] !== "undefined" &&
                     typeof response[i].images[0].url !== "undefined") ? response[i].images[0].url : response[i].thumbnail;
                 var product_id = response[i].id;
 
@@ -205,7 +205,7 @@ function ajaxCart(data, r) {
             }
             $('.cart .item-count, .toolbar-mobile .item-count, #nav-mobile-main .item-count').html(cart_item_count);
             $('.cart .ajaxcart .item-count, .mobile-popover .ajaxcart .item-count').html(cart_item_count);
-            
+
             $('.cart .ajaxcart .subtotal, .mobile-popover .ajaxcart .subtotal').html(cart_subtotal);
 
             if (show_all) {
